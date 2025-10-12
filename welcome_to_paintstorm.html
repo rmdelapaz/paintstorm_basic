@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Introduction to Paintstorm Studio - A powerful digital painting software for artists">
+    <meta name="author" content="Paintstorm Tutorial">
+    <title>Welcome to Paintstorm Studio - Digital Art Fundamentals</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
+    <!-- Progress indicator -->
+    <div class="progress-indicator" role="progressbar" aria-label="Page scroll progress">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🎨 Paintstorm Studio</a>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <div class="nav-links" id="nav-links" aria-hidden="false">
+                <a href="index.html">Home</a>
+                <a href="index.html#modules">All Lessons</a>
+                <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#modules">Getting Started</a></li>
+            <li aria-current="page">Welcome to Paintstorm Studio</li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Lesson Header -->
+            <header>
+                <h1>🎨 Welcome to Paintstorm Studio</h1>
+                <p class="lead">Your journey into professional digital painting begins here! Let's discover what makes Paintstorm Studio a powerful tool for digital artists.</p>
+                
+                <!-- Learning objectives -->
+                <div class="card">
+                    <h2>🎯 Learning Objectives</h2>
+                    <p>By the end of this lesson, you will:</p>
+                    <ul>
+                        <li>Understand what Paintstorm Studio is and why artists love it</li>
+                        <li>Learn about the unique features that set it apart from other software</li>
+                        <li>Know the system requirements and how to get started</li>
+                        <li>Grasp the basic workflow of digital painting</li>
+                    </ul>
+                </div>
+            </header>
+
+            <!-- Table of Contents -->
+            <nav class="card" aria-label="Table of Contents">
+                <h2 style="cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center;" onclick="toggleTOC()">
+                    <span>📑 Table of Contents</span>
+                    <span id="toc-toggle-icon" style="transition: transform 0.3s;">▼</span>
+                </h2>
+                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 500px;">
+                    <li><a href="#what-is-paintstorm" class="toc-link">What is Paintstorm Studio?</a></li>
+                    <li><a href="#why-paintstorm" class="toc-link">Why Choose Paintstorm?</a></li>
+                    <li><a href="#digital-painting-basics" class="toc-link">Digital Painting Fundamentals</a></li>
+                    <li><a href="#getting-started" class="toc-link">Getting Started</a></li>
+                    <li><a href="#practice" class="toc-link">Your First Exercise</a></li>
+                    <li><a href="#summary" class="toc-link">Summary & Next Steps</a></li>
+                </ol>
+            </nav>
+
+            <!-- Section 1: What is Paintstorm Studio? -->
+            <section id="what-is-paintstorm" class="lesson-section">
+                <h2>What is Paintstorm Studio? 🖌️</h2>
+                
+                <p>Imagine having a magical canvas that never runs out of space, brushes that never wear out, and colors that never run dry. That's essentially what <strong>Paintstorm Studio</strong> offers you in the digital realm!</p>
+                
+                <p>Paintstorm Studio is a professional digital painting software designed specifically for artists who want to create stunning artwork on their computers. Think of it as your complete art studio compressed into a single application.</p>
+                
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h3>📖 Definition</h3>
+                    <p><strong>Digital Painting Software:</strong> A computer program that simulates traditional painting techniques (like oil, watercolor, or acrylic) using digital tools, allowing artists to create artwork using a mouse, graphics tablet, or touchscreen.</p>
+                </div>
+
+                <h3>The Artist Behind Paintstorm</h3>
+                <p>Paintstorm Studio was created by Sergei Komarov, a digital artist who understood what painters really needed. Unlike software designed by engineers alone, Paintstorm was built with an artist's perspective, focusing on the natural flow of painting and intuitive brush behavior.</p>
+
+                <!-- Visual representation of what Paintstorm offers -->
+                <div class="mermaid">
+                    graph TD
+                        A[Paintstorm Studio] --> B[Digital Canvas]
+                        A --> C[Brush Engine]
+                        A --> D[Color Tools]
+                        A --> E[Layer System]
+                        B --> F[Infinite Size]
+                        B --> G[Multiple Formats]
+                        C --> H[Custom Brushes]
+                        C --> I[Realistic Textures]
+                        D --> J[Color Wheel]
+                        D --> K[Mixer Palette]
+                        E --> L[Blend Modes]
+                        E --> M[Masks & Groups]
+                </div>
+            </section>
+
+            <!-- Section 2: Why Choose Paintstorm? -->
+            <section id="why-paintstorm" class="lesson-section">
+                <h2>Why Choose Paintstorm? 🚀</h2>
+                
+                <p>Let me share why Paintstorm Studio has become a favorite among digital artists worldwide. It's like choosing between a regular pencil and a Swiss Army knife of art tools!</p>
+
+                <h3>Unique Features That Make Paintstorm Special</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>What It Does</th>
+                            <th>Why Artists Love It</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🎨 Dynamic Brush Engine</td>
+                            <td>Creates incredibly realistic brush strokes with natural bristle behavior</td>
+                            <td>Feels like painting with real brushes - you can almost smell the paint!</td>
+                        </tr>
+                        <tr>
+                            <td>🔄 Symmetry Tools</td>
+                            <td>Mirrors your strokes in real-time across multiple axes</td>
+                            <td>Perfect for creating mandalas, patterns, and perfectly symmetrical designs</td>
+                        </tr>
+                        <tr>
+                            <td>📐 Perspective Guides</td>
+                            <td>Built-in guides for 1, 2, and 3-point perspective</td>
+                            <td>Makes architectural and environmental art much easier</td>
+                        </tr>
+                        <tr>
+                            <td>🎯 Brush Stabilization</td>
+                            <td>Smooths out shaky hand movements</td>
+                            <td>Creates clean, confident lines even if you're using a mouse</td>
+                        </tr>
+                        <tr>
+                            <td>💰 Affordable Price</td>
+                            <td>One-time purchase, no subscription</td>
+                            <td>Professional tools without breaking the bank</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <blockquote>
+                    <strong>💡 Real-World Analogy:</strong> If Photoshop is like a fully-equipped professional studio with every tool imaginable, Paintstorm Studio is like a focused, well-organized artist's workspace where everything you need for painting is within arm's reach - nothing more, nothing less.
+                </blockquote>
+            </section>
+
+            <!-- Section 3: Digital Painting Fundamentals -->
+            <section id="digital-painting-basics" class="lesson-section">
+                <h2>Digital Painting Fundamentals 🎨</h2>
+                
+                <p>Before we dive into Paintstorm Studio specifically, let's understand the basic concepts of digital painting. Don't worry if you're completely new - we'll use familiar analogies!</p>
+
+                <h3>Traditional vs. Digital: A Comparison</h3>
+                
+                <canvas id="comparison-canvas" width="800" height="400" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px;"></canvas>
+                
+                <script>
+                    // Draw a comparison illustration
+                    const canvas = document.getElementById('comparison-canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Scale for mobile devices
+                    const scale = window.devicePixelRatio || 1;
+                    canvas.width = 800 * scale;
+                    canvas.height = 400 * scale;
+                    ctx.scale(scale, scale);
+                    
+                    // Background
+                    ctx.fillStyle = '#f8f9fa';
+                    ctx.fillRect(0, 0, 800, 400);
+                    
+                    // Traditional side
+                    ctx.fillStyle = '#fff5e6';
+                    ctx.fillRect(0, 0, 400, 400);
+                    
+                    // Digital side
+                    ctx.fillStyle = '#e6f3ff';
+                    ctx.fillRect(400, 0, 400, 400);
+                    
+                    // Center divider
+                    ctx.strokeStyle = '#333';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(400, 0);
+                    ctx.lineTo(400, 400);
+                    ctx.stroke();
+                    
+                    // Labels
+                    ctx.font = 'bold 24px Arial';
+                    ctx.fillStyle = '#333';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('Traditional', 200, 40);
+                    ctx.fillText('Digital', 600, 40);
+                    
+                    // Icons and descriptions
+                    ctx.font = '16px Arial';
+                    
+                    // Traditional items
+                    ctx.fillText('🎨 Physical paints', 200, 100);
+                    ctx.fillText('🖌️ Real brushes', 200, 140);
+                    ctx.fillText('📄 Paper/Canvas', 200, 180);
+                    ctx.fillText('💧 Water/Solvents', 200, 220);
+                    ctx.fillText('⏰ Drying time', 200, 260);
+                    ctx.fillText('🏠 Physical space', 200, 300);
+                    
+                    // Digital items
+                    ctx.fillText('🖥️ Computer/Tablet', 600, 100);
+                    ctx.fillText('✏️ Stylus/Mouse', 600, 140);
+                    ctx.fillText('♾️ Infinite canvas', 600, 180);
+                    ctx.fillText('🔄 Unlimited undo', 600, 220);
+                    ctx.fillText('💾 Easy storage', 600, 260);
+                    ctx.fillText('🌍 Share instantly', 600, 300);
+                    
+                    // Arrows showing advantages
+                    ctx.strokeStyle = '#4CAF50';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(350, 350);
+                    ctx.lineTo(450, 350);
+                    ctx.moveTo(440, 340);
+                    ctx.lineTo(450, 350);
+                    ctx.lineTo(440, 360);
+                    ctx.stroke();
+                    
+                    ctx.fillStyle = '#4CAF50';
+                    ctx.font = '14px Arial';
+                    ctx.fillText('Best of both worlds in Paintstorm!', 400, 380);
+                </script>
+
+                <h3>Key Digital Painting Concepts</h3>
+                
+                <div class="card">
+                    <h4>🖼️ Pixels and Resolution</h4>
+                    <p>Think of pixels as tiny colored squares that make up your image - like a mosaic. The more pixels you have (higher resolution), the more detail you can include. It's similar to using finer grain paper for more detailed drawings.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🎚️ Pressure Sensitivity</h4>
+                    <p>When you press harder with a real pencil, you get darker lines. Graphics tablets work the same way! They detect how hard you're pressing and adjust the brush accordingly. It's like your digital pen "feels" your touch.</p>
+                </div>
+
+                <div class="card">
+                    <h4>📚 Layers</h4>
+                    <p>Imagine painting on sheets of transparent glass stacked on top of each other. You can paint on each sheet separately, move them around, or make them partially see-through. That's exactly how layers work in digital art!</p>
+                </div>
+            </section>
+
+            <!-- Section 4: Getting Started -->
+            <section id="getting-started" class="lesson-section">
+                <h2>Getting Started 🚀</h2>
+                
+                <h3>System Requirements</h3>
+                <p>Good news! Paintstorm Studio is quite lightweight compared to other professional software. Here's what you need:</p>
+                
+                <div class="card">
+                    <h4>Minimum Requirements 💻</h4>
+                    <ul>
+                        <li><strong>Operating System:</strong> Windows 7/8/10/11, macOS 10.12+, or Linux</li>
+                        <li><strong>RAM:</strong> 2GB (though 4GB is much more comfortable)</li>
+                        <li><strong>Graphics:</strong> OpenGL 3.3 support</li>
+                        <li><strong>Storage:</strong> 300MB for the application</li>
+                        <li><strong>Input:</strong> Mouse (tablet highly recommended)</li>
+                    </ul>
+                </div>
+
+                <blockquote>
+                    <strong>🎯 Pro Tip:</strong> While you can use Paintstorm with a mouse, investing in even a basic graphics tablet (like a Wacom Intuos or Huion H610) will transform your digital painting experience. It's like the difference between writing with a brick and writing with a pen!
+                </blockquote>
+
+                <h3>Installation Process</h3>
+                
+                <div class="mermaid">
+                    flowchart LR
+                        A[Visit Paintstorm Website] --> B[Download Trial/Purchase]
+                        B --> C{Choose Your OS}
+                        C -->|Windows| D[Run .exe installer]
+                        C -->|macOS| E[Mount .dmg file]
+                        C -->|Linux| F[Extract archive]
+                        D --> G[Follow wizard]
+                        E --> H[Drag to Applications]
+                        F --> I[Run from folder]
+                        G --> J[Launch Paintstorm!]
+                        H --> J
+                        I --> J
+                        J --> K[🎨 Start Creating!]
+                </div>
+
+                <h3>First Launch Checklist</h3>
+                <p>When you first open Paintstorm Studio, don't feel overwhelmed! Here's what to focus on:</p>
+                
+                <ol>
+                    <li>✅ <strong>Set your language preference</strong> if needed (File → Preferences)</li>
+                    <li>✅ <strong>Configure your tablet</strong> if you have one (Edit → Tablet Settings)</li>
+                    <li>✅ <strong>Choose a comfortable workspace</strong> (Window → Workspace)</li>
+                    <li>✅ <strong>Create a new canvas</strong> (File → New or Ctrl/Cmd+N)</li>
+                    <li>✅ <strong>Select a basic brush</strong> and make your first mark!</li>
+                </ol>
+            </section>
+
+            <!-- Section 5: Practice Exercise -->
+            <section id="practice" class="lesson-section">
+                <h2>Your First Exercise 🏋️</h2>
+                
+                <div class="exercise-card">
+                    <h3>🎨 Exercise: Digital Scribble Warm-Up</h3>
+                    <p><strong>Objective:</strong> Get comfortable with digital mark-making and discover how it differs from traditional media.</p>
+                    
+                    <h4>What You'll Need:</h4>
+                    <ul>
+                        <li>Paintstorm Studio open with a new canvas (any size is fine, try 1920x1080)</li>
+                        <li>Your mouse or tablet ready</li>
+                        <li>5 minutes of experimentation time</li>
+                    </ul>
+                    
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li><strong>Create shapes:</strong> Draw circles, squares, and triangles. Notice how the computer doesn't judge your wobbly lines!</li>
+                        <li><strong>Try different speeds:</strong> Draw lines slowly, then quickly. See how the software responds differently?</li>
+                        <li><strong>Pressure play (if using a tablet):</strong> Press lightly for thin lines, harder for thick ones</li>
+                        <li><strong>Make mistakes on purpose:</strong> Scribble wildly, then use Ctrl/Cmd+Z to undo. Magic!</li>
+                        <li><strong>Fill the canvas:</strong> Cover the entire canvas with marks. No paper waste here!</li>
+                    </ol>
+                    
+                    <h4>Reflection Questions:</h4>
+                    <ul>
+                        <li>How did it feel compared to drawing on paper?</li>
+                        <li>What surprised you about the digital experience?</li>
+                        <li>What would you like to learn to control better?</li>
+                    </ul>
+                </div>
+
+                <canvas id="demo-canvas" width="800" height="200" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: white; cursor: crosshair;"></canvas>
+                
+                <p style="text-align: center; color: #666;"><em>👆 Try drawing in this mini canvas! (This is just for fun - real Paintstorm is much better!)</em></p>
+                
+                <script>
+                    // Simple drawing demo
+                    const demoCanvas = document.getElementById('demo-canvas');
+                    const demoCtx = demoCanvas.getContext('2d');
+                    let isDrawing = false;
+                    
+                    // Handle high DPI displays
+                    const demoScale = window.devicePixelRatio || 1;
+                    demoCanvas.width = 800 * demoScale;
+                    demoCanvas.height = 200 * demoScale;
+                    demoCtx.scale(demoScale, demoScale);
+                    
+                    demoCanvas.addEventListener('mousedown', (e) => {
+                        isDrawing = true;
+                        const rect = demoCanvas.getBoundingClientRect();
+                        const x = (e.clientX - rect.left) * (800 / rect.width);
+                        const y = (e.clientY - rect.top) * (200 / rect.height);
+                        demoCtx.beginPath();
+                        demoCtx.moveTo(x, y);
+                    });
+                    
+                    demoCanvas.addEventListener('mousemove', (e) => {
+                        if (!isDrawing) return;
+                        const rect = demoCanvas.getBoundingClientRect();
+                        const x = (e.clientX - rect.left) * (800 / rect.width);
+                        const y = (e.clientY - rect.top) * (200 / rect.height);
+                        demoCtx.lineTo(x, y);
+                        demoCtx.stroke();
+                    });
+                    
+                    demoCanvas.addEventListener('mouseup', () => {
+                        isDrawing = false;
+                    });
+                    
+                    demoCanvas.addEventListener('mouseleave', () => {
+                        isDrawing = false;
+                    });
+                    
+                    // Touch support for mobile
+                    demoCanvas.addEventListener('touchstart', (e) => {
+                        e.preventDefault();
+                        const touch = e.touches[0];
+                        const mouseEvent = new MouseEvent('mousedown', {
+                            clientX: touch.clientX,
+                            clientY: touch.clientY
+                        });
+                        demoCanvas.dispatchEvent(mouseEvent);
+                    });
+                    
+                    demoCanvas.addEventListener('touchmove', (e) => {
+                        e.preventDefault();
+                        const touch = e.touches[0];
+                        const mouseEvent = new MouseEvent('mousemove', {
+                            clientX: touch.clientX,
+                            clientY: touch.clientY
+                        });
+                        demoCanvas.dispatchEvent(mouseEvent);
+                    });
+                    
+                    demoCanvas.addEventListener('touchend', (e) => {
+                        e.preventDefault();
+                        const mouseEvent = new MouseEvent('mouseup', {});
+                        demoCanvas.dispatchEvent(mouseEvent);
+                    });
+                </script>
+            </section>
+
+            <!-- Section 6: Summary -->
+            <section id="summary" class="lesson-section">
+                <h2>Summary & Next Steps 🎉</h2>
+                
+                <div class="card" style="background: #e8f5e9; border-left: 4px solid #4CAF50;">
+                    <h3>🎯 Key Takeaways</h3>
+                    <ul>
+                        <li>Paintstorm Studio is a professional digital painting software designed by artists, for artists</li>
+                        <li>Digital painting combines the best of traditional techniques with modern conveniences</li>
+                        <li>The software's unique brush engine and features make it stand out from competitors</li>
+                        <li>Getting started is easier than you think - you can even begin with just a mouse!</li>
+                        <li>Practice and experimentation are key to mastering digital art</li>
+                    </ul>
+                </div>
+                
+                <h3>🚀 What's Next?</h3>
+                <p>In our next lesson, we'll explore the Paintstorm Studio interface in detail. You'll learn about:</p>
+                <ul>
+                    <li>The main workspace and how to customize it</li>
+                    <li>Essential panels and where to find everything</li>
+                    <li>Basic navigation and view controls</li>
+                    <li>Setting up your first proper painting session</li>
+                </ul>
+                
+                <blockquote>
+                    <strong>🌟 Remember:</strong> Every professional digital artist started exactly where you are now. The difference between a beginner and a master is simply the number of happy little accidents they've turned into learning experiences. Keep painting, keep exploring, and most importantly, have fun!
+                </blockquote>
+                
+                <h3>📚 Additional Resources</h3>
+                <ul>
+                    <li><a href="https://paintstormstudio.com/">Official Paintstorm Studio Website</a></li>
+                    <li><a href="https://paintstormstudio.com/downloads.html">Download Page (Free Trial Available)</a></li>
+                    <li><a href="https://www.youtube.com/results?search_query=paintstorm+studio+tutorial">YouTube Tutorials</a></li>
+                </ul>
+            </section>
+
+            <!-- Lesson Navigation -->
+            <nav class="lesson-nav" aria-label="Lesson Navigation">
+                <a href="index.html" class="home-link">🏠 Course Home</a>
+                <a href="interface_basics.html" class="next-lesson">Next Lesson: Interface Basics →</a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; margin-top: 4rem; border-top: 1px solid var(--border-color);">
+        <p>&copy; 2024 Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
+    </footer>
+
+    <!-- Simple Progress Script -->
+    <script>
+        // Toggle Table of Contents
+        function toggleTOC() {
+            const tocList = document.getElementById('toc-list');
+            const tocIcon = document.getElementById('toc-toggle-icon');
+            
+            if (tocList.style.maxHeight === '0px' || tocList.style.maxHeight === '') {
+                // Expand
+                tocList.style.maxHeight = '500px';
+                tocIcon.style.transform = 'rotate(0deg)';
+                localStorage.setItem('tocState', 'expanded');
+            } else {
+                // Collapse
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+                localStorage.setItem('tocState', 'collapsed');
+            }
+        }
+        
+        // Initialize TOC state from localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const tocState = localStorage.getItem('tocState');
+            if (tocState === 'collapsed') {
+                const tocList = document.getElementById('toc-list');
+                const tocIcon = document.getElementById('toc-toggle-icon');
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+            }
+        });
+        
+        // Progress indicator
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.querySelector('.progress-bar').style.width = `${Math.min(progress, 100)}%`;
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isOpen = navLinks.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+                navLinks.setAttribute('aria-hidden', !isOpen);
+            });
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            
+            themeToggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const newTheme = current === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+            });
+        }
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

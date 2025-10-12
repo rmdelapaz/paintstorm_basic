@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn the Paintstorm Studio interface - workspace, panels, tools, and navigation basics">
+    <meta name="author" content="Paintstorm Tutorial">
+    <title>Interface Basics - Paintstorm Studio Fundamentals</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
+    <!-- Progress indicator -->
+    <div class="progress-indicator" role="progressbar" aria-label="Page scroll progress">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🎨 Paintstorm Studio</a>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <div class="nav-links" id="nav-links" aria-hidden="false">
+                <a href="index.html">Home</a>
+                <a href="index.html#modules">All Lessons</a>
+                <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#modules">Getting Started</a></li>
+            <li aria-current="page">Interface Basics</li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Lesson Header -->
+            <header>
+                <h1>🖥️ Interface Basics</h1>
+                <p class="lead">Let's explore your new digital art studio! We'll tour the Paintstorm interface and learn where everything lives, making you feel at home in no time.</p>
+                
+                <!-- Learning objectives -->
+                <div class="card">
+                    <h2>🎯 Learning Objectives</h2>
+                    <p>By the end of this lesson, you will be able to:</p>
+                    <ul>
+                        <li>Navigate the main workspace confidently</li>
+                        <li>Identify and use the essential panels and toolbars</li>
+                        <li>Customize your workspace for your workflow</li>
+                        <li>Use keyboard shortcuts to speed up your work</li>
+                        <li>Control your canvas view like a pro</li>
+                    </ul>
+                </div>
+            </header>
+
+            <!-- Table of Contents -->
+            <nav class="card" aria-label="Table of Contents">
+                <h2 style="cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center;" onclick="toggleTOC()">
+                    <span>📑 Table of Contents</span>
+                    <span id="toc-toggle-icon" style="transition: transform 0.3s;">▼</span>
+                </h2>
+                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 500px;">
+                    <li><a href="#first-look" class="toc-link">First Look at the Interface</a></li>
+                    <li><a href="#essential-areas" class="toc-link">The Five Essential Areas</a></li>
+                    <li><a href="#toolbar" class="toc-link">The Toolbar Explained</a></li>
+                    <li><a href="#panels" class="toc-link">Understanding Panels</a></li>
+                    <li><a href="#navigation" class="toc-link">Canvas Navigation</a></li>
+                    <li><a href="#customization" class="toc-link">Customizing Your Workspace</a></li>
+                    <li><a href="#practice" class="toc-link">Practice Exercise</a></li>
+                    <li><a href="#summary" class="toc-link">Summary & Tips</a></li>
+                </ol>
+            </nav>
+
+            <!-- Section 1: First Look -->
+            <section id="first-look" class="lesson-section">
+                <h2>First Look at the Interface 👀</h2>
+                
+                <p>Opening Paintstorm Studio for the first time is like walking into a well-organized art studio. Everything has its place, and once you know where things are, you'll move around effortlessly!</p>
+                
+                <blockquote>
+                    <strong>🏠 Real-World Analogy:</strong> Think of Paintstorm's interface like a traditional artist's workspace: You have your easel (canvas) in the center, your palette and brushes (tool panels) on the sides, and your art supplies (menus and options) organized on shelves above. Everything is within arm's reach!
+                </blockquote>
+
+                <!-- Visual representation of the interface -->
+                <canvas id="interface-overview" width="800" height="500" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: white;"></canvas>
+                
+                <script>
+                    const interfaceCanvas = document.getElementById('interface-overview');
+                    const iCtx = interfaceCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const iScale = window.devicePixelRatio || 1;
+                    interfaceCanvas.width = 800 * iScale;
+                    interfaceCanvas.height = 500 * iScale;
+                    iCtx.scale(iScale, iScale);
+                    
+                    // Background
+                    iCtx.fillStyle = '#2c3e50';
+                    iCtx.fillRect(0, 0, 800, 500);
+                    
+                    // Menu Bar
+                    iCtx.fillStyle = '#34495e';
+                    iCtx.fillRect(0, 0, 800, 30);
+                    iCtx.fillStyle = 'white';
+                    iCtx.font = '12px Arial';
+                    iCtx.fillText('File  Edit  View  Image  Layer  Select  Filter  Window  Help', 10, 20);
+                    
+                    // Toolbar (Left)
+                    iCtx.fillStyle = '#445566';
+                    iCtx.fillRect(0, 30, 50, 470);
+                    
+                    // Draw tool icons
+                    const tools = ['B', 'E', 'S', 'G', 'T', 'L', 'P', 'H'];
+                    iCtx.fillStyle = '#667788';
+                    tools.forEach((tool, i) => {
+                        iCtx.fillRect(5, 35 + i * 45, 40, 40);
+                        iCtx.fillStyle = 'white';
+                        iCtx.font = 'bold 20px Arial';
+                        iCtx.textAlign = 'center';
+                        iCtx.fillText(tool, 25, 60 + i * 45);
+                        iCtx.fillStyle = '#667788';
+                    });
+                    
+                    // Canvas Area
+                    iCtx.fillStyle = '#ecf0f1';
+                    iCtx.fillRect(50, 30, 500, 420);
+                    iCtx.fillStyle = 'white';
+                    iCtx.fillRect(175, 140, 250, 200);
+                    
+                    // Draw canvas content
+                    iCtx.fillStyle = '#3498db';
+                    iCtx.beginPath();
+                    iCtx.arc(300, 240, 50, 0, Math.PI * 2);
+                    iCtx.fill();
+                    
+                    iCtx.strokeStyle = '#e74c3c';
+                    iCtx.lineWidth = 3;
+                    iCtx.beginPath();
+                    iCtx.moveTo(200, 200);
+                    iCtx.quadraticCurveTo(300, 150, 400, 200);
+                    iCtx.stroke();
+                    
+                    // Right Panels
+                    iCtx.fillStyle = '#445566';
+                    iCtx.fillRect(550, 30, 250, 420);
+                    
+                    // Layers Panel
+                    iCtx.fillStyle = '#556677';
+                    iCtx.fillRect(555, 35, 240, 150);
+                    iCtx.fillStyle = 'white';
+                    iCtx.font = '14px Arial';
+                    iCtx.textAlign = 'left';
+                    iCtx.fillText('LAYERS', 565, 55);
+                    
+                    // Layer items
+                    for(let i = 0; i < 3; i++) {
+                        iCtx.fillStyle = '#667788';
+                        iCtx.fillRect(560, 70 + i * 35, 230, 30);
+                        iCtx.fillStyle = 'white';
+                        iCtx.font = '12px Arial';
+                        iCtx.fillText(`Layer ${3-i}`, 570, 88 + i * 35);
+                    }
+                    
+                    // Color Panel
+                    iCtx.fillStyle = '#556677';
+                    iCtx.fillRect(555, 195, 240, 150);
+                    iCtx.fillStyle = 'white';
+                    iCtx.font = '14px Arial';
+                    iCtx.fillText('COLOR', 565, 215);
+                    
+                    // Color wheel representation
+                    const gradient = iCtx.createRadialGradient(675, 270, 0, 675, 270, 50);
+                    gradient.addColorStop(0, 'white');
+                    gradient.addColorStop(0.2, 'yellow');
+                    gradient.addColorStop(0.4, 'red');
+                    gradient.addColorStop(0.6, 'purple');
+                    gradient.addColorStop(0.8, 'blue');
+                    gradient.addColorStop(1, 'black');
+                    iCtx.fillStyle = gradient;
+                    iCtx.beginPath();
+                    iCtx.arc(675, 270, 50, 0, Math.PI * 2);
+                    iCtx.fill();
+                    
+                    // Brush Settings
+                    iCtx.fillStyle = '#556677';
+                    iCtx.fillRect(555, 355, 240, 90);
+                    iCtx.fillStyle = 'white';
+                    iCtx.font = '14px Arial';
+                    iCtx.fillText('BRUSH SETTINGS', 565, 375);
+                    
+                    // Status Bar
+                    iCtx.fillStyle = '#34495e';
+                    iCtx.fillRect(0, 450, 800, 50);
+                    iCtx.fillStyle = '#95a5a6';
+                    iCtx.font = '11px Arial';
+                    iCtx.fillText('Zoom: 100%  |  Canvas: 1920x1080  |  Tool: Brush  |  X: 300 Y: 240', 10, 475);
+                    
+                    // Labels with arrows
+                    iCtx.strokeStyle = '#f39c12';
+                    iCtx.fillStyle = '#f39c12';
+                    iCtx.lineWidth = 2;
+                    
+                    // Arrow to toolbar
+                    drawArrow(iCtx, 100, 100, 50, 100);
+                    iCtx.font = 'bold 12px Arial';
+                    iCtx.fillText('TOOLBAR', 105, 105);
+                    
+                    // Arrow to canvas
+                    drawArrow(iCtx, 300, 80, 300, 130);
+                    iCtx.fillText('CANVAS', 270, 75);
+                    
+                    // Arrow to panels
+                    drawArrow(iCtx, 500, 200, 550, 200);
+                    iCtx.fillText('PANELS', 440, 195);
+                    
+                    function drawArrow(ctx, fromX, fromY, toX, toY) {
+                        ctx.beginPath();
+                        ctx.moveTo(fromX, fromY);
+                        ctx.lineTo(toX, toY);
+                        ctx.stroke();
+                        
+                        // Arrowhead
+                        const angle = Math.atan2(toY - fromY, toX - fromX);
+                        ctx.beginPath();
+                        ctx.moveTo(toX, toY);
+                        ctx.lineTo(toX - 10 * Math.cos(angle - Math.PI/6), toY - 10 * Math.sin(angle - Math.PI/6));
+                        ctx.lineTo(toX - 10 * Math.cos(angle + Math.PI/6), toY - 10 * Math.sin(angle + Math.PI/6));
+                        ctx.closePath();
+                        ctx.fill();
+                    }
+                </script>
+                
+                <p style="text-align: center; color: #666;"><em>The Paintstorm Studio interface - your digital art command center!</em></p>
+            </section>
+
+            <!-- Section 2: Essential Areas -->
+            <section id="essential-areas" class="lesson-section">
+                <h2>The Five Essential Areas 🗺️</h2>
+                
+                <p>Let's break down the interface into five main areas. Understanding these is like learning the layout of your new home - soon you'll navigate with your eyes closed!</p>
+                
+                <div class="mermaid">
+                    graph TB
+                        A[Paintstorm Interface]
+                        A --> B[1. Menu Bar]
+                        A --> C[2. Toolbar]
+                        A --> D[3. Canvas Area]
+                        A --> E[4. Panels]
+                        A --> F[5. Status Bar]
+                        
+                        B --> B1[File Operations<br/>Edit Commands<br/>View Options]
+                        
+                        C --> C1[Brush Tool<br/>Eraser<br/>Selection Tools]
+                        
+                        D --> D1[Your Artwork<br/>Rulers & Guides<br/>Navigation]
+                        
+                        E --> E1[Layers<br/>Color<br/>Brush Settings]
+                        
+                        F --> F1[Zoom Level<br/>Document Info<br/>Tool Tips]
+                </div>
+
+                <h3>1. Menu Bar (The Command Center) 📋</h3>
+                <div class="card">
+                    <p>Located at the very top, the menu bar is your gateway to all commands. Think of it as the control panel of a spaceship - everything can be accessed from here!</p>
+                    <ul>
+                        <li><strong>File:</strong> Open, save, export - your document management</li>
+                        <li><strong>Edit:</strong> Undo, redo, copy, paste - your time machine</li>
+                        <li><strong>View:</strong> Zoom, rotate, flip - your perspective controls</li>
+                        <li><strong>Image:</strong> Resize, crop, adjustments - your canvas modifications</li>
+                        <li><strong>Layer:</strong> Add, delete, merge - your layer operations</li>
+                    </ul>
+                </div>
+
+                <h3>2. Toolbar (Your Brush Holder) 🖌️</h3>
+                <div class="card">
+                    <p>Usually on the left side, this vertical strip holds all your tools. It's like a painter's brush holder, but instead of physical brushes, you have digital tools!</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Icon</th>
+                                <th>Shortcut</th>
+                                <th>What It Does</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Brush</td>
+                                <td>🖌️</td>
+                                <td>B</td>
+                                <td>Your main painting tool</td>
+                            </tr>
+                            <tr>
+                                <td>Eraser</td>
+                                <td>🧹</td>
+                                <td>E</td>
+                                <td>Removes pixels</td>
+                            </tr>
+                            <tr>
+                                <td>Smudge</td>
+                                <td>👆</td>
+                                <td>S</td>
+                                <td>Blends colors together</td>
+                            </tr>
+                            <tr>
+                                <td>Eyedropper</td>
+                                <td>💧</td>
+                                <td>I</td>
+                                <td>Picks colors from canvas</td>
+                            </tr>
+                            <tr>
+                                <td>Move</td>
+                                <td>✋</td>
+                                <td>V</td>
+                                <td>Moves layers or selections</td>
+                            </tr>
+                            <tr>
+                                <td>Selection</td>
+                                <td>⬜</td>
+                                <td>M</td>
+                                <td>Selects areas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>3. Canvas Area (Your Digital Paper) 📃</h3>
+                <div class="card">
+                    <p>The center stage where all the magic happens! This is where your artwork lives. The gray area around your canvas is called the "pasteboard" - you can paint there too, but it won't be part of your final image.</p>
+                    
+                    <blockquote>
+                        <strong>💡 Pro Tip:</strong> The checkerboard pattern you might see represents transparency - like looking through clear glass. It means there's nothing painted there yet!
+                    </blockquote>
+                </div>
+
+                <h3>4. Panels (Your Supply Cabinet) 🗄️</h3>
+                <div class="card">
+                    <p>Usually on the right side, panels contain specialized controls. Each panel is like a drawer in your art supply cabinet, organizing specific tools and settings.</p>
+                    
+                    <ul>
+                        <li><strong>Layers Panel:</strong> Manage your artwork's layers like sheets of transparent paper</li>
+                        <li><strong>Color Panel:</strong> Choose and mix colors like a painter's palette</li>
+                        <li><strong>Brush Settings:</strong> Adjust size, opacity, flow - like choosing brush characteristics</li>
+                        <li><strong>Navigator:</strong> See and move around your entire canvas from a bird's eye view</li>
+                        <li><strong>History:</strong> Your personal time machine to undo/redo actions</li>
+                    </ul>
+                </div>
+
+                <h3>5. Status Bar (Your Info Display) 📊</h3>
+                <div class="card">
+                    <p>At the bottom, this thin strip shows important information about your current work - zoom level, document size, selected tool, and cursor position. It's like the dashboard of your car!</p>
+                </div>
+            </section>
+
+            <!-- Section 3: Toolbar -->
+            <section id="toolbar" class="lesson-section">
+                <h2>The Toolbar Explained 🛠️</h2>
+                
+                <p>Let's dive deeper into your main tools. Each tool in Paintstorm is designed with artists in mind, offering features that feel natural and intuitive.</p>
+
+                <h3>Core Drawing Tools 🖌️</h3>
+                
+                <div class="card">
+                    <h4>🎨 Brush Tool (B)</h4>
+                    <p><strong>Your primary painting tool</strong> - This is where you'll spend most of your time!</p>
+                    <ul>
+                        <li><strong>Left Click:</strong> Paint with foreground color</li>
+                        <li><strong>Right Click:</strong> Quick brush settings menu<br/><small style="color: #666;">Mac users: Control+Click or two-finger tap on trackpad</small></li>
+                        <li><strong>Shift + Click:</strong> Draw straight lines between points</li>
+                        <li><strong>Alt + Click:</strong> Temporarily switch to eyedropper<br/><small style="color: #666;">Mac users: Option+Click</small></li>
+                    </ul>
+                    <blockquote>
+                        <strong>💡 Pro Tip:</strong> The brush tool in Paintstorm is incredibly sophisticated. It simulates real brush bristles, paint mixing, and even canvas texture interaction!
+                    </blockquote>
+                </div>
+
+                <div class="card">
+                    <h4>🧹 Eraser Tool (E)</h4>
+                    <p><strong>Removes pixels from your artwork</strong> - Like a magic eraser that can be soft or hard!</p>
+                    <ul>
+                        <li><strong>Works like the brush:</strong> All brush settings apply to the eraser too</li>
+                        <li><strong>Opacity control:</strong> Lower opacity for gentle erasing</li>
+                        <li><strong>Erase to transparency:</strong> On layers, reveals what's beneath</li>
+                        <li><strong>Quick toggle:</strong> Hold E while painting to temporarily erase</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>👆 Smudge Tool (S)</h4>
+                    <p><strong>Blends and mixes colors on canvas</strong> - Like dragging your finger through wet paint!</p>
+                    <ul>
+                        <li><strong>Strength setting:</strong> Controls how much the colors mix</li>
+                        <li><strong>Sample All Layers:</strong> Option to smudge across multiple layers</li>
+                        <li><strong>Great for:</strong> Soft skin, clouds, smoke, hair</li>
+                        <li><strong>Combine with brush:</strong> Paint then smudge for natural blending</li>
+                    </ul>
+                </div>
+
+                <h3>Selection and Transform Tools 📐</h3>
+
+                <div class="card">
+                    <h4>⬜ Selection Tools (M)</h4>
+                    <p><strong>Define areas to work within</strong> - Like masking tape for digital art!</p>
+                    <ul>
+                        <li><strong>Rectangle/Ellipse:</strong> Basic shape selections</li>
+                        <li><strong>Lasso:</strong> Freehand selection drawing</li>
+                        <li><strong>Magic Wand:</strong> Select similar colors automatically</li>
+                        <li><strong>Selection modes:</strong> Add (Shift), Subtract (Alt/Option), Intersect (Shift+Alt/Option)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>✋ Move Tool (V)</h4>
+                    <p><strong>Reposition layers and selections</strong> - Your digital hand for moving things around!</p>
+                    <ul>
+                        <li><strong>Move entire layer:</strong> Click and drag anywhere</li>
+                        <li><strong>Move selection contents:</strong> Drag within a selection</li>
+                        <li><strong>Duplicate while moving:</strong> Alt + Drag (Mac: Option + Drag)</li>
+                        <li><strong>Constrain to axis:</strong> Shift + Drag for straight moves</li>
+                    </ul>
+                </div>
+
+                <h3>Color and Sampling Tools 🎨</h3>
+
+                <div class="card">
+                    <h4>💧 Eyedropper Tool (I)</h4>
+                    <p><strong>Sample colors from your canvas</strong> - Instantly grab any color you see!</p>
+                    <ul>
+                        <li><strong>Click:</strong> Sample foreground color</li>
+                        <li><strong>Alt/Option + Click:</strong> Sample background color</li>
+                        <li><strong>Sample modes:</strong> Current layer or all visible layers</li>
+                        <li><strong>Quick access:</strong> Hold Alt (Mac: Option) with any painting tool</li>
+                    </ul>
+                </div>
+
+                <h3>Specialized Tools 🔧</h3>
+
+                <div class="card">
+                    <h4>🪣 Paint Bucket Tool (G)</h4>
+                    <p><strong>Fill areas with color or patterns</strong> - Instant area coloring!</p>
+                    <ul>
+                        <li><strong>Tolerance:</strong> Controls how similar colors must be to fill</li>
+                        <li><strong>Anti-alias:</strong> Smooth edges option</li>
+                        <li><strong>All layers:</strong> Option to consider all visible layers</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>📝 Text Tool (T)</h4>
+                    <p><strong>Add text to your artwork</strong> - For signatures, comics, or design work!</p>
+                    <ul>
+                        <li><strong>Font selection:</strong> Access to system fonts</li>
+                        <li><strong>Size and color:</strong> Full text formatting</li>
+                        <li><strong>Text layers:</strong> Editable until rasterized</li>
+                    </ul>
+                </div>
+
+                <h3>Essential Tool Tips 💡</h3>
+                
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h4>🎨 The Brush Tool - Your Main Weapon</h4>
+                    <p>The brush tool is where Paintstorm truly shines. Unlike other software, Paintstorm's brushes feel incredibly natural:</p>
+                    <ul>
+                        <li><strong>Bristle simulation:</strong> Each brush stroke simulates individual bristles</li>
+                        <li><strong>Paint mixing:</strong> Colors blend on the canvas like real paint</li>
+                        <li><strong>Texture interaction:</strong> Brushes respond to canvas texture</li>
+                        <li><strong>Pressure dynamics:</strong> Full control over size, opacity, and flow with pen pressure</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Panels -->
+            <section id="panels" class="lesson-section">
+                <h2>Understanding Panels 📊</h2>
+                
+                <p>Panels are your control centers for specific aspects of your artwork. Let's explore the most important ones:</p>
+                
+                <h3>The Layers Panel - Your Best Friend 📚</h3>
+                
+                <div class="mermaid">
+                    graph TB
+                        A[Layers Panel]
+                        A --> B[Layer Stack]
+                        B --> B1[Top Layer<br/>↓<br/>Middle Layers<br/>↓<br/>Background]
+                        
+                        A --> C[Blend Modes]
+                        C --> C1[Normal<br/>Multiply<br/>Screen<br/>Overlay]
+                        
+                        A --> D[Opacity]
+                        D --> D1[0% = Invisible<br/>50% = Semi-transparent<br/>100% = Fully Opaque]
+                        
+                        A --> E[Actions]
+                        E --> E1[New Layer<br/>Delete Layer<br/>Merge Layers<br/>Lock Layer]
+                </div>
+                
+                <blockquote>
+                    <strong>🥞 Analogy:</strong> Think of layers like a stack of pancakes with clear syrup between them. You can see through to the pancakes below, rearrange the stack, or add butter (paint) to any pancake without affecting the others!
+                </blockquote>
+
+                <h3>The Color Panel - Your Palette 🎨</h3>
+                
+                <div class="card">
+                    <p>Paintstorm offers multiple ways to choose colors, catering to different artist preferences:</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Color Selector</th>
+                                <th>Best For</th>
+                                <th>How It Works</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Color Wheel</td>
+                                <td>Intuitive selection</td>
+                                <td>Click around the wheel for hue, center for saturation/value</td>
+                            </tr>
+                            <tr>
+                                <td>HSV Sliders</td>
+                                <td>Precise control</td>
+                                <td>Adjust Hue, Saturation, and Value separately</td>
+                            </tr>
+                            <tr>
+                                <td>RGB Sliders</td>
+                                <td>Digital color matching</td>
+                                <td>Control Red, Green, and Blue values</td>
+                            </tr>
+                            <tr>
+                                <td>Color Mixer</td>
+                                <td>Natural paint mixing</td>
+                                <td>Mix colors like real paint on a palette</td>
+                            </tr>
+                            <tr>
+                                <td>Color History</td>
+                                <td>Quick access</td>
+                                <td>Shows recently used colors</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Brush Settings Panel - Fine-Tuning Your Tools 🎛️</h3>
+                
+                <canvas id="brush-settings" width="800" height="250" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: white;"></canvas>
+                
+                <script>
+                    const brushCanvas = document.getElementById('brush-settings');
+                    const bCtx = brushCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const bScale = window.devicePixelRatio || 1;
+                    brushCanvas.width = 800 * bScale;
+                    brushCanvas.height = 250 * bScale;
+                    bCtx.scale(bScale, bScale);
+                    
+                    // Background
+                    bCtx.fillStyle = '#f0f3f5';
+                    bCtx.fillRect(0, 0, 800, 250);
+                    
+                    // Title
+                    bCtx.fillStyle = '#333';
+                    bCtx.font = 'bold 16px Arial';
+                    bCtx.textAlign = 'center';
+                    bCtx.fillText('Brush Settings Effects', 400, 25);
+                    
+                    // Size variation
+                    bCtx.fillStyle = '#3498db';
+                    bCtx.font = '14px Arial';
+                    bCtx.textAlign = 'left';
+                    bCtx.fillText('Size:', 30, 60);
+                    
+                    for(let i = 0; i < 5; i++) {
+                        bCtx.beginPath();
+                        bCtx.arc(100 + i * 30, 55, 3 + i * 3, 0, Math.PI * 2);
+                        bCtx.fill();
+                    }
+                    
+                    // Opacity variation
+                    bCtx.fillText('Opacity:', 30, 110);
+                    
+                    for(let i = 0; i < 5; i++) {
+                        bCtx.globalAlpha = 0.2 + i * 0.2;
+                        bCtx.beginPath();
+                        bCtx.arc(100 + i * 30, 105, 10, 0, Math.PI * 2);
+                        bCtx.fill();
+                    }
+                    bCtx.globalAlpha = 1;
+                    
+                    // Flow variation
+                    bCtx.fillText('Flow:', 30, 160);
+                    
+                    bCtx.strokeStyle = '#3498db';
+                    for(let i = 0; i < 5; i++) {
+                        bCtx.lineWidth = 10;
+                        bCtx.globalAlpha = 0.3;
+                        for(let j = 0; j <= i; j++) {
+                            bCtx.beginPath();
+                            bCtx.moveTo(90 + i * 30, 155);
+                            bCtx.lineTo(110 + i * 30, 155);
+                            bCtx.stroke();
+                        }
+                    }
+                    bCtx.globalAlpha = 1;
+                    
+                    // Hardness demonstration
+                    bCtx.fillStyle = '#e74c3c';
+                    bCtx.fillText('Hardness:', 350, 60);
+                    
+                    for(let i = 0; i < 5; i++) {
+                        const grad = bCtx.createRadialGradient(420 + i * 30, 55, 0, 420 + i * 30, 55, 10);
+                        grad.addColorStop(0, '#e74c3c');
+                        grad.addColorStop(0.2 + i * 0.2, '#e74c3c');
+                        grad.addColorStop(1, 'rgba(231, 76, 60, 0)');
+                        bCtx.fillStyle = grad;
+                        bCtx.beginPath();
+                        bCtx.arc(420 + i * 30, 55, 10, 0, Math.PI * 2);
+                        bCtx.fill();
+                    }
+                    
+                    // Spacing demonstration
+                    bCtx.fillStyle = '#2ecc71';
+                    bCtx.font = '14px Arial';
+                    bCtx.fillText('Spacing:', 350, 110);
+                    
+                    for(let i = 0; i < 5; i++) {
+                        const spacing = 5 + i * 5;
+                        for(let j = 0; j < 3; j++) {
+                            bCtx.beginPath();
+                            bCtx.arc(420 + j * spacing, 105, 4, 0, Math.PI * 2);
+                            bCtx.fill();
+                        }
+                        bCtx.fillStyle = '#666';
+                        bCtx.font = '10px Arial';
+                        bCtx.textAlign = 'center';
+                        bCtx.fillText(`${spacing}px`, 420, 125);
+                        bCtx.fillStyle = '#2ecc71';
+                        bCtx.textAlign = 'left';
+                    }
+                    
+                    // Texture
+                    bCtx.fillStyle = '#9b59b6';
+                    bCtx.font = '14px Arial';
+                    bCtx.fillText('Texture:', 350, 160);
+                    
+                    for(let i = 0; i < 5; i++) {
+                        bCtx.fillStyle = '#9b59b6';
+                        bCtx.fillRect(410 + i * 30, 145, 20, 20);
+                        
+                        // Add texture pattern
+                        bCtx.strokeStyle = 'rgba(255,255,255,0.3)';
+                        bCtx.lineWidth = 1;
+                        for(let t = 0; t < i + 1; t++) {
+                            bCtx.beginPath();
+                            bCtx.moveTo(410 + i * 30 + t * 4, 145);
+                            bCtx.lineTo(410 + i * 30 + t * 4, 165);
+                            bCtx.stroke();
+                        }
+                    }
+                    
+                    // Labels
+                    bCtx.fillStyle = '#666';
+                    bCtx.font = '12px Arial';
+                    bCtx.textAlign = 'center';
+                    bCtx.fillText('Each setting dramatically changes your brush behavior!', 400, 210);
+                </script>
+            </section>
+
+            <!-- Section 5: Navigation -->
+            <section id="navigation" class="lesson-section">
+                <h2>Canvas Navigation 🧭</h2>
+                
+                <p>Moving around your canvas efficiently is crucial for a smooth workflow. Paintstorm offers several navigation methods:</p>
+                
+                <div class="card">
+                    <h3>Essential Navigation Shortcuts 🎮</h3>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Mouse/Keyboard</th>
+                                <th>Tablet</th>
+                                <th>What It Does</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🔍 Zoom In/Out</td>
+                                <td><strong>Windows:</strong> Ctrl + Mouse Wheel<br/><strong>Mac:</strong> Cmd + Mouse Wheel</td>
+                                <td>Pinch gesture</td>
+                                <td>Get closer or further from your work</td>
+                            </tr>
+                            <tr>
+                                <td>✋ Pan Canvas</td>
+                                <td>Space + Drag</td>
+                                <td>Two-finger drag</td>
+                                <td>Move around without changing tools</td>
+                            </tr>
+                            <tr>
+                                <td>🔄 Rotate Canvas</td>
+                                <td>R + Drag</td>
+                                <td>Two-finger rotate</td>
+                                <td>Turn canvas for comfortable drawing angles</td>
+                            </tr>
+                            <tr>
+                                <td>↔️ Flip Horizontal</td>
+                                <td>H</td>
+                                <td>Menu option</td>
+                                <td>Mirror view to check proportions</td>
+                            </tr>
+                            <tr>
+                                <td>💯 Fit to Screen</td>
+                                <td><strong>Windows:</strong> Ctrl + 0<br/><strong>Mac:</strong> Cmd + 0</td>
+                                <td>Double-tap</td>
+                                <td>See entire canvas at once</td>
+                            </tr>
+                            <tr>
+                                <td>1️⃣ Actual Size</td>
+                                <td><strong>Windows:</strong> Ctrl + 1<br/><strong>Mac:</strong> Cmd + 1</td>
+                                <td>Menu option</td>
+                                <td>View at 100% zoom</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <strong>🎨 Artist Tip:</strong> Rotating your canvas is like turning a piece of paper when drawing - it helps you draw smoother lines in the direction most comfortable for your hand. Don't forget to reset the rotation (R + double-click) when you're done!
+                </blockquote>
+
+                <h3>The Navigator Panel 🗺️</h3>
+                
+                <p>The Navigator panel shows a bird's eye view of your entire canvas. It's like having a map of your artwork:</p>
+                
+                <ul>
+                    <li>The <strong>red rectangle</strong> shows what you're currently viewing</li>
+                    <li><strong>Click and drag</strong> the rectangle to move around</li>
+                    <li><strong>Resize the rectangle</strong> to zoom in/out</li>
+                    <li>Especially useful for <strong>large canvases</strong> where you need to jump between areas</li>
+                </ul>
+            </section>
+
+            <!-- Section 6: Customization -->
+            <section id="customization" class="lesson-section">
+                <h2>Customizing Your Workspace 🏗️</h2>
+                
+                <p>Everyone works differently, and Paintstorm lets you arrange your workspace to match your style. It's like arranging your physical desk - put everything where YOU want it!</p>
+                
+                <div class="mermaid">
+                    flowchart LR
+                        A[Workspace Customization] --> B[Panel Arrangement]
+                        A --> C[Toolbar Position]
+                        A --> D[Shortcuts]
+                        A --> E[Workspace Presets]
+                        
+                        B --> B1[Drag panels anywhere]
+                        B --> B2[Dock or float panels]
+                        B --> B3[Resize panel groups]
+                        
+                        C --> C1[Left side default]
+                        C --> C2[Right side option]
+                        C --> C3[Horizontal option]
+                        
+                        D --> D1[Edit menu shortcuts]
+                        D --> D2[Tool shortcuts]
+                        D --> D3[Custom actions]
+                        
+                        E --> E1[Painting workspace]
+                        E --> E2[Drawing workspace]
+                        E --> E3[Save custom workspace]
+                </div>
+
+                <h3>Quick Customization Tips 💡</h3>
+                
+                <div class="card" style="background: #e8f5e9; border-left: 4px solid #4CAF50;">
+                    <h4>✨ Setting Up Your Perfect Workspace</h4>
+                    <ol>
+                        <li><strong>Start with a preset:</strong> Go to Window → Workspace and choose a starting layout</li>
+                        <li><strong>Move panels:</strong> Click and drag panel tabs to reorganize them</li>
+                        <li><strong>Dock panels together:</strong> Drag one panel onto another to create groups</li>
+                        <li><strong>Float important panels:</strong> Right-click a panel tab and select "Float" for panels you use frequently</li>
+                        <li><strong>Hide what you don't need:</strong> Close panels you rarely use (you can always reopen them from the Window menu)</li>
+                        <li><strong>Save your layout:</strong> Window → Workspace → Save Current Workspace</li>
+                    </ol>
+                </div>
+
+                <h3>Recommended Beginner Setup 🌟</h3>
+                
+                <p>Here's a workspace arrangement that works well for beginners:</p>
+                
+                <ul>
+                    <li><strong>Left side:</strong> Toolbar (easy access to tools)</li>
+                    <li><strong>Right side top:</strong> Layers panel (always visible)</li>
+                    <li><strong>Right side middle:</strong> Color wheel (quick color selection)</li>
+                    <li><strong>Right side bottom:</strong> Brush settings (when you need to adjust)</li>
+                    <li><strong>Floating:</strong> Navigator (move it when needed)</li>
+                </ul>
+            </section>
+
+            <!-- Section 7: Practice Exercise -->
+            <section id="practice" class="lesson-section">
+                <h2>Practice Exercise 🏋️</h2>
+                
+                <div class="exercise-card">
+                    <h3>🎯 Exercise: Interface Scavenger Hunt</h3>
+                    <p><strong>Objective:</strong> Familiarize yourself with the interface by finding and using different elements.</p>
+                    
+                    <h4>Your Mission:</h4>
+                    <ol>
+                        <li><strong>Create a new document:</strong> File → New (make it 1920x1080 pixels)</li>
+                        <li><strong>Find and select the Brush tool:</strong> Click it or press B</li>
+                        <li><strong>Change your brush size:</strong> Use the brush settings panel or [ and ] keys</li>
+                        <li><strong>Pick a color:</strong> Use the color wheel to select your favorite color</li>
+                        <li><strong>Draw something simple:</strong> A smiley face, your initial, or abstract shapes</li>
+                        <li><strong>Create a new layer:</strong> Use the Layers panel's "New Layer" button</li>
+                        <li><strong>Switch between layers:</strong> Click on different layers to make them active</li>
+                        <li><strong>Zoom in and out:</strong> Use Ctrl/Cmd + Mouse Wheel or the zoom tool</li>
+                        <li><strong>Pan around:</strong> Hold Space and drag</li>
+                        <li><strong>Rotate your canvas:</strong> Hold R and drag, then reset it</li>
+                        <li><strong>Save your work:</strong> File → Save As (name it "interface_practice")</li>
+                    </ol>
+                    
+                    <h4>Bonus Challenges:</h4>
+                    <ul>
+                        <li>🌟 Change the opacity of a layer to 50%</li>
+                        <li>🌟 Use the eraser to remove part of your drawing</li>
+                        <li>🌟 Try at least 3 different brush presets</li>
+                        <li>🌟 Customize your workspace and save it with your name</li>
+                    </ul>
+                    
+                    <h4>Success Criteria:</h4>
+                    <p>You've succeeded when you can do all the main tasks without thinking too hard about where things are. It's okay to be slow at first - speed comes with practice!</p>
+                </div>
+            </section>
+
+            <!-- Section 8: Summary -->
+            <section id="summary" class="lesson-section">
+                <h2>Summary & Tips 📝</h2>
+                
+                <div class="card" style="background: #e8f5e9; border-left: 4px solid #4CAF50;">
+                    <h3>🎯 Key Takeaways</h3>
+                    <ul>
+                        <li>The Paintstorm interface has five main areas: Menu Bar, Toolbar, Canvas, Panels, and Status Bar</li>
+                        <li>Every tool has a keyboard shortcut - learning these will speed up your workflow dramatically</li>
+                        <li>Panels can be arranged however you like - there's no "wrong" way</li>
+                        <li>Navigation shortcuts (zoom, pan, rotate) are essential for comfortable painting</li>
+                        <li>Customizing your workspace to fit your needs will make you more productive</li>
+                    </ul>
+                </div>
+                
+                <h3>🚀 Quick Reference Card</h3>
+                
+                <div class="card">
+                    <h4>Essential Shortcuts to Memorize:</h4>
+                    <pre><code>WINDOWS                           MAC
+--------                          ----
+B - Brush Tool                    B - Brush Tool
+E - Eraser                        E - Eraser
+I - Eyedropper                    I - Eyedropper
+V - Move Tool                     V - Move Tool
+Ctrl+N - New Document             Cmd+N - New Document
+Ctrl+S - Save                     Cmd+S - Save
+Ctrl+Z - Undo                     Cmd+Z - Undo
+Ctrl+Y - Redo                     Cmd+Shift+Z - Redo
+[ ] - Brush Size                  [ ] - Brush Size
+Space+Drag - Pan                  Space+Drag - Pan
+R+Drag - Rotate                   R+Drag - Rotate
+Alt+Click - Sample Color          Option+Click - Sample Color
+Ctrl+Wheel - Zoom                 Cmd+Wheel - Zoom
+Tab - Hide Panels                 Tab - Hide Panels</code></pre>
+                </div>
+
+                <h3>Common Beginner Questions 🤔</h3>
+                
+                <div class="card">
+                    <details>
+                        <summary><strong>Q: I accidentally closed a panel. How do I get it back?</strong></summary>
+                        <p>A: Go to the Window menu and click on the panel name to reopen it.</p>
+                    </details>
+                    
+                    <details>
+                        <summary><strong>Q: My canvas is rotated and I can't fix it!</strong></summary>
+                        <p>A: Hold R and double-click anywhere on the canvas to reset rotation.</p>
+                    </details>
+                    
+                    <details>
+                        <summary><strong>Q: Everything looks too small/large on my screen.</strong></summary>
+                        <p>A: Check Edit → Preferences → Interface for UI scaling options.</p>
+                    </details>
+                    
+                    <details>
+                        <summary><strong>Q: I prefer the toolbar on the right. Can I move it?</strong></summary>
+                        <p>A: Yes! Drag the toolbar by its title bar to dock it on any side.</p>
+                    </details>
+                </div>
+
+                <h3>🌟 What's Next?</h3>
+                <p>Now that you're familiar with the interface, our next lesson will dive into the heart of Paintstorm - the amazing brush engine! You'll learn how to:</p>
+                <ul>
+                    <li>Select and modify brush presets</li>
+                    <li>Understand brush dynamics and settings</li>
+                    <li>Create your own custom brushes</li>
+                    <li>Use brush techniques for different art styles</li>
+                </ul>
+                
+                <blockquote>
+                    <strong>💪 You're doing great!</strong> Learning a new interface is like learning your way around a new city. At first, everything seems confusing, but soon you'll navigate without even thinking about it. Keep practicing, and remember - every professional artist was once exactly where you are now!
+                </blockquote>
+            </section>
+
+            <!-- Lesson Navigation -->
+            <nav class="lesson-nav" aria-label="Lesson Navigation">
+                <a href="welcome_to_paintstorm.html" class="prev-lesson">← Previous: Welcome to Paintstorm</a>
+                <a href="index.html" class="home-link">🏠 Course Home</a>
+                <a href="brush_fundamentals.html" class="next-lesson">Next: Brush Fundamentals →</a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; margin-top: 4rem; border-top: 1px solid var(--border-color);">
+        <p>&copy; 2024 Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Toggle Table of Contents
+        function toggleTOC() {
+            const tocList = document.getElementById('toc-list');
+            const tocIcon = document.getElementById('toc-toggle-icon');
+            
+            if (tocList.style.maxHeight === '0px' || tocList.style.maxHeight === '') {
+                // Expand
+                tocList.style.maxHeight = '500px';
+                tocIcon.style.transform = 'rotate(0deg)';
+                localStorage.setItem('tocState', 'expanded');
+            } else {
+                // Collapse
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+                localStorage.setItem('tocState', 'collapsed');
+            }
+        }
+        
+        // Initialize TOC state from localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const tocState = localStorage.getItem('tocState');
+            if (tocState === 'collapsed') {
+                const tocList = document.getElementById('toc-list');
+                const tocIcon = document.getElementById('toc-toggle-icon');
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+            }
+        });
+        
+        // Progress indicator
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.querySelector('.progress-bar').style.width = `${Math.min(progress, 100)}%`;
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isOpen = navLinks.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+                navLinks.setAttribute('aria-hidden', !isOpen);
+            });
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            
+            themeToggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const newTheme = current === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+            });
+        }
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
