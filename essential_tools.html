@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master essential tools and operations in Paintstorm Studio - selection tools, transformations, and core operations every digital artist needs">
+    <meta name="author" content="Paintstorm Tutorial">
+    <title>Essential Tools & Operations - Paintstorm Studio Essentials</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
+    <!-- Progress indicator -->
+    <div class="progress-indicator" role="progressbar" aria-label="Page scroll progress">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🎨 Paintstorm Studio</a>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <div class="nav-links" id="nav-links" aria-hidden="false">
+                <a href="index.html">Home</a>
+                <a href="index.html#modules">All Lessons</a>
+                <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#modules">Getting Started</a></li>
+            <li aria-current="page">Essential Tools & Operations</li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Lesson Header -->
+            <header>
+                <h1>🛠️ Essential Tools & Operations</h1>
+                <p class="lead">Beyond brushes and colors, these are the tools that make digital art FAST and FLEXIBLE! Master selections, transformations, and essential operations to work like a pro.</p>
+                
+                <!-- Learning objectives -->
+                <div class="card">
+                    <h2>🎯 Learning Objectives</h2>
+                    <p>By the end of this lesson, you will be able to:</p>
+                    <ul>
+                        <li>Use all selection tools effectively</li>
+                        <li>Transform and manipulate objects with precision</li>
+                        <li>Navigate with zoom, rotate, and pan like a pro</li>
+                        <li>Use guides, grids, and snapping for accuracy</li>
+                        <li>Master essential keyboard shortcuts</li>
+                        <li>Work efficiently with common operations</li>
+                    </ul>
+                </div>
+            </header>
+
+            <!-- Table of Contents -->
+            <nav class="card" aria-label="Table of Contents">
+                <h2 style="cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center;" onclick="toggleTOC()">
+                    <span>📑 Table of Contents</span>
+                    <span id="toc-toggle-icon" style="transition: transform 0.3s;">▼</span>
+                </h2>
+                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 500px; margin: 0; padding-left: 1.5rem;">
+                    <li><a href="#selection-tools" class="toc-link">Selection Tools Mastery</a></li>
+                    <li><a href="#selection-operations" class="toc-link">Selection Operations</a></li>
+                    <li><a href="#transformation-tools" class="toc-link">Transformation Tools</a></li>
+                    <li><a href="#navigation-tools" class="toc-link">Navigation & View Tools</a></li>
+                    <li><a href="#guides-grids" class="toc-link">Guides, Grids & Snapping</a></li>
+                    <li><a href="#eraser-tools" class="toc-link">Eraser & Cleanup Tools</a></li>
+                    <li><a href="#fill-gradient" class="toc-link">Fill & Gradient Tools</a></li>
+                    <li><a href="#text-tools" class="toc-link">Text & Typography</a></li>
+                    <li><a href="#shortcuts-efficiency" class="toc-link">Shortcuts & Efficiency</a></li>
+                    <li><a href="#practice" class="toc-link">Practice Exercises</a></li>
+                </ol>
+            </nav>
+
+            <!-- Section 1: Selection Tools -->
+            <section id="selection-tools" class="lesson-section">
+                <h2>Selection Tools Mastery 🎯</h2>
+                
+                <p>Selections are the foundation of precise editing. Think of them as digital masking tape - they protect areas you don't want to change and isolate areas you do!</p>
+                
+                <blockquote>
+                    <strong>🌟 The Power of Selections:</strong> In traditional art, once you paint something, it's there forever. In digital art, selections let you change ANYTHING at ANY TIME. This is your superpower - use it!
+                </blockquote>
+
+                <h3>The Selection Arsenal</h3>
+                
+                <canvas id="selection-demo" width="800" height="500" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: white;"></canvas>
+                
+                <script>
+                    const selCanvas = document.getElementById('selection-demo');
+                    const selCtx = selCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const selScale = window.devicePixelRatio || 1;
+                    selCanvas.width = 800 * selScale;
+                    selCanvas.height = 500 * selScale;
+                    selCtx.scale(selScale, selScale);
+                    
+                    // Title
+                    selCtx.fillStyle = '#333';
+                    selCtx.font = 'bold 16px Arial';
+                    selCtx.textAlign = 'center';
+                    selCtx.fillText('Selection Tools Visual Guide', 400, 25);
+                    
+                    // Rectangular Marquee
+                    selCtx.font = 'bold 12px Arial';
+                    selCtx.textAlign = 'left';
+                    selCtx.fillText('Rectangular Marquee (M)', 50, 60);
+                    
+                    selCtx.strokeStyle = '#333';
+                    selCtx.lineWidth = 2;
+                    selCtx.setLineDash([5, 5]);
+                    selCtx.strokeRect(50, 70, 100, 60);
+                    selCtx.setLineDash([]);
+                    
+                    selCtx.font = '10px Arial';
+                    selCtx.fillStyle = '#666';
+                    selCtx.fillText('Hold Shift = Square', 50, 145);
+                    selCtx.fillText('Hold Alt = From center', 50, 158);
+                    
+                    // Elliptical Marquee
+                    selCtx.fillStyle = '#333';
+                    selCtx.font = 'bold 12px Arial';
+                    selCtx.fillText('Elliptical Marquee (M)', 200, 60);
+                    
+                    selCtx.strokeStyle = '#333';
+                    selCtx.setLineDash([5, 5]);
+                    selCtx.beginPath();
+                    selCtx.ellipse(250, 100, 50, 30, 0, 0, Math.PI * 2);
+                    selCtx.stroke();
+                    selCtx.setLineDash([]);
+                    
+                    selCtx.font = '10px Arial';
+                    selCtx.fillStyle = '#666';
+                    selCtx.fillText('Hold Shift = Circle', 200, 145);
+                    
+                    // Lasso
+                    selCtx.fillStyle = '#333';
+                    selCtx.font = 'bold 12px Arial';
+                    selCtx.fillText('Lasso Tool (L)', 350, 60);
+                    
+                    selCtx.strokeStyle = '#333';
+                    selCtx.setLineDash([5, 5]);
+                    selCtx.beginPath();
+                    selCtx.moveTo(350, 80);
+                    selCtx.quadraticCurveTo(380, 70, 410, 85);
+                    selCtx.quadraticCurveTo(420, 110, 400, 120);
+                    selCtx.quadraticCurveTo(370, 130, 350, 110);
+                    selCtx.closePath();
+                    selCtx.stroke();
+                    selCtx.setLineDash([]);
+                    
+                    selCtx.font = '10px Arial';
+                    selCtx.fillStyle = '#666';
+                    selCtx.fillText('Freehand selection', 350, 145);
+                    
+                    // Polygonal Lasso
+                    selCtx.fillStyle = '#333';
+                    selCtx.font = 'bold 12px Arial';
+                    selCtx.fillText('Polygonal Lasso (L)', 500, 60);
+                    
+                    selCtx.strokeStyle = '#333';
+                    selCtx.setLineDash([5, 5]);
+                    selCtx.beginPath();
+                    selCtx.moveTo(500, 80);
+                    selCtx.lineTo(540, 75);
+                    selCtx.lineTo(560, 100);
+                    selCtx.lineTo(545, 125);
+                    selCtx.lineTo(510, 120);
+                    selCtx.closePath();
+                    selCtx.stroke();
+                    selCtx.setLineDash([]);
+                    
+                    // Draw points
+                    [
+                        [500, 80], [540, 75], [560, 100], [545, 125], [510, 120]
+                    ].forEach(point => {
+                        selCtx.fillStyle = '#e74c3c';
+                        selCtx.fillRect(point[0] - 3, point[1] - 3, 6, 6);
+                    });
+                    
+                    selCtx.font = '10px Arial';
+                    selCtx.fillStyle = '#666';
+                    selCtx.fillText('Click points', 500, 145);
+                    
+                    // Magic Wand
+                    selCtx.fillStyle = '#333';
+                    selCtx.font = 'bold 12px Arial';
+                    selCtx.fillText('Magic Wand (W)', 650, 60);
+                    
+                    // Draw sample area with similar colors
+                    selCtx.fillStyle = '#3498db';
+                    selCtx.fillRect(650, 70, 30, 30);
+                    selCtx.fillStyle = '#2980b9';
+                    selCtx.fillRect(680, 70, 30, 30);
+                    selCtx.fillStyle = '#3498db';
+                    selCtx.fillRect(710, 70, 30, 30);
+                    selCtx.fillStyle = '#5dade2';
+                    selCtx.fillRect(650, 100, 30, 30);
+                    selCtx.fillStyle = '#e74c3c';
+                    selCtx.fillRect(680, 100, 30, 30);
+                    selCtx.fillStyle = '#3498db';
+                    selCtx.fillRect(710, 100, 30, 30);
+                    
+                    // Show selection
+                    selCtx.strokeStyle = '#ffd700';
+                    selCtx.lineWidth = 3;
+                    selCtx.setLineDash([5, 5]);
+                    selCtx.beginPath();
+                    selCtx.moveTo(648, 68);
+                    selCtx.lineTo(712, 68);
+                    selCtx.lineTo(742, 98);
+                    selCtx.lineTo(742, 102);
+                    selCtx.lineTo(712, 132);
+                    selCtx.lineTo(678, 132);
+                    selCtx.lineTo(678, 102);
+                    selCtx.lineTo(648, 102);
+                    selCtx.closePath();
+                    selCtx.stroke();
+                    selCtx.setLineDash([]);
+                    
+                    selCtx.font = '10px Arial';
+                    selCtx.fillStyle = '#666';
+                    selCtx.fillText('Selects similar colors', 650, 145);
+                    
+                    // Quick Selection
+                    selCtx.fillStyle = '#333';
+                    selCtx.font = 'bold 12px Arial';
+                    selCtx.fillText('Quick Selection', 50, 200);
+                    
+                    // Draw object
+                    selCtx.fillStyle = '#9b59b6';
+                    selCtx.beginPath();
+                    selCtx.arc(100, 240, 40, 0, Math.PI * 2);
+                    selCtx.fill();
+                    
+                    // Show brush stroke
+                    selCtx.strokeStyle = '#27ae60';
+                    selCtx.lineWidth = 8;
+                    selCtx.lineCap = 'round';
+                    selCtx.globalAlpha = 0.5;
+                    selCtx.beginPath();
+                    selCtx.moveTo(70, 230);
+                    selCtx.quadraticCurveTo(100, 240, 130, 235);
+                    selCtx.stroke();
+                    selCtx.globalAlpha = 1;
+                    
+                    selCtx.font = '10px Arial';
+                    selCtx.fillStyle = '#666';
+                    selCtx.fillText('Paint to select', 50, 295);
+                    
+                    // Selection modifiers section
+                    selCtx.fillStyle = '#333';
+                    selCtx.font = 'bold 14px Arial';
+                    selCtx.textAlign = 'center';
+                    selCtx.fillText('Selection Modifiers', 400, 340);
+                    
+                    // Draw modifier examples
+                    const modifiers = [
+                        { x: 200, y: 370, text: 'Add to Selection', key: 'Shift + Select' },
+                        { x: 400, y: 370, text: 'Subtract from Selection', key: 'Alt + Select' },
+                        { x: 600, y: 370, text: 'Intersect Selection', key: 'Shift + Alt + Select' }
+                    ];
+                    
+                    modifiers.forEach((mod, i) => {
+                        // Draw circles
+                        selCtx.strokeStyle = '#333';
+                        selCtx.lineWidth = 2;
+                        selCtx.setLineDash([5, 5]);
+                        
+                        if (i === 0) {
+                            // Add - two circles
+                            selCtx.beginPath();
+                            selCtx.arc(mod.x - 15, mod.y, 20, 0, Math.PI * 2);
+                            selCtx.stroke();
+                            selCtx.beginPath();
+                            selCtx.arc(mod.x + 15, mod.y, 20, 0, Math.PI * 2);
+                            selCtx.stroke();
+                            
+                            // Plus sign
+                            selCtx.fillStyle = '#27ae60';
+                            selCtx.font = 'bold 20px Arial';
+                            selCtx.fillText('+', mod.x, mod.y + 7);
+                        } else if (i === 1) {
+                            // Subtract
+                            selCtx.beginPath();
+                            selCtx.arc(mod.x, mod.y, 25, 0, Math.PI * 2);
+                            selCtx.stroke();
+                            
+                            // Minus area
+                            selCtx.fillStyle = 'white';
+                            selCtx.fillRect(mod.x - 10, mod.y - 10, 20, 20);
+                            
+                            selCtx.fillStyle = '#e74c3c';
+                            selCtx.font = 'bold 20px Arial';
+                            selCtx.fillText('−', mod.x, mod.y + 7);
+                        } else {
+                            // Intersect
+                            selCtx.beginPath();
+                            selCtx.arc(mod.x - 10, mod.y, 20, 0, Math.PI * 2);
+                            selCtx.stroke();
+                            selCtx.beginPath();
+                            selCtx.arc(mod.x + 10, mod.y, 20, 0, Math.PI * 2);
+                            selCtx.stroke();
+                            
+                            // Highlight intersection
+                            selCtx.fillStyle = 'rgba(52, 152, 219, 0.3)';
+                            selCtx.fillRect(mod.x - 10, mod.y - 10, 20, 20);
+                        }
+                        
+                        selCtx.setLineDash([]);
+                        
+                        // Labels
+                        selCtx.fillStyle = '#333';
+                        selCtx.font = '11px Arial';
+                        selCtx.textAlign = 'center';
+                        selCtx.fillText(mod.text, mod.x, mod.y + 40);
+                        selCtx.fillStyle = '#666';
+                        selCtx.font = '10px Arial';
+                        selCtx.fillText(mod.key, mod.x, mod.y + 53);
+                    });
+                </script>
+
+                <div class="card">
+                    <h3>🎯 Selection Tool Reference</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Shortcut</th>
+                                <th>Best For</th>
+                                <th>Pro Tip</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Rectangular Marquee</strong></td>
+                                <td>M</td>
+                                <td>Geometric shapes, cropping</td>
+                                <td>Hold Shift for square, Alt for center</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Elliptical Marquee</strong></td>
+                                <td>M (toggle)</td>
+                                <td>Circular selections</td>
+                                <td>Hold Shift for perfect circle</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lasso</strong></td>
+                                <td>L</td>
+                                <td>Irregular shapes</td>
+                                <td>Close to start point to complete</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Polygonal Lasso</strong></td>
+                                <td>L (toggle)</td>
+                                <td>Angular selections</td>
+                                <td>Double-click to close path</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Magic Wand</strong></td>
+                                <td>W</td>
+                                <td>Similar colors</td>
+                                <td>Adjust tolerance for precision</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quick Selection</strong></td>
+                                <td>W (toggle)</td>
+                                <td>Complex objects</td>
+                                <td>Paint over area to select</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <strong>💡 Selection Philosophy:</strong> Don't try to get the perfect selection in one go! Start rough, then refine. Add to it, subtract from it, smooth the edges. Building a selection is like sculpting - you shape it gradually.
+                </blockquote>
+            </section>
+
+            <!-- Section 2: Selection Operations -->
+            <section id="selection-operations" class="lesson-section">
+                <h2>Selection Operations 🔧</h2>
+                
+                <p>Making a selection is just the beginning. The real power comes from what you can DO with selections!</p>
+                
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h4>🎨 Selection Menu Operations</h4>
+                    <ul>
+                        <li><strong>Select All:</strong> Ctrl/Cmd + A</li>
+                        <li><strong>Deselect:</strong> Ctrl/Cmd + D</li>
+                        <li><strong>Reselect:</strong> Ctrl/Cmd + Shift + D</li>
+                        <li><strong>Inverse:</strong> Ctrl/Cmd + Shift + I (select everything except current selection)</li>
+                        <li><strong>Feather:</strong> Soften edges by X pixels</li>
+                        <li><strong>Expand/Contract:</strong> Grow or shrink selection</li>
+                        <li><strong>Save Selection:</strong> Store for later use</li>
+                        <li><strong>Load Selection:</strong> Retrieve saved selection</li>
+                    </ul>
+                </div>
+
+                <h3>Advanced Selection Techniques</h3>
+                
+                <div class="card">
+                    <h4>🚀 Pro Selection Workflows</h4>
+                    
+                    <ol>
+                        <li><strong>Color Range Selection:</strong>
+                            <ul>
+                                <li>Select → Color Range</li>
+                                <li>Click on color to select</li>
+                                <li>Adjust fuzziness for range</li>
+                                <li>Perfect for: Changing specific colors</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Quick Mask Mode (Q):</strong>
+                            <ul>
+                                <li>Press Q to enter Quick Mask</li>
+                                <li>Paint with black to deselect</li>
+                                <li>Paint with white to select</li>
+                                <li>Press Q again to convert to selection</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Select and Mask:</strong>
+                            <ul>
+                                <li>Make rough selection</li>
+                                <li>Click "Select and Mask" button</li>
+                                <li>Refine edges with specialized tools</li>
+                                <li>Perfect for: Hair, fur, complex edges</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 3: Transformation Tools -->
+            <section id="transformation-tools" class="lesson-section">
+                <h2>Transformation Tools 🔄</h2>
+                
+                <p>Transformations are your "oops" fixers and creative enablers. Scale, rotate, skew, distort - reshape anything!</p>
+                
+                <h3>Free Transform (Ctrl/Cmd + T)</h3>
+                
+                <div class="mermaid">
+                    graph TD
+                        A[Free Transform] --> B[Scale]
+                        A --> C[Rotate]
+                        A --> D[Skew]
+                        A --> E[Distort]
+                        A --> F[Perspective]
+                        A --> G[Warp]
+                        
+                        B --> B1[Drag corners]
+                        B --> B2[Shift = Proportional]
+                        
+                        C --> C1[Hover outside box]
+                        C --> C2[Shift = 15° increments]
+                        
+                        D --> D1[Ctrl/Cmd + drag side]
+                        
+                        E --> E1[Ctrl/Cmd + drag corner]
+                        
+                        F --> F1[Ctrl+Alt+Shift corner]
+                        
+                        G --> G1[Right-click → Warp]
+                </div>
+
+                <div class="card">
+                    <h4>⚡ Transform Shortcuts & Tips</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Windows</th>
+                                <th>Mac</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Free Transform</td>
+                                <td>Ctrl + T</td>
+                                <td>Cmd + T</td>
+                                <td>Enter transform mode</td>
+                            </tr>
+                            <tr>
+                                <td>Scale Proportionally</td>
+                                <td>Shift + drag corner</td>
+                                <td>Shift + drag corner</td>
+                                <td>Maintains aspect ratio</td>
+                            </tr>
+                            <tr>
+                                <td>Scale from Center</td>
+                                <td>Alt + drag</td>
+                                <td>Option + drag</td>
+                                <td>Scales from center point</td>
+                            </tr>
+                            <tr>
+                                <td>Rotate</td>
+                                <td>Hover outside + drag</td>
+                                <td>Hover outside + drag</td>
+                                <td>Free rotation</td>
+                            </tr>
+                            <tr>
+                                <td>15° Rotation</td>
+                                <td>Shift + rotate</td>
+                                <td>Shift + rotate</td>
+                                <td>Snaps to 15° increments</td>
+                            </tr>
+                            <tr>
+                                <td>Flip Horizontal</td>
+                                <td>Right-click → Flip H</td>
+                                <td>Right-click → Flip H</td>
+                                <td>Mirror horizontally</td>
+                            </tr>
+                            <tr>
+                                <td>Flip Vertical</td>
+                                <td>Right-click → Flip V</td>
+                                <td>Right-click → Flip V</td>
+                                <td>Mirror vertically</td>
+                            </tr>
+                            <tr>
+                                <td>Accept Transform</td>
+                                <td>Enter</td>
+                                <td>Return</td>
+                                <td>Apply transformation</td>
+                            </tr>
+                            <tr>
+                                <td>Cancel Transform</td>
+                                <td>Escape</td>
+                                <td>Escape</td>
+                                <td>Cancel without applying</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <strong>🎯 Transform Wisdom:</strong> Always duplicate your layer before transforming! Transformations can degrade quality if done repeatedly. Keep your original safe.
+                </blockquote>
+            </section>
+
+            <!-- Section 4: Navigation Tools -->
+            <section id="navigation-tools" class="lesson-section">
+                <h2>Navigation & View Tools 🔍</h2>
+                
+                <p>Efficient navigation is the difference between fighting your canvas and dancing with it. Master these tools to work at the speed of thought!</p>
+                
+                <div class="card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                    <h4>🚀 Essential Navigation</h4>
+                    <ul>
+                        <li><strong>Hand Tool (H):</strong> Pan around canvas - Hold Space for temporary hand tool</li>
+                        <li><strong>Zoom Tool (Z):</strong> Click to zoom in, Alt+click to zoom out</li>
+                        <li><strong>Rotate View (R):</strong> Rotate canvas for comfortable drawing angles</li>
+                        <li><strong>Fit to Screen:</strong> Ctrl/Cmd + 0 (zero)</li>
+                        <li><strong>Actual Size (100%):</strong> Ctrl/Cmd + 1</li>
+                        <li><strong>Zoom In:</strong> Ctrl/Cmd + Plus</li>
+                        <li><strong>Zoom Out:</strong> Ctrl/Cmd + Minus</li>
+                    </ul>
+                </div>
+
+                <h3>Pro Navigation Techniques</h3>
+                
+                <div class="card">
+                    <h4>🎨 Navigation Workflow Tips</h4>
+                    <ol>
+                        <li><strong>Bird's Eye View:</strong>
+                            <ul>
+                                <li>Window → Navigator panel</li>
+                                <li>See entire canvas at once</li>
+                                <li>Red box shows current view</li>
+                                <li>Drag box to navigate quickly</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Scrubby Zoom:</strong>
+                            <ul>
+                                <li>Hold Z + drag left/right</li>
+                                <li>Smooth zooming control</li>
+                                <li>More precise than clicking</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Rotation Reset:</strong>
+                            <ul>
+                                <li>While rotating, double-click to reset</li>
+                                <li>Or press Escape</li>
+                                <li>Returns to 0° instantly</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Tab for Clean View:</strong>
+                            <ul>
+                                <li>Tab key hides all panels</li>
+                                <li>Tab again to restore</li>
+                                <li>Great for checking overall composition</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 5: Guides & Grids -->
+            <section id="guides-grids" class="lesson-section">
+                <h2>Guides, Grids & Snapping 📐</h2>
+                
+                <p>Precision isn't always necessary in art, but when you need it, these tools ensure perfect alignment and proportion!</p>
+                
+                <h3>Working with Guides</h3>
+                
+                <div class="card">
+                    <h4>📏 Guide Operations</h4>
+                    <ul>
+                        <li><strong>Create Guide:</strong> Drag from ruler (Ctrl/Cmd + R to show rulers)</li>
+                        <li><strong>Move Guide:</strong> Select Move tool, then drag guide</li>
+                        <li><strong>Delete Guide:</strong> Drag guide back to ruler</li>
+                        <li><strong>Lock Guides:</strong> View → Lock Guides</li>
+                        <li><strong>Hide/Show:</strong> Ctrl/Cmd + ; (semicolon)</li>
+                        <li><strong>Clear All:</strong> View → Clear Guides</li>
+                        <li><strong>New Guide:</strong> View → New Guide (precise positioning)</li>
+                    </ul>
+                </div>
+
+                <h3>Grid System</h3>
+                
+                <div class="card">
+                    <h4>⬚ Grid Controls</h4>
+                    <ul>
+                        <li><strong>Show/Hide Grid:</strong> Ctrl/Cmd + ' (apostrophe)</li>
+                        <li><strong>Snap to Grid:</strong> View → Snap → Grid</li>
+                        <li><strong>Grid Settings:</strong> Edit → Preferences → Guides & Grid</li>
+                        <li><strong>Isometric Grid:</strong> Available for technical illustration</li>
+                    </ul>
+                </div>
+
+                <blockquote>
+                    <strong>💡 Composition Tip:</strong> Use guides for rule of thirds, golden ratio, or symmetry guides. Set them up at the start of your painting for better composition!
+                </blockquote>
+            </section>
+
+            <!-- Section 6: Eraser Tools -->
+            <section id="eraser-tools" class="lesson-section">
+                <h2>Eraser & Cleanup Tools 🧹</h2>
+                
+                <p>The eraser isn't just for mistakes - it's a creative tool! Use it for effects, cleanup, and artistic techniques.</p>
+                
+                <div class="card">
+                    <h4>🧽 Eraser Tool Options</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Eraser Type</th>
+                                <th>Shortcut</th>
+                                <th>Best For</th>
+                                <th>Tip</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Brush Eraser</strong></td>
+                                <td>E</td>
+                                <td>Soft, artistic erasing</td>
+                                <td>Uses current brush shape</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Block Eraser</strong></td>
+                                <td>E (mode)</td>
+                                <td>Hard, precise erasing</td>
+                                <td>Square shape, no pressure</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Background Eraser</strong></td>
+                                <td>E (mode)</td>
+                                <td>Remove backgrounds</td>
+                                <td>Samples and erases colors</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Magic Eraser</strong></td>
+                                <td>—</td>
+                                <td>Quick background removal</td>
+                                <td>One click, similar colors</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h4>⚡ Eraser Pro Tips</h4>
+                    <ul>
+                        <li><strong>Temporary Eraser:</strong> Hold E while painting to temporarily switch</li>
+                        <li><strong>Erase to History:</strong> Erase back to a previous state</li>
+                        <li><strong>Protect Transparency:</strong> Lock transparent pixels to erase only painted areas</li>
+                        <li><strong>Opacity Control:</strong> Number keys work with eraser too</li>
+                        <li><strong>Better Alternative:</strong> Use layer masks instead of erasing!</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 7: Fill & Gradient -->
+            <section id="fill-gradient" class="lesson-section">
+                <h2>Fill & Gradient Tools 🌈</h2>
+                
+                <p>Quick fills and smooth gradients are essential for backgrounds, effects, and base colors.</p>
+                
+                <h3>Paint Bucket Tool (G)</h3>
+                
+                <div class="card">
+                    <h4>🪣 Fill Tool Settings</h4>
+                    <ul>
+                        <li><strong>Tolerance:</strong> How similar colors must be (0-255)</li>
+                        <li><strong>Anti-alias:</strong> Smooth edges of fill</li>
+                        <li><strong>Contiguous:</strong> Fill only connected pixels</li>
+                        <li><strong>All Layers:</strong> Sample from all visible layers</li>
+                        <li><strong>Quick Fill:</strong> Alt + Backspace (foreground), Ctrl + Backspace (background)</li>
+                    </ul>
+                </div>
+
+                <h3>Gradient Tool (G)</h3>
+                
+                <div class="card">
+                    <h4>🌅 Gradient Types</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Shape</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Linear</strong></td>
+                                <td>Straight line</td>
+                                <td>Skies, backgrounds</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Radial</strong></td>
+                                <td>Circular</td>
+                                <td>Light sources, vignettes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Angle</strong></td>
+                                <td>Conical</td>
+                                <td>Metallic surfaces</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Reflected</strong></td>
+                                <td>Mirrored linear</td>
+                                <td>Reflections</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Diamond</strong></td>
+                                <td>Diamond shape</td>
+                                <td>Special effects</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 8: Text Tools -->
+            <section id="text-tools" class="lesson-section">
+                <h2>Text & Typography 📝</h2>
+                
+                <p>Text in digital art isn't just for comics and labels - it's a design element that can enhance your artwork!</p>
+                
+                <div class="card">
+                    <h4>✍️ Text Tool Basics (T)</h4>
+                    <ul>
+                        <li><strong>Point Text:</strong> Click once for single line</li>
+                        <li><strong>Paragraph Text:</strong> Click and drag for text box</li>
+                        <li><strong>Edit Text:</strong> Double-click text layer</li>
+                        <li><strong>Transform Text:</strong> Ctrl/Cmd + T with text selected</li>
+                        <li><strong>Rasterize:</strong> Convert to pixels for painting</li>
+                    </ul>
+                </div>
+
+                <h3>Text Effects</h3>
+                
+                <div class="card">
+                    <h4>🎨 Creative Text Techniques</h4>
+                    <ol>
+                        <li><strong>Text on Path:</strong> Draw path, then type</li>
+                        <li><strong>Warped Text:</strong> Text → Warp Text</li>
+                        <li><strong>Layer Styles:</strong> Drop shadow, stroke, glow</li>
+                        <li><strong>Clipping Mask:</strong> Fill text with images/textures</li>
+                        <li><strong>3D Text:</strong> Use perspective transform</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 9: Shortcuts -->
+            <section id="shortcuts-efficiency" class="lesson-section">
+                <h2>Shortcuts & Efficiency 🚀</h2>
+                
+                <p>Speed comes from muscle memory. Learn these shortcuts and watch your workflow accelerate!</p>
+                
+                <div class="card" style="background: #e8f5e9; border-left: 4px solid #4CAF50;">
+                    <h3>🎯 Must-Know Shortcuts</h3>
+                    
+                    <h4>The Big 10 (Use These Constantly)</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Windows</th>
+                                <th>Mac</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Undo</strong></td>
+                                <td>Ctrl + Z</td>
+                                <td>Cmd + Z</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Brush Tool</strong></td>
+                                <td>B</td>
+                                <td>B</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Eraser</strong></td>
+                                <td>E</td>
+                                <td>E</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Move Tool</strong></td>
+                                <td>V</td>
+                                <td>V</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Transform</strong></td>
+                                <td>Ctrl + T</td>
+                                <td>Cmd + T</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Save</strong></td>
+                                <td>Ctrl + S</td>
+                                <td>Cmd + S</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Deselect</strong></td>
+                                <td>Ctrl + D</td>
+                                <td>Cmd + D</td>
+                            </tr>
+                            <tr>
+                                <td><strong>New Layer</strong></td>
+                                <td>Ctrl + Shift + N</td>
+                                <td>Cmd + Shift + N</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Merge Down</strong></td>
+                                <td>Ctrl + E</td>
+                                <td>Cmd + E</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Color Picker</strong></td>
+                                <td>Alt + Click</td>
+                                <td>Option + Click</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Workflow Optimization</h3>
+                
+                <div class="card">
+                    <h4>⚡ Speed Tips</h4>
+                    <ol>
+                        <li><strong>Use Both Hands:</strong> Left hand on keyboard, right on stylus</li>
+                        <li><strong>Custom Shortcuts:</strong> Edit → Keyboard Shortcuts</li>
+                        <li><strong>Quick Menu:</strong> Right-click for context menu</li>
+                        <li><strong>Actions:</strong> Record repetitive tasks</li>
+                        <li><strong>Workspace:</strong> Save your panel layout</li>
+                        <li><strong>Tool Presets:</strong> Save tool settings</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 10: Practice -->
+            <section id="practice" class="lesson-section">
+                <h2>Practice Exercises 🎯</h2>
+                
+                <div class="exercise-card">
+                    <h3>🎯 Exercise 1: Selection Obstacle Course</h3>
+                    <p><strong>Objective:</strong> Master all selection tools</p>
+                    
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Create a new document with various shapes:
+                            <ul>
+                                <li>Rectangle</li>
+                                <li>Circle</li>
+                                <li>Irregular blob shape</li>
+                                <li>Star or polygon</li>
+                                <li>Gradient background</li>
+                            </ul>
+                        </li>
+                        <li>Practice selecting each shape with the appropriate tool</li>
+                        <li>Try combining selections (add, subtract, intersect)</li>
+                        <li>Save your complex selection</li>
+                        <li>Apply different effects to each selection</li>
+                    </ol>
+                    
+                    <p><strong>Success:</strong> You can quickly choose the right selection tool for any shape</p>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>🔄 Exercise 2: Transform Challenge</h3>
+                    <p><strong>Objective:</strong> Master transformations</p>
+                    
+                    <h4>The Challenge:</h4>
+                    <ol>
+                        <li>Import a simple image (like a playing card)</li>
+                        <li>Duplicate it 5 times</li>
+                        <li>Create:
+                            <ul>
+                                <li>A perfect square from a rectangle</li>
+                                <li>A perspective view (like lying on a table)</li>
+                                <li>A curved/warped version</li>
+                                <li>A mirrored reflection</li>
+                                <li>A rotated spiral arrangement</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Learn:</strong> All the ways to manipulate objects in digital space</p>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>⚡ Exercise 3: Speed Navigation</h3>
+                    <p><strong>Objective:</strong> Build navigation muscle memory</p>
+                    
+                    <h4>The Drill:</h4>
+                    <ol>
+                        <li>Open a large canvas (4000x4000px)</li>
+                        <li>Draw small details in each corner</li>
+                        <li>Practice navigating between them using ONLY shortcuts:
+                            <ul>
+                                <li>Zoom to 100%</li>
+                                <li>Fit to screen</li>
+                                <li>Zoom to each corner at 200%</li>
+                                <li>Rotate canvas 45°</li>
+                                <li>Reset rotation</li>
+                            </ul>
+                        </li>
+                        <li>Time yourself - try to get under 30 seconds for the circuit</li>
+                    </ol>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>📐 Exercise 4: Precision Practice</h3>
+                    <p><strong>Objective:</strong> Use guides and grids effectively</p>
+                    
+                    <h4>Project:</h4>
+                    <ol>
+                        <li>Create a mock app interface or poster</li>
+                        <li>Set up guides for:
+                            <ul>
+                                <li>Margins (10% from edges)</li>
+                                <li>Rule of thirds</li>
+                                <li>Center lines (horizontal and vertical)</li>
+                            </ul>
+                        </li>
+                        <li>Use grid for consistent spacing</li>
+                        <li>Align all elements precisely</li>
+                        <li>Create perfect geometric patterns</li>
+                    </ol>
+                    
+                    <p><strong>Result:</strong> Clean, professional alignment</p>
+                </div>
+            </section>
+
+            <!-- Summary -->
+            <div class="card" style="margin-top: 2rem; background: #e8f5e9; border-left: 4px solid #4CAF50;">
+                <h3>🎯 You've Learned Essential Operations!</h3>
+                <p>These tools might seem basic, but they're the foundation of professional digital art. With selections, transformations, and efficient navigation, you can now:</p>
+                <ul>
+                    <li>Isolate and edit specific parts of your artwork</li>
+                    <li>Fix proportions and perspectives quickly</li>
+                    <li>Work efficiently with keyboard shortcuts</li>
+                    <li>Navigate large canvases smoothly</li>
+                    <li>Use precision tools when needed</li>
+                </ul>
+                <p><strong>Remember:</strong> These tools become invisible with practice - your hands will know what to do without thinking!</p>
+            </div>
+
+            <!-- Lesson Navigation -->
+            <nav class="lesson-nav" aria-label="Lesson Navigation">
+                <a href="interface_basics.html" class="prev-lesson">← Previous: Interface Basics</a>
+                <a href="index.html" class="home-link">🏠 Course Home</a>
+                <a href="file_management.html" class="next-lesson">Next: File Management & Export →</a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; margin-top: 4rem; border-top: 1px solid var(--border-color);">
+        <p>&copy; 2024 Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Toggle Table of Contents
+        function toggleTOC() {
+            const tocList = document.getElementById('toc-list');
+            const tocIcon = document.getElementById('toc-toggle-icon');
+            
+            if (tocList.style.maxHeight === '0px' || tocList.style.maxHeight === '') {
+                tocList.style.maxHeight = '500px';
+                tocIcon.style.transform = 'rotate(0deg)';
+                localStorage.setItem('tocState', 'expanded');
+            } else {
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+                localStorage.setItem('tocState', 'collapsed');
+            }
+        }
+        
+        // Initialize TOC state
+        document.addEventListener('DOMContentLoaded', () => {
+            const tocState = localStorage.getItem('tocState');
+            if (tocState === 'collapsed') {
+                const tocList = document.getElementById('toc-list');
+                const tocIcon = document.getElementById('toc-toggle-icon');
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+            }
+        });
+        
+        // Progress indicator
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.querySelector('.progress-bar').style.width = `${Math.min(progress, 100)}%`;
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isOpen = navLinks.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+                navLinks.setAttribute('aria-hidden', !isOpen);
+            });
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            
+            themeToggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const newTheme = current === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+            });
+        }
+
+        // Smooth scrolling for TOC
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

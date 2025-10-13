@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master file management and export in Paintstorm Studio - creating documents, saving work, file formats, and preparing art for different uses">
+    <meta name="author" content="Paintstorm Tutorial">
+    <title>File Management & Export - Paintstorm Studio Essentials</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
+    <!-- Progress indicator -->
+    <div class="progress-indicator" role="progressbar" aria-label="Page scroll progress">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🎨 Paintstorm Studio</a>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <div class="nav-links" id="nav-links" aria-hidden="false">
+                <a href="index.html">Home</a>
+                <a href="index.html#modules">All Lessons</a>
+                <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#modules">Getting Started</a></li>
+            <li aria-current="page">File Management & Export</li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Lesson Header -->
+            <header>
+                <h1>📁 File Management & Export</h1>
+                <p class="lead">Creating art is only half the battle - you need to save it properly, organize it well, and export it correctly for its intended use. Master these fundamentals to protect your work and share it professionally!</p>
+                
+                <!-- Learning objectives -->
+                <div class="card">
+                    <h2>🎯 Learning Objectives</h2>
+                    <p>By the end of this lesson, you will be able to:</p>
+                    <ul>
+                        <li>Create new documents with appropriate settings</li>
+                        <li>Understand resolution, color modes, and canvas sizes</li>
+                        <li>Save and organize your work effectively</li>
+                        <li>Choose the right file format for any situation</li>
+                        <li>Export artwork for web, print, and social media</li>
+                        <li>Implement backup strategies to never lose work</li>
+                    </ul>
+                </div>
+            </header>
+
+            <!-- Table of Contents -->
+            <nav class="card" aria-label="Table of Contents">
+                <h2 style="cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center;" onclick="toggleTOC()">
+                    <span>📑 Table of Contents</span>
+                    <span id="toc-toggle-icon" style="transition: transform 0.3s;">▼</span>
+                </h2>
+                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 500px; margin: 0; padding-left: 1.5rem;">
+                    <li><a href="#creating-documents" class="toc-link">Creating New Documents</a></li>
+                    <li><a href="#resolution-basics" class="toc-link">Resolution & DPI Explained</a></li>
+                    <li><a href="#color-modes" class="toc-link">Color Modes & Bit Depth</a></li>
+                    <li><a href="#saving-work" class="toc-link">Saving Your Work</a></li>
+                    <li><a href="#file-formats" class="toc-link">File Formats Guide</a></li>
+                    <li><a href="#export-settings" class="toc-link">Export Settings</a></li>
+                    <li><a href="#organization" class="toc-link">File Organization</a></li>
+                    <li><a href="#backup-strategies" class="toc-link">Backup Strategies</a></li>
+                    <li><a href="#common-scenarios" class="toc-link">Common Export Scenarios</a></li>
+                    <li><a href="#practice" class="toc-link">Practice Exercises</a></li>
+                </ol>
+            </nav>
+
+            <!-- Section 1: Creating Documents -->
+            <section id="creating-documents" class="lesson-section">
+                <h2>Creating New Documents 📄</h2>
+                
+                <p>Starting with the right document settings saves hours of work later. Let's demystify all those options in the New Document dialog!</p>
+                
+                <blockquote>
+                    <strong>🌟 Golden Rule:</strong> It's always better to work larger and scale down than to work small and scale up. Quality only goes one direction - down!
+                </blockquote>
+
+                <h3>New Document Settings</h3>
+                
+                <canvas id="document-settings" width="800" height="400" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: #f9f9f9;"></canvas>
+                
+                <script>
+                    const docCanvas = document.getElementById('document-settings');
+                    const dCtx = docCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const dScale = window.devicePixelRatio || 1;
+                    docCanvas.width = 800 * dScale;
+                    docCanvas.height = 400 * dScale;
+                    dCtx.scale(dScale, dScale);
+                    
+                    // Title
+                    dCtx.fillStyle = '#333';
+                    dCtx.font = 'bold 16px Arial';
+                    dCtx.textAlign = 'center';
+                    dCtx.fillText('Common Canvas Sizes & Their Uses', 400, 25);
+                    
+                    // Draw size comparisons
+                    const sizes = [
+                        { w: 40, h: 40, label: 'Icon', desc: '512×512' },
+                        { w: 60, h: 80, label: 'Phone', desc: '1080×1920' },
+                        { w: 120, h: 90, label: 'HD Screen', desc: '1920×1080' },
+                        { w: 160, h: 90, label: '4K Screen', desc: '3840×2160' },
+                        { w: 100, h: 141, label: 'A4 Print', desc: '2480×3508' }
+                    ];
+                    
+                    let xPos = 50;
+                    sizes.forEach((size, i) => {
+                        // Draw rectangle
+                        dCtx.fillStyle = ['#3498db', '#e74c3c', '#f39c12', '#9b59b6', '#2ecc71'][i];
+                        dCtx.globalAlpha = 0.3;
+                        dCtx.fillRect(xPos, 80, size.w, size.h);
+                        dCtx.globalAlpha = 1;
+                        
+                        dCtx.strokeStyle = '#333';
+                        dCtx.lineWidth = 2;
+                        dCtx.strokeRect(xPos, 80, size.w, size.h);
+                        
+                        // Labels
+                        dCtx.fillStyle = '#333';
+                        dCtx.font = 'bold 12px Arial';
+                        dCtx.textAlign = 'center';
+                        dCtx.fillText(size.label, xPos + size.w/2, 70);
+                        
+                        dCtx.font = '10px Arial';
+                        dCtx.fillStyle = '#666';
+                        dCtx.fillText(size.desc, xPos + size.w/2, 80 + size.h + 15);
+                        
+                        xPos += size.w + 30;
+                    });
+                    
+                    // Resolution comparison
+                    dCtx.font = 'bold 14px Arial';
+                    dCtx.fillStyle = '#333';
+                    dCtx.textAlign = 'left';
+                    dCtx.fillText('Resolution Impact:', 50, 280);
+                    
+                    // Draw pixel density comparison
+                    const resolutions = [
+                        { dpi: 72, label: 'Web (72 DPI)', size: 4 },
+                        { dpi: 150, label: 'Medium (150 DPI)', size: 2 },
+                        { dpi: 300, label: 'Print (300 DPI)', size: 1 }
+                    ];
+                    
+                    resolutions.forEach((res, i) => {
+                        const x = 200 + i * 200;
+                        const y = 300;
+                        
+                        // Draw grid of "pixels"
+                        for(let row = 0; row < 10; row++) {
+                            for(let col = 0; col < 10; col++) {
+                                dCtx.fillStyle = (row + col) % 2 ? '#333' : '#999';
+                                dCtx.fillRect(x + col * res.size, y + row * res.size, res.size, res.size);
+                            }
+                        }
+                        
+                        dCtx.fillStyle = '#333';
+                        dCtx.font = '11px Arial';
+                        dCtx.textAlign = 'center';
+                        dCtx.fillText(res.label, x + 50, y + 60);
+                    });
+                </script>
+
+                <div class="card">
+                    <h3>📐 Document Presets</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Purpose</th>
+                                <th>Size (pixels)</th>
+                                <th>DPI</th>
+                                <th>Color Mode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Web/Social Media</strong></td>
+                                <td>1920×1080 or 1080×1080</td>
+                                <td>72</td>
+                                <td>RGB</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Digital Illustration</strong></td>
+                                <td>3000×3000 minimum</td>
+                                <td>300</td>
+                                <td>RGB</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Print (A4)</strong></td>
+                                <td>2480×3508</td>
+                                <td>300</td>
+                                <td>CMYK</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Game Assets</strong></td>
+                                <td>Power of 2 (512, 1024, 2048)</td>
+                                <td>72</td>
+                                <td>RGB</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Concept Art</strong></td>
+                                <td>3840×2160 (4K)</td>
+                                <td>72-150</td>
+                                <td>RGB</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h4>🎯 Quick Setup Tips</h4>
+                    <ul>
+                        <li><strong>Can't decide on size?</strong> Go with 3000×3000px at 300 DPI - covers most needs</li>
+                        <li><strong>Background:</strong> White for most work, transparent for assets/logos</li>
+                        <li><strong>Color mode:</strong> RGB for digital, CMYK only for professional printing</li>
+                        <li><strong>Bit depth:</strong> 8-bit for normal work, 16-bit for heavy editing</li>
+                        <li><strong>Name it well:</strong> "Project_Name_v01" not "Untitled-1"</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 2: Resolution Basics -->
+            <section id="resolution-basics" class="lesson-section">
+                <h2>Resolution & DPI Explained 🔍</h2>
+                
+                <p>Resolution confusion causes more headaches than any other technical aspect. Let's clear it up once and for all!</p>
+                
+                <h3>Pixels vs DPI vs PPI</h3>
+                
+                <div class="mermaid">
+                    graph TD
+                        A[Image Resolution] --> B[Pixel Dimensions]
+                        A --> C[DPI/PPI]
+                        
+                        B --> B1[Width × Height in pixels]
+                        B --> B2[Absolute digital size]
+                        
+                        C --> C1[Dots/Pixels Per Inch]
+                        C --> C2[Print density setting]
+                        
+                        B --> D[Digital Display]
+                        C --> E[Physical Print]
+                        
+                        D --> D1[Only pixels matter]
+                        E --> E1[Pixels + DPI = print size]
+                </div>
+
+                <div class="card">
+                    <h4>🖥️ Digital vs Print Resolution</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Use Case</th>
+                                <th>Resolution Needed</th>
+                                <th>Why</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Screen only</strong></td>
+                                <td>72 DPI</td>
+                                <td>Screens display at ~72-96 DPI</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Web images</strong></td>
+                                <td>72 DPI</td>
+                                <td>File size matters, DPI doesn't</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Professional print</strong></td>
+                                <td>300 DPI</td>
+                                <td>Industry standard for quality</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Large posters</strong></td>
+                                <td>150 DPI</td>
+                                <td>Viewed from distance</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Billboards</strong></td>
+                                <td>50-100 DPI</td>
+                                <td>Viewed from far away</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <strong>💡 The Truth About DPI:</strong> DPI is ONLY relevant for printing! A 1920×1080 image is the same on screen whether it's 1 DPI or 9000 DPI. The DPI setting only tells the printer how big to print it.
+                </blockquote>
+
+                <h3>Resolution Math Made Simple</h3>
+                
+                <div class="card">
+                    <h4>📐 The Formula</h4>
+                    <p style="text-align: center; font-size: 1.2em; font-weight: bold;">
+                        Print Size (inches) = Pixel Dimensions ÷ DPI
+                    </p>
+                    
+                    <h5>Examples:</h5>
+                    <ul>
+                        <li>3000×2000 pixels at 300 DPI = 10×6.67 inch print</li>
+                        <li>3000×2000 pixels at 150 DPI = 20×13.33 inch print</li>
+                        <li>3000×2000 pixels at 72 DPI = 41.67×27.78 inch... but blurry!</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 3: Color Modes -->
+            <section id="color-modes" class="lesson-section">
+                <h2>Color Modes & Bit Depth 🎨</h2>
+                
+                <p>Different color modes serve different purposes. Choose wrong, and your colors might look completely different than expected!</p>
+                
+                <h3>Color Mode Comparison</h3>
+                
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mode</th>
+                                <th>Channels</th>
+                                <th>Colors</th>
+                                <th>Use For</th>
+                                <th>File Size</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>RGB</strong></td>
+                                <td>Red, Green, Blue</td>
+                                <td>16.7 million</td>
+                                <td>Screens, web, digital art</td>
+                                <td>Medium</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CMYK</strong></td>
+                                <td>Cyan, Magenta, Yellow, Black</td>
+                                <td>Fewer (subtractive)</td>
+                                <td>Professional printing</td>
+                                <td>Large</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Grayscale</strong></td>
+                                <td>Gray</td>
+                                <td>256 shades</td>
+                                <td>B&W art, sketches</td>
+                                <td>Small</td>
+                            </tr>
+                            <tr>
+                                <td><strong>LAB</strong></td>
+                                <td>Lightness, A, B</td>
+                                <td>All visible colors</td>
+                                <td>Color correction</td>
+                                <td>Large</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Bit Depth Explained</h3>
+                
+                <div class="card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                    <h4>🎯 8-bit vs 16-bit vs 32-bit</h4>
+                    <ul>
+                        <li><strong>8-bit:</strong> 256 levels per channel (16.7 million colors)
+                            <ul>
+                                <li>Standard for most artwork</li>
+                                <li>Smaller file sizes</li>
+                                <li>Fine for final art</li>
+                            </ul>
+                        </li>
+                        <li><strong>16-bit:</strong> 65,536 levels per channel (281 trillion colors!)
+                            <ul>
+                                <li>Better for heavy editing</li>
+                                <li>Prevents banding in gradients</li>
+                                <li>Larger files, slower performance</li>
+                            </ul>
+                        </li>
+                        <li><strong>32-bit:</strong> Floating point (infinite gradations)
+                            <ul>
+                                <li>HDR imaging</li>
+                                <li>Professional VFX</li>
+                                <li>Huge files!</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Saving Work -->
+            <section id="saving-work" class="lesson-section">
+                <h2>Saving Your Work 💾</h2>
+                
+                <p>Nothing hurts more than losing hours of work to a crash. Let's build bulletproof saving habits!</p>
+                
+                <h3>Save vs Save As vs Export</h3>
+                
+                <div class="card">
+                    <h4>💾 Understanding Save Options</h4>
+                    <ul>
+                        <li><strong>Save (Ctrl/Cmd + S):</strong>
+                            <ul>
+                                <li>Updates existing file</li>
+                                <li>Keeps all layers and editability</li>
+                                <li>Use frequently while working!</li>
+                            </ul>
+                        </li>
+                        <li><strong>Save As (Ctrl/Cmd + Shift + S):</strong>
+                            <ul>
+                                <li>Creates new file</li>
+                                <li>Good for versions</li>
+                                <li>Change name, location, or format</li>
+                            </ul>
+                        </li>
+                        <li><strong>Export (Ctrl/Cmd + Shift + E):</strong>
+                            <ul>
+                                <li>For sharing/publishing</li>
+                                <li>Flattens layers</li>
+                                <li>Optimizes for specific use</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <h3>Auto-Save & Recovery</h3>
+                
+                <div class="card" style="background: #e8f5e9; border-left: 4px solid #4CAF50;">
+                    <h4>✅ Set Up Auto-Save NOW!</h4>
+                    <ol>
+                        <li>Edit → Preferences → File Handling</li>
+                        <li>Enable "Automatically Save Recovery Information"</li>
+                        <li>Set interval to 5-10 minutes</li>
+                        <li>Choose recovery folder location</li>
+                        <li>Enable "Create backup copy"</li>
+                    </ol>
+                    <p><strong>This WILL save your sanity one day!</strong></p>
+                </div>
+            </section>
+
+            <!-- Section 5: File Formats -->
+            <section id="file-formats" class="lesson-section">
+                <h2>File Formats Guide 📋</h2>
+                
+                <p>Each format has its superpower. Choose the right one for the job!</p>
+                
+                <canvas id="format-comparison" width="800" height="400" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: white;"></canvas>
+                
+                <script>
+                    const formatCanvas = document.getElementById('format-comparison');
+                    const fCtx = formatCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const fScale = window.devicePixelRatio || 1;
+                    formatCanvas.width = 800 * fScale;
+                    formatCanvas.height = 400 * fScale;
+                    fCtx.scale(fScale, fScale);
+                    
+                    // Title
+                    fCtx.fillStyle = '#333';
+                    fCtx.font = 'bold 16px Arial';
+                    fCtx.textAlign = 'center';
+                    fCtx.fillText('File Format Comparison', 400, 25);
+                    
+                    // Format boxes
+                    const formats = [
+                        { name: 'PSD', color: '#00c8ff', layers: true, compress: false, trans: true, use: 'Working' },
+                        { name: 'PNG', color: '#ff6b6b', layers: false, compress: true, trans: true, use: 'Web' },
+                        { name: 'JPG', color: '#ffd93d', layers: false, compress: true, trans: false, use: 'Photos' },
+                        { name: 'GIF', color: '#6bcf7f', layers: false, compress: true, trans: true, use: 'Animation' },
+                        { name: 'TIFF', color: '#a29bfe', layers: true, compress: false, trans: true, use: 'Print' }
+                    ];
+                    
+                    formats.forEach((format, i) => {
+                        const x = 80 + i * 140;
+                        const y = 80;
+                        
+                        // Format box
+                        fCtx.fillStyle = format.color;
+                        fCtx.globalAlpha = 0.3;
+                        fCtx.fillRect(x, y, 100, 60);
+                        fCtx.globalAlpha = 1;
+                        
+                        fCtx.strokeStyle = format.color;
+                        fCtx.lineWidth = 3;
+                        fCtx.strokeRect(x, y, 100, 60);
+                        
+                        // Format name
+                        fCtx.fillStyle = '#333';
+                        fCtx.font = 'bold 18px Arial';
+                        fCtx.textAlign = 'center';
+                        fCtx.fillText(format.name, x + 50, y + 35);
+                        
+                        // Use case
+                        fCtx.font = '11px Arial';
+                        fCtx.fillStyle = '#666';
+                        fCtx.fillText(format.use, x + 50, y + 75);
+                        
+                        // Features
+                        let featureY = y + 100;
+                        fCtx.font = '10px Arial';
+                        
+                        // Layers
+                        fCtx.fillStyle = format.layers ? '#27ae60' : '#e74c3c';
+                        fCtx.fillText(format.layers ? '✓ Layers' : '✗ Layers', x + 50, featureY);
+                        
+                        // Compression
+                        featureY += 15;
+                        fCtx.fillStyle = format.compress ? '#27ae60' : '#e74c3c';
+                        fCtx.fillText(format.compress ? '✓ Compressed' : '✗ Large', x + 50, featureY);
+                        
+                        // Transparency
+                        featureY += 15;
+                        fCtx.fillStyle = format.trans ? '#27ae60' : '#e74c3c';
+                        fCtx.fillText(format.trans ? '✓ Transparency' : '✗ No Trans', x + 50, featureY);
+                    });
+                    
+                    // Quality comparison
+                    fCtx.fillStyle = '#333';
+                    fCtx.font = 'bold 14px Arial';
+                    fCtx.textAlign = 'left';
+                    fCtx.fillText('JPG Quality Comparison:', 50, 280);
+                    
+                    // Draw quality samples
+                    const qualities = [100, 80, 60, 30];
+                    qualities.forEach((q, i) => {
+                        const x = 50 + i * 180;
+                        const y = 300;
+                        
+                        // Simulate quality degradation
+                        fCtx.save();
+                        if (q < 100) {
+                            fCtx.filter = `blur(${(100-q)/50}px)`;
+                        }
+                        
+                        // Draw sample image
+                        const gradient = fCtx.createLinearGradient(x, y, x + 60, y + 60);
+                        gradient.addColorStop(0, '#3498db');
+                        gradient.addColorStop(1, '#e74c3c');
+                        fCtx.fillStyle = gradient;
+                        fCtx.fillRect(x, y, 60, 60);
+                        
+                        fCtx.restore();
+                        
+                        // Label
+                        fCtx.fillStyle = '#333';
+                        fCtx.font = '11px Arial';
+                        fCtx.textAlign = 'center';
+                        fCtx.fillText(`Quality: ${q}%`, x + 30, y + 75);
+                        fCtx.fillStyle = '#666';
+                        fCtx.font = '10px Arial';
+                        fCtx.fillText(`~${Math.round(1000 * (q/100))}KB`, x + 30, y + 88);
+                    });
+                </script>
+
+                <div class="card">
+                    <h3>📁 Format Decision Tree</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Format</th>
+                                <th>Use When</th>
+                                <th>Don't Use For</th>
+                                <th>File Size</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>.PSD</strong></td>
+                                <td>Working files, need layers</td>
+                                <td>Sharing online</td>
+                                <td>Very Large</td>
+                            </tr>
+                            <tr>
+                                <td><strong>.PNG</strong></td>
+                                <td>Web graphics, needs transparency</td>
+                                <td>Photos (too large)</td>
+                                <td>Medium-Large</td>
+                            </tr>
+                            <tr>
+                                <td><strong>.JPG</strong></td>
+                                <td>Photos, web images</td>
+                                <td>Graphics with text/lines</td>
+                                <td>Small</td>
+                            </tr>
+                            <tr>
+                                <td><strong>.GIF</strong></td>
+                                <td>Simple animations, tiny graphics</td>
+                                <td>Photos, complex art</td>
+                                <td>Small</td>
+                            </tr>
+                            <tr>
+                                <td><strong>.TIFF</strong></td>
+                                <td>Print, archival</td>
+                                <td>Web (too large)</td>
+                                <td>Huge</td>
+                            </tr>
+                            <tr>
+                                <td><strong>.SVG</strong></td>
+                                <td>Logos, icons, vectors</td>
+                                <td>Photos, paintings</td>
+                                <td>Tiny</td>
+                            </tr>
+                            <tr>
+                                <td><strong>.WEBP</strong></td>
+                                <td>Modern web, best compression</td>
+                                <td>Compatibility needed</td>
+                                <td>Very Small</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <strong>💡 Pro Tip:</strong> Save your working file as PSD, export a high-quality PNG for portfolio/archival, and create optimized JPGs for web sharing. Cover all bases!
+                </blockquote>
+            </section>
+
+            <!-- Section 6: Export Settings -->
+            <section id="export-settings" class="lesson-section">
+                <h2>Export Settings 🚀</h2>
+                
+                <p>Exporting isn't just "Save As" - it's optimizing your art for its destination!</p>
+                
+                <h3>Export for Web</h3>
+                
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h4>🌐 Web Optimization Checklist</h4>
+                    <ul>
+                        <li>☐ Resize to display size (no need for 4K on web!)</li>
+                        <li>☐ Convert to sRGB color profile</li>
+                        <li>☐ Strip metadata (reduces file size)</li>
+                        <li>☐ JPG: 80-85% quality (sweet spot)</li>
+                        <li>☐ PNG: Use PNG-8 if possible (smaller than PNG-24)</li>
+                        <li>☐ Consider WEBP for modern sites</li>
+                        <li>☐ Test loading speed</li>
+                    </ul>
+                </div>
+
+                <h3>Social Media Specs</h3>
+                
+                <div class="card">
+                    <h4>📱 Platform Requirements (2024)</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Platform</th>
+                                <th>Post Size</th>
+                                <th>Story Size</th>
+                                <th>Format</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Instagram</strong></td>
+                                <td>1080×1080 (square)<br/>1080×1350 (portrait)</td>
+                                <td>1080×1920</td>
+                                <td>JPG</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Twitter/X</strong></td>
+                                <td>1200×675</td>
+                                <td>—</td>
+                                <td>JPG/PNG</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Facebook</strong></td>
+                                <td>1200×630</td>
+                                <td>1080×1920</td>
+                                <td>JPG</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ArtStation</strong></td>
+                                <td>1920×1080 min</td>
+                                <td>—</td>
+                                <td>JPG</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Behance</strong></td>
+                                <td>1400px wide max</td>
+                                <td>—</td>
+                                <td>JPG/PNG</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 7: Organization -->
+            <section id="organization" class="lesson-section">
+                <h2>File Organization 🗂️</h2>
+                
+                <p>A messy folder structure is a creativity killer. Let's build a system that scales!</p>
+                
+                <div class="mermaid">
+                    graph TD
+                        A[Art Projects] --> B[2024]
+                        B --> C[01_January]
+                        B --> D[02_February]
+                        
+                        C --> E[Project_Name]
+                        E --> F[01_References]
+                        E --> G[02_Sketches]
+                        E --> H[03_WIP]
+                        E --> I[04_Final]
+                        E --> J[05_Exports]
+                        
+                        H --> K[ProjectName_v01.psd]
+                        H --> L[ProjectName_v02.psd]
+                        H --> M[ProjectName_v03_LATEST.psd]
+                </div>
+
+                <div class="card">
+                    <h4>📁 Folder Structure Template</h4>
+                    <pre style="background: #f4f4f4; padding: 1rem; border-radius: 4px;">
+📁 Digital_Art/
+├── 📁 2024/
+│   ├── 📁 01_January/
+│   │   ├── 📁 Character_Design_Dragon/
+│   │   │   ├── 📁 01_References/
+│   │   │   ├── 📁 02_Sketches/
+│   │   │   ├── 📁 03_WIP/
+│   │   │   │   ├── Dragon_v01.psd
+│   │   │   │   ├── Dragon_v02.psd
+│   │   │   │   └── Dragon_v03_LATEST.psd
+│   │   │   ├── 📁 04_Final/
+│   │   │   │   └── Dragon_FINAL.psd
+│   │   │   └── 📁 05_Exports/
+│   │   │       ├── Dragon_Web_1080.jpg
+│   │   │       ├── Dragon_Print_300dpi.tiff
+│   │   │       └── Dragon_Portfolio.png
+│   └── 📁 Resources/
+│       ├── 📁 Brushes/
+│       ├── 📁 Textures/
+│       └── 📁 Color_Palettes/
+└── 📁 Archive/
+    └── 📁 2023/</pre>
+                </div>
+
+                <h3>Naming Conventions</h3>
+                
+                <div class="card">
+                    <h4>📝 File Naming Best Practices</h4>
+                    <ul>
+                        <li><strong>Use descriptive names:</strong> "Forest_Landscape_v01" not "untitled_1"</li>
+                        <li><strong>Version control:</strong> _v01, _v02, _v03, _FINAL</li>
+                        <li><strong>Date format:</strong> YYYY-MM-DD for chronological sorting</li>
+                        <li><strong>No spaces:</strong> Use_underscores_or-dashes</li>
+                        <li><strong>Include purpose:</strong> _sketch, _lineart, _color, _final</li>
+                        <li><strong>Add specs if needed:</strong> _1080px, _300dpi, _CMYK</li>
+                    </ul>
+                    
+                    <h5>Good Examples:</h5>
+                    <ul style="font-family: monospace; background: #f0f0f0; padding: 1rem;">
+                        <li>✅ Character_Design_Warrior_v03_color.psd</li>
+                        <li>✅ 2024-03-15_Commission_Johnson_FINAL.psd</li>
+                        <li>✅ Environment_Forest_Dawn_1920x1080_web.jpg</li>
+                    </ul>
+                    
+                    <h5>Bad Examples:</h5>
+                    <ul style="font-family: monospace; background: #ffe0e0; padding: 1rem;">
+                        <li>❌ untitled-1 copy 2 final FINAL real final.psd</li>
+                        <li>❌ asdfjkl.psd</li>
+                        <li>❌ New Document 47.psd</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 8: Backup -->
+            <section id="backup-strategies" class="lesson-section">
+                <h2>Backup Strategies 🛡️</h2>
+                
+                <p>Hard drives fail. Computers crash. Files corrupt. Don't learn this lesson the hard way!</p>
+                
+                <div class="card" style="background: #ffebee; border-left: 4px solid #f44336;">
+                    <h3>⚠️ The 3-2-1 Rule</h3>
+                    <ul>
+                        <li><strong>3</strong> copies of important files</li>
+                        <li><strong>2</strong> different storage media types</li>
+                        <li><strong>1</strong> offsite backup</li>
+                    </ul>
+                    <p><strong>This is the minimum for professional work!</strong></p>
+                </div>
+
+                <h3>Backup Options</h3>
+                
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Pros</th>
+                                <th>Cons</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>External HDD</strong></td>
+                                <td>Large capacity, one-time cost</td>
+                                <td>Can fail, not automatic</td>
+                                <td>$50-150</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cloud Storage</strong></td>
+                                <td>Automatic, accessible anywhere</td>
+                                <td>Monthly cost, needs internet</td>
+                                <td>$5-20/month</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NAS</strong></td>
+                                <td>Network access, RAID protection</td>
+                                <td>Complex setup, expensive</td>
+                                <td>$200-1000+</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Version Control</strong></td>
+                                <td>Track all changes, revert anytime</td>
+                                <td>Learning curve</td>
+                                <td>Free-$15/month</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <strong>💔 True Story:</strong> "I lost 6 months of work when my hard drive died. Now I save to Dropbox, backup to an external drive weekly, and keep my finished pieces on Google Drive too. Never again!" - Every digital artist who learned the hard way
+                </blockquote>
+            </section>
+
+            <!-- Section 9: Common Scenarios -->
+            <section id="common-scenarios" class="lesson-section">
+                <h2>Common Export Scenarios 🎯</h2>
+                
+                <p>Let's walk through real-world export situations you'll face regularly!</p>
+                
+                <div class="card">
+                    <h4>📧 Scenario 1: Client Preview</h4>
+                    <p><strong>Situation:</strong> Client wants to see work-in-progress</p>
+                    <ol>
+                        <li>Save your PSD (always first!)</li>
+                        <li>File → Export → Quick Export as JPG</li>
+                        <li>Resize to 1920px on longest side</li>
+                        <li>Quality: 80%</li>
+                        <li>Add watermark if needed</li>
+                        <li>File size should be under 2MB for email</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h4>🖼️ Scenario 2: Portfolio Upload</h4>
+                    <p><strong>Situation:</strong> Uploading to ArtStation/Behance</p>
+                    <ol>
+                        <li>Export at highest reasonable resolution (3840px wide max)</li>
+                        <li>JPG format, 90-95% quality</li>
+                        <li>Embed sRGB color profile</li>
+                        <li>Include your name in filename</li>
+                        <li>Create both landscape (16:9) and square (1:1) crops</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h4>🖨️ Scenario 3: Print Preparation</h4>
+                    <p><strong>Situation:</strong> Preparing for professional printing</p>
+                    <ol>
+                        <li>Confirm print size with printer</li>
+                        <li>Ensure 300 DPI at print size</li>
+                        <li>Convert to CMYK (ask printer first!)</li>
+                        <li>Add 0.125" bleed if needed</li>
+                        <li>Export as TIFF or PDF</li>
+                        <li>Keep RGB version for yourself</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h4>🎮 Scenario 4: Game Asset</h4>
+                    <p><strong>Situation:</strong> Creating assets for game development</p>
+                    <ol>
+                        <li>Use power-of-2 dimensions (512, 1024, 2048)</li>
+                        <li>Export as PNG with transparency</li>
+                        <li>Create multiple resolutions (texture atlasing)</li>
+                        <li>Minimize file size (use PNG-8 if possible)</li>
+                        <li>Test in-engine regularly</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 10: Practice -->
+            <section id="practice" class="lesson-section">
+                <h2>Practice Exercises 📝</h2>
+                
+                <div class="exercise-card">
+                    <h3>📐 Exercise 1: Resolution Test</h3>
+                    <p><strong>Objective:</strong> Understand resolution impact</p>
+                    
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Create three documents:
+                            <ul>
+                                <li>500×500px at 72 DPI</li>
+                                <li>500×500px at 300 DPI</li>
+                                <li>2000×2000px at 72 DPI</li>
+                            </ul>
+                        </li>
+                        <li>Draw the same simple artwork in each</li>
+                        <li>Export all as JPG</li>
+                        <li>Compare file sizes</li>
+                        <li>Try printing each - notice the difference?</li>
+                    </ol>
+                    
+                    <p><strong>Learn:</strong> How resolution affects file size and print quality</p>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>📁 Exercise 2: Format Comparison</h3>
+                    <p><strong>Objective:</strong> Experience format differences</p>
+                    
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Create artwork with:
+                            <ul>
+                                <li>Transparent areas</li>
+                                <li>Gradients</li>
+                                <li>Text</li>
+                                <li>Photos/textures</li>
+                            </ul>
+                        </li>
+                        <li>Export as: PSD, PNG, JPG (various qualities), GIF</li>
+                        <li>Compare:
+                            <ul>
+                                <li>File sizes</li>
+                                <li>Quality</li>
+                                <li>Transparency support</li>
+                                <li>Loading speed</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>🗂️ Exercise 3: Organization Challenge</h3>
+                    <p><strong>Objective:</strong> Build good organizational habits</p>
+                    
+                    <h4>The Challenge:</h4>
+                    <ol>
+                        <li>Set up a complete folder structure for a fake project</li>
+                        <li>Create at least 5 "versions" with proper naming</li>
+                        <li>Export for 3 different purposes (web, print, social)</li>
+                        <li>Write a README.txt with:
+                            <ul>
+                                <li>Project description</li>
+                                <li>Version history</li>
+                                <li>Export specifications</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>💾 Exercise 4: Backup Drill</h3>
+                    <p><strong>Objective:</strong> Establish backup routine</p>
+                    
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Choose a backup solution (cloud or external)</li>
+                        <li>Set up automatic backup if possible</li>
+                        <li>Create backup of current projects</li>
+                        <li>Test recovery - can you restore a file?</li>
+                        <li>Set calendar reminder for manual backups</li>
+                    </ol>
+                    
+                    <p><strong>Success:</strong> You have at least 2 copies of all important work!</p>
+                </div>
+            </section>
+
+            <!-- Summary -->
+            <div class="card" style="margin-top: 2rem; background: #e8f5e9; border-left: 4px solid #4CAF50;">
+                <h3>🎯 File Management Mastery Achieved!</h3>
+                <p>You now understand the technical foundation that supports your creative work:</p>
+                <ul>
+                    <li>✅ Create documents with appropriate settings</li>
+                    <li>✅ Understand resolution and color modes</li>
+                    <li>✅ Choose the right file format every time</li>
+                    <li>✅ Export optimized files for any platform</li>
+                    <li>✅ Organize projects professionally</li>
+                    <li>✅ Never lose work with proper backups</li>
+                </ul>
+                <p><strong>Remember:</strong> Good file management is invisible when done right, but painfully obvious when done wrong. Make these practices automatic!</p>
+            </div>
+
+            <!-- Lesson Navigation -->
+            <nav class="lesson-nav" aria-label="Lesson Navigation">
+                <a href="essential_tools.html" class="prev-lesson">← Previous: Essential Tools</a>
+                <a href="index.html" class="home-link">🏠 Course Home</a>
+                <a href="troubleshooting.html" class="next-lesson">Next: Troubleshooting Guide →</a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; margin-top: 4rem; border-top: 1px solid var(--border-color);">
+        <p>&copy; 2024 Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Toggle Table of Contents
+        function toggleTOC() {
+            const tocList = document.getElementById('toc-list');
+            const tocIcon = document.getElementById('toc-toggle-icon');
+            
+            if (tocList.style.maxHeight === '0px' || tocList.style.maxHeight === '') {
+                tocList.style.maxHeight = '500px';
+                tocIcon.style.transform = 'rotate(0deg)';
+                localStorage.setItem('tocState', 'expanded');
+            } else {
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+                localStorage.setItem('tocState', 'collapsed');
+            }
+        }
+        
+        // Initialize TOC state
+        document.addEventListener('DOMContentLoaded', () => {
+            const tocState = localStorage.getItem('tocState');
+            if (tocState === 'collapsed') {
+                const tocList = document.getElementById('toc-list');
+                const tocIcon = document.getElementById('toc-toggle-icon');
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+            }
+        });
+        
+        // Progress indicator
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.querySelector('.progress-bar').style.width = `${Math.min(progress, 100)}%`;
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isOpen = navLinks.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+                navLinks.setAttribute('aria-hidden', !isOpen);
+            });
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            
+            themeToggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const newTheme = current === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+            });
+        }
+
+        // Smooth scrolling for TOC
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

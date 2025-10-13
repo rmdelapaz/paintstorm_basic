@@ -73,7 +73,7 @@
                     <span>📑 Table of Contents</span>
                     <span id="toc-toggle-icon" style="transition: transform 0.3s;">▼</span>
                 </h2>
-                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 500px;">
+                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 300px; margin: 0; padding-left: 1.5rem;">
                     <li><a href="#what-is-paintstorm" class="toc-link">What is Paintstorm Studio?</a></li>
                     <li><a href="#why-paintstorm" class="toc-link">Why Choose Paintstorm?</a></li>
                     <li><a href="#digital-painting-basics" class="toc-link">Digital Painting Fundamentals</a></li>
@@ -481,7 +481,7 @@
             
             if (tocList.style.maxHeight === '0px' || tocList.style.maxHeight === '') {
                 // Expand
-                tocList.style.maxHeight = '500px';
+                tocList.style.maxHeight = '300px';
                 tocIcon.style.transform = 'rotate(0deg)';
                 localStorage.setItem('tocState', 'expanded');
             } else {

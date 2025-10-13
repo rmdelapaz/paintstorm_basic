@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn fundamental digital painting techniques in Paintstorm Studio - from initial sketch to finished artwork, including rendering, lighting, and professional workflows">
+    <meta name="author" content="Paintstorm Tutorial">
+    <title>Basic Painting Techniques - Paintstorm Studio Essentials</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
+    <!-- Progress indicator -->
+    <div class="progress-indicator" role="progressbar" aria-label="Page scroll progress">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🎨 Paintstorm Studio</a>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <div class="nav-links" id="nav-links" aria-hidden="false">
+                <a href="index.html">Home</a>
+                <a href="index.html#modules">All Lessons</a>
+                <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#modules">Core Techniques</a></li>
+            <li aria-current="page">Basic Painting Techniques</li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Lesson Header -->
+            <header>
+                <h1>🖌️ Basic Painting Techniques</h1>
+                <p class="lead">Time to put everything together! This lesson transforms you from someone who knows the tools to someone who can CREATE. We'll cover the complete digital painting process from blank canvas to finished artwork!</p>
+                
+                <!-- Learning objectives -->
+                <div class="card">
+                    <h2>🎯 Learning Objectives</h2>
+                    <p>By the end of this lesson, you will be able to:</p>
+                    <ul>
+                        <li>Follow a complete digital painting workflow from start to finish</li>
+                        <li>Create dynamic sketches and clean line art</li>
+                        <li>Block in colors effectively</li>
+                        <li>Render forms with light and shadow</li>
+                        <li>Add details and polish to finish your artwork</li>
+                        <li>Apply different painting styles and approaches</li>
+                    </ul>
+                </div>
+            </header>
+
+            <!-- Table of Contents -->
+            <nav class="card" aria-label="Table of Contents">
+                <h2 style="cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center;" onclick="toggleTOC()">
+                    <span>📑 Table of Contents</span>
+                    <span id="toc-toggle-icon" style="transition: transform 0.3s;">▼</span>
+                </h2>
+                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 500px; margin: 0; padding-left: 1.5rem;">
+                    <li><a href="#painting-process" class="toc-link">The Digital Painting Process</a></li>
+                    <li><a href="#sketching" class="toc-link">Sketching Fundamentals</a></li>
+                    <li><a href="#line-art" class="toc-link">Creating Clean Line Art</a></li>
+                    <li><a href="#blocking-colors" class="toc-link">Blocking In Colors</a></li>
+                    <li><a href="#light-shadow" class="toc-link">Light & Shadow</a></li>
+                    <li><a href="#rendering" class="toc-link">Rendering & Form</a></li>
+                    <li><a href="#details-polish" class="toc-link">Details & Polish</a></li>
+                    <li><a href="#painting-styles" class="toc-link">Different Painting Styles</a></li>
+                    <li><a href="#practice" class="toc-link">Practice Projects</a></li>
+                    <li><a href="#summary" class="toc-link">Summary & Next Steps</a></li>
+                </ol>
+            </nav>
+
+            <!-- Section 1: Painting Process -->
+            <section id="painting-process" class="lesson-section">
+                <h2>The Digital Painting Process 🎨</h2>
+                
+                <p>Every artist develops their own workflow, but most follow a similar journey from idea to finished piece. Understanding this process gives you a roadmap to follow!</p>
+                
+                <div class="mermaid">
+                    graph TD
+                        A[Idea/Concept] --> B[Thumbnails]
+                        B --> C[Rough Sketch]
+                        C --> D[Refined Sketch]
+                        D --> E[Line Art]
+                        E --> F[Flat Colors]
+                        F --> G[Shadows]
+                        G --> H[Highlights]
+                        H --> I[Details]
+                        I --> J[Polish/Effects]
+                        J --> K[Final Adjustments]
+                        
+                        B --> L[Reference Gathering]
+                        L --> C
+                        
+                        D --> M[Color Planning]
+                        M --> F
+                </div>
+
+                <blockquote>
+                    <strong>🌟 The Golden Rule:</strong> "Fail fast, fail cheap!" Make your mistakes in the sketch phase where they're easy to fix, not in the rendering phase where they're expensive (time-wise) to correct!
+                </blockquote>
+
+                <h3>The Stages Explained</h3>
+                
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Stage</th>
+                                <th>Purpose</th>
+                                <th>Time %</th>
+                                <th>Key Focus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Thumbnails</strong></td>
+                                <td>Explore compositions</td>
+                                <td>5%</td>
+                                <td>Big shapes, flow</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sketch</strong></td>
+                                <td>Work out structure</td>
+                                <td>15%</td>
+                                <td>Proportions, pose</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Line Art</strong></td>
+                                <td>Define forms clearly</td>
+                                <td>20%</td>
+                                <td>Clean, confident lines</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Base Colors</strong></td>
+                                <td>Establish palette</td>
+                                <td>10%</td>
+                                <td>Color harmony</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rendering</strong></td>
+                                <td>Add dimension</td>
+                                <td>30%</td>
+                                <td>Light, form, texture</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Details</strong></td>
+                                <td>Bring to life</td>
+                                <td>15%</td>
+                                <td>Small touches</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Polish</strong></td>
+                                <td>Professional finish</td>
+                                <td>5%</td>
+                                <td>Effects, adjustments</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h4>⚡ Speed vs Quality</h4>
+                    <p>Different projects need different approaches:</p>
+                    <ul>
+                        <li><strong>Quick Concept (1-2 hours):</strong> Skip line art, paint directly</li>
+                        <li><strong>Illustration (4-8 hours):</strong> Full process, moderate detail</li>
+                        <li><strong>Portfolio Piece (20+ hours):</strong> Every stage polished</li>
+                        <li><strong>Study/Practice (30 min):</strong> Focus on one aspect only</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 2: Sketching -->
+            <section id="sketching" class="lesson-section">
+                <h2>Sketching Fundamentals ✏️</h2>
+                
+                <p>The sketch is your blueprint. A strong sketch leads to a strong painting. A weak sketch... well, you can't polish something that isn't there!</p>
+                
+                <h3>Digital Sketching Techniques</h3>
+                
+                <canvas id="sketch-demo" width="800" height="400" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: white;"></canvas>
+                
+                <script>
+                    const sketchCanvas = document.getElementById('sketch-demo');
+                    const sCtx = sketchCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const sScale = window.devicePixelRatio || 1;
+                    sketchCanvas.width = 800 * sScale;
+                    sketchCanvas.height = 400 * sScale;
+                    sCtx.scale(sScale, sScale);
+                    
+                    // Title
+                    sCtx.fillStyle = '#333';
+                    sCtx.font = 'bold 16px Arial';
+                    sCtx.textAlign = 'center';
+                    sCtx.fillText('Sketch Evolution: From Gesture to Refined', 400, 25);
+                    
+                    // Stage 1: Gesture
+                    sCtx.font = '12px Arial';
+                    sCtx.fillText('1. Gesture', 100, 60);
+                    sCtx.fillText('(30 seconds)', 100, 75);
+                    
+                    sCtx.strokeStyle = 'rgba(100, 100, 100, 0.3)';
+                    sCtx.lineWidth = 2;
+                    sCtx.beginPath();
+                    // Simple figure gesture
+                    sCtx.moveTo(100, 100);
+                    sCtx.quadraticCurveTo(90, 150, 100, 200);
+                    sCtx.moveTo(100, 120);
+                    sCtx.lineTo(80, 160);
+                    sCtx.moveTo(100, 120);
+                    sCtx.lineTo(120, 160);
+                    sCtx.moveTo(100, 200);
+                    sCtx.lineTo(85, 250);
+                    sCtx.moveTo(100, 200);
+                    sCtx.lineTo(115, 250);
+                    // Head
+                    sCtx.moveTo(100, 100);
+                    sCtx.arc(100, 90, 15, 0, Math.PI * 2);
+                    sCtx.stroke();
+                    
+                    // Stage 2: Structure
+                    sCtx.fillStyle = '#333';
+                    sCtx.fillText('2. Structure', 250, 60);
+                    sCtx.fillText('(2 minutes)', 250, 75);
+                    
+                    sCtx.strokeStyle = 'rgba(100, 100, 100, 0.5)';
+                    sCtx.lineWidth = 1;
+                    // Construction lines
+                    sCtx.beginPath();
+                    sCtx.arc(250, 90, 18, 0, Math.PI * 2);
+                    sCtx.stroke();
+                    
+                    // Body construction
+                    sCtx.strokeRect(235, 105, 30, 45);
+                    sCtx.strokeRect(230, 150, 40, 60);
+                    
+                    // Limbs as cylinders
+                    sCtx.beginPath();
+                    sCtx.moveTo(235, 115);
+                    sCtx.lineTo(210, 140);
+                    sCtx.lineTo(200, 170);
+                    sCtx.moveTo(265, 115);
+                    sCtx.lineTo(290, 140);
+                    sCtx.lineTo(300, 170);
+                    sCtx.stroke();
+                    
+                    // Stage 3: Refined
+                    sCtx.fillStyle = '#333';
+                    sCtx.fillText('3. Refined', 400, 60);
+                    sCtx.fillText('(5 minutes)', 400, 75);
+                    
+                    sCtx.strokeStyle = 'rgba(50, 50, 50, 0.8)';
+                    sCtx.lineWidth = 2;
+                    // More detailed figure
+                    sCtx.beginPath();
+                    // Head
+                    sCtx.arc(400, 90, 20, 0, Math.PI * 2);
+                    // Neck
+                    sCtx.moveTo(400, 110);
+                    sCtx.lineTo(400, 120);
+                    // Torso
+                    sCtx.moveTo(385, 120);
+                    sCtx.quadraticCurveTo(400, 125, 415, 120);
+                    sCtx.lineTo(415, 160);
+                    sCtx.quadraticCurveTo(400, 165, 385, 160);
+                    sCtx.closePath();
+                    sCtx.stroke();
+                    
+                    // Arms and legs with form
+                    sCtx.beginPath();
+                    sCtx.moveTo(385, 125);
+                    sCtx.quadraticCurveTo(365, 145, 355, 175);
+                    sCtx.moveTo(415, 125);
+                    sCtx.quadraticCurveTo(435, 145, 445, 175);
+                    sCtx.moveTo(390, 160);
+                    sCtx.lineTo(385, 220);
+                    sCtx.moveTo(410, 160);
+                    sCtx.lineTo(415, 220);
+                    sCtx.stroke();
+                    
+                    // Stage 4: Clean
+                    sCtx.fillStyle = '#333';
+                    sCtx.fillText('4. Clean', 550, 60);
+                    sCtx.fillText('(10 minutes)', 550, 75);
+                    
+                    sCtx.strokeStyle = '#2c3e50';
+                    sCtx.lineWidth = 3;
+                    sCtx.lineCap = 'round';
+                    
+                    // Clean, confident lines
+                    sCtx.beginPath();
+                    // Head with features
+                    sCtx.arc(550, 90, 22, 0, Math.PI * 2);
+                    sCtx.stroke();
+                    
+                    // Simple face features
+                    sCtx.beginPath();
+                    sCtx.arc(540, 85, 2, 0, Math.PI * 2);
+                    sCtx.arc(560, 85, 2, 0, Math.PI * 2);
+                    sCtx.fill();
+                    sCtx.beginPath();
+                    sCtx.arc(550, 95, 8, 0, Math.PI);
+                    sCtx.stroke();
+                    
+                    // Clean body lines
+                    sCtx.beginPath();
+                    sCtx.moveTo(550, 112);
+                    sCtx.lineTo(550, 125);
+                    sCtx.moveTo(530, 125);
+                    sCtx.quadraticCurveTo(550, 130, 570, 125);
+                    sCtx.lineTo(568, 165);
+                    sCtx.quadraticCurveTo(550, 170, 532, 165);
+                    sCtx.closePath();
+                    sCtx.stroke();
+                    
+                    // Clean limbs
+                    sCtx.beginPath();
+                    sCtx.moveTo(532, 130);
+                    sCtx.quadraticCurveTo(510, 150, 500, 180);
+                    sCtx.moveTo(568, 130);
+                    sCtx.quadraticCurveTo(590, 150, 600, 180);
+                    sCtx.moveTo(538, 165);
+                    sCtx.lineTo(533, 230);
+                    sCtx.lineTo(528, 240);
+                    sCtx.moveTo(562, 165);
+                    sCtx.lineTo(567, 230);
+                    sCtx.lineTo(572, 240);
+                    sCtx.stroke();
+                    
+                    // Tips at bottom
+                    sCtx.fillStyle = '#666';
+                    sCtx.font = '11px Arial';
+                    sCtx.textAlign = 'center';
+                    sCtx.fillText('Tips: Start loose and fast → Build structure → Refine proportions → Clean up lines', 400, 300);
+                    sCtx.fillText('Use separate layers for each stage. Lower opacity of previous stage as guide.', 400, 320);
+                </script>
+
+                <div class="card">
+                    <h4>✏️ Digital Sketching Best Practices</h4>
+                    <ol>
+                        <li><strong>Use a comfortable brush:</strong> Usually hard round, 3-10px, pressure sensitivity ON</li>
+                        <li><strong>Keep it light:</strong> 30-50% opacity for initial sketches</li>
+                        <li><strong>Zoom out often:</strong> Check overall proportions and composition</li>
+                        <li><strong>Flip horizontally:</strong> Reveals proportion errors instantly (Edit → Transform → Flip Horizontal)</li>
+                        <li><strong>Use construction lines:</strong> Guidelines help with perspective and symmetry</li>
+                        <li><strong>Don't zoom in too early:</strong> Stay loose as long as possible</li>
+                    </ol>
+                </div>
+
+                <blockquote>
+                    <strong>💡 Pro Tip:</strong> The "Undo" button is your enemy during sketching! It makes you too precious. Instead, lower opacity and draw over mistakes. Keep the energy flowing!
+                </blockquote>
+            </section>
+
+            <!-- Section 3: Line Art -->
+            <section id="line-art" class="lesson-section">
+                <h2>Creating Clean Line Art 🖊️</h2>
+                
+                <p>Line art is optional in digital painting, but it's a powerful tool for defining forms clearly. Great line art can stand alone as finished artwork!</p>
+                
+                <h3>Line Weight Hierarchy</h3>
+                
+                <div class="card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                    <h4>📏 The Line Weight Rules</h4>
+                    <ul>
+                        <li><strong>Thickest lines:</strong> Outer contours, silhouettes</li>
+                        <li><strong>Medium lines:</strong> Major form changes, important details</li>
+                        <li><strong>Thin lines:</strong> Internal details, texture indications</li>
+                        <li><strong>Varied lines:</strong> Thick in shadows, thin in light</li>
+                        <li><strong>Broken lines:</strong> Suggest light hitting forms</li>
+                    </ul>
+                    <p style="text-align: center; margin-top: 1rem;">Line weight creates hierarchy and depth!</p>
+                </div>
+
+                <h3>Digital Inking Techniques</h3>
+                
+                <div class="card">
+                    <h4>🎯 Three Approaches to Line Art</h4>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Technique</th>
+                                <th>Best For</th>
+                                <th>Pros</th>
+                                <th>Cons</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Vector Lines</strong></td>
+                                <td>Technical art, logos</td>
+                                <td>Infinitely editable</td>
+                                <td>Can feel stiff</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Stabilized Brush</strong></td>
+                                <td>Manga, clean illustrations</td>
+                                <td>Smooth, confident lines</td>
+                                <td>Less character</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Natural Brush</strong></td>
+                                <td>Expressive art</td>
+                                <td>Organic, lively</td>
+                                <td>Requires steady hand</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Line Art Tips & Tricks</h3>
+                
+                <div class="card">
+                    <h4>⚡ Speed Up Your Inking</h4>
+                    <ul>
+                        <li><strong>Rotate your canvas:</strong> Always pull lines toward you (R key for rotate)</li>
+                        <li><strong>Use your whole arm:</strong> Shoulder for long lines, wrist for details</li>
+                        <li><strong>Quick, confident strokes:</strong> Slow = wobbly, fast = smooth</li>
+                        <li><strong>Build lines:</strong> OK to make multiple strokes for one line</li>
+                        <li><strong>Zoom appropriately:</strong> Not too close (loses flow) or far (loses control)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Blocking Colors -->
+            <section id="blocking-colors" class="lesson-section">
+                <h2>Blocking In Colors 🎨</h2>
+                
+                <p>This is where your painting starts to come alive! Blocking (or "flatting") establishes your color scheme and creates a foundation for rendering.</p>
+                
+                <h3>The Blocking Process</h3>
+                
+                <div class="mermaid">
+                    graph LR
+                        A[Line Art Layer] --> B[Create Layer Below]
+                        B --> C[Select Areas]
+                        C --> D[Fill with Base Colors]
+                        D --> E[Each Element = Separate Layer]
+                        E --> F[Lock Transparent Pixels]
+                        F --> G[Ready to Render!]
+                </div>
+
+                <h3>Efficient Blocking Techniques</h3>
+                
+                <div class="card">
+                    <h4>🎨 Methods for Flat Colors</h4>
+                    <ol>
+                        <li><strong>Lasso Tool Method:</strong>
+                            <ul>
+                                <li>Select area with lasso</li>
+                                <li>Fill with paint bucket</li>
+                                <li>Clean edges with brush</li>
+                                <li>Best for: Geometric shapes</li>
+                            </ul>
+                        </li>
+                        <li><strong>Brush Blocking:</strong>
+                            <ul>
+                                <li>Use hard round brush</li>
+                                <li>Paint directly</li>
+                                <li>100% opacity</li>
+                                <li>Best for: Organic shapes</li>
+                            </ul>
+                        </li>
+                        <li><strong>Magic Wand Method:</strong>
+                            <ul>
+                                <li>Select with magic wand</li>
+                                <li>Expand selection by 2px</li>
+                                <li>Fill on layer below</li>
+                                <li>Best for: Clean line art</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <blockquote>
+                    <strong>🎯 Pro Workflow:</strong> Create a "flats" layer group. Each major element (skin, hair, clothes) gets its own layer. This makes selection and adjustment SO much easier later!
+                </blockquote>
+            </section>
+
+            <!-- Section 5: Light & Shadow -->
+            <section id="light-shadow" class="lesson-section">
+                <h2>Light & Shadow 💡</h2>
+                
+                <p>Understanding light is understanding form. Light reveals shape, creates mood, and brings your painting to life!</p>
+                
+                <h3>Light Source Fundamentals</h3>
+                
+                <canvas id="light-demo" width="800" height="400" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: #f0f0f0;"></canvas>
+                
+                <script>
+                    const lightCanvas = document.getElementById('light-demo');
+                    const lCtx = lightCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const lScale = window.devicePixelRatio || 1;
+                    lightCanvas.width = 800 * lScale;
+                    lightCanvas.height = 400 * lScale;
+                    lCtx.scale(lScale, lScale);
+                    
+                    // Title
+                    lCtx.fillStyle = '#333';
+                    lCtx.font = 'bold 16px Arial';
+                    lCtx.textAlign = 'center';
+                    lCtx.fillText('How Light Affects Form', 400, 25);
+                    
+                    // Draw spheres with different lighting
+                    const spheres = [
+                        { x: 150, y: 150, label: 'Front Light' },
+                        { x: 400, y: 150, label: 'Side Light' },
+                        { x: 650, y: 150, label: 'Back Light (Rim)' }
+                    ];
+                    
+                    spheres.forEach((sphere, i) => {
+                        // Base sphere
+                        const gradient = lCtx.createRadialGradient(
+                            sphere.x - [0, -20, 30][i], 
+                            sphere.y - [0, -20, 30][i], 
+                            10, 
+                            sphere.x, 
+                            sphere.y, 
+                            60
+                        );
+                        
+                        if (i === 0) {
+                            // Front light
+                            gradient.addColorStop(0, '#f39c12');
+                            gradient.addColorStop(0.7, '#e67e22');
+                            gradient.addColorStop(1, '#d35400');
+                        } else if (i === 1) {
+                            // Side light
+                            gradient.addColorStop(0, '#f39c12');
+                            gradient.addColorStop(0.5, '#e67e22');
+                            gradient.addColorStop(1, '#8b6f47');
+                        } else {
+                            // Back light
+                            gradient.addColorStop(0, '#8b6f47');
+                            gradient.addColorStop(0.8, '#5d4e37');
+                            gradient.addColorStop(1, '#3e2723');
+                        }
+                        
+                        lCtx.fillStyle = gradient;
+                        lCtx.beginPath();
+                        lCtx.arc(sphere.x, sphere.y, 60, 0, Math.PI * 2);
+                        lCtx.fill();
+                        
+                        // Rim light for backlit
+                        if (i === 2) {
+                            lCtx.strokeStyle = '#ffd700';
+                            lCtx.lineWidth = 3;
+                            lCtx.beginPath();
+                            lCtx.arc(sphere.x, sphere.y, 60, -Math.PI * 0.7, -Math.PI * 0.3);
+                            lCtx.stroke();
+                        }
+                        
+                        // Cast shadow
+                        lCtx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+                        lCtx.beginPath();
+                        lCtx.ellipse(
+                            sphere.x + [0, 30, -30][i], 
+                            sphere.y + 70, 
+                            50, 20, 0, 0, Math.PI * 2
+                        );
+                        lCtx.fill();
+                        
+                        // Light source indicator
+                        lCtx.fillStyle = '#ffd700';
+                        const lightX = sphere.x + [-80, -80, 80][i];
+                        const lightY = sphere.y + [-50, 0, -50][i];
+                        
+                        // Sun symbol
+                        lCtx.beginPath();
+                        lCtx.arc(lightX, lightY, 10, 0, Math.PI * 2);
+                        lCtx.fill();
+                        
+                        // Light rays
+                        lCtx.strokeStyle = '#ffd700';
+                        lCtx.lineWidth = 2;
+                        for(let r = 0; r < 8; r++) {
+                            const angle = (r * Math.PI * 2) / 8;
+                            lCtx.beginPath();
+                            lCtx.moveTo(
+                                lightX + Math.cos(angle) * 15,
+                                lightY + Math.sin(angle) * 15
+                            );
+                            lCtx.lineTo(
+                                lightX + Math.cos(angle) * 20,
+                                lightY + Math.sin(angle) * 20
+                            );
+                            lCtx.stroke();
+                        }
+                        
+                        // Label
+                        lCtx.fillStyle = '#333';
+                        lCtx.font = '12px Arial';
+                        lCtx.textAlign = 'center';
+                        lCtx.fillText(sphere.label, sphere.x, sphere.y + 110);
+                    });
+                    
+                    // Light components labels
+                    lCtx.font = 'bold 14px Arial';
+                    lCtx.fillText('The 5 Elements of Light', 400, 280);
+                    
+                    lCtx.font = '12px Arial';
+                    lCtx.textAlign = 'left';
+                    lCtx.fillStyle = '#666';
+                    
+                    const elements = [
+                        '1. Highlight - Brightest spot where light hits directly',
+                        '2. Light - General lit areas',
+                        '3. Half-tone - Transition between light and shadow',
+                        '4. Core Shadow - Darkest part of the shadow on object',
+                        '5. Reflected Light - Bounced light in shadow areas'
+                    ];
+                    
+                    elements.forEach((element, i) => {
+                        lCtx.fillText(element, 200, 310 + i * 18);
+                    });
+                </script>
+
+                <div class="card">
+                    <h4>🌟 Shadow Colors - Not Just Black!</h4>
+                    <ul>
+                        <li><strong>Warm light → Cool shadows:</strong> Sunlight creates blue/purple shadows</li>
+                        <li><strong>Cool light → Warm shadows:</strong> Moonlight creates warm brown shadows</li>
+                        <li><strong>Colored light → Complement shadows:</strong> Red light = green shadows</li>
+                        <li><strong>Never pure black:</strong> Always has some color</li>
+                        <li><strong>Reflected colors:</strong> Shadows pick up colors from surroundings</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 6: Rendering -->
+            <section id="rendering" class="lesson-section">
+                <h2>Rendering & Form 🎯</h2>
+                
+                <p>Rendering is where flat colors become three-dimensional forms. This is the meat of digital painting - where you spend most of your time!</p>
+                
+                <h3>Rendering Approaches</h3>
+                
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Style</th>
+                                <th>Technique</th>
+                                <th>Layers</th>
+                                <th>Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Cell Shading</strong></td>
+                                <td>Hard edges, 2-3 tones</td>
+                                <td>Separate shadow/light layers</td>
+                                <td>Anime, comics</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Soft Shading</strong></td>
+                                <td>Gradual transitions</td>
+                                <td>Single layer, soft brush</td>
+                                <td>Realistic portraits</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Painterly</strong></td>
+                                <td>Visible brushstrokes</td>
+                                <td>Single layer, textured brush</td>
+                                <td>Traditional look</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mixed</strong></td>
+                                <td>Combination of techniques</td>
+                                <td>Multiple layers</td>
+                                <td>Versatile illustrations</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>The Rendering Process</h3>
+                
+                <div class="card">
+                    <h4>📝 Step-by-Step Rendering</h4>
+                    <ol>
+                        <li><strong>Establish light source:</strong> Decide where light comes from</li>
+                        <li><strong>Add core shadows:</strong> Multiply layer, cool color, soft brush</li>
+                        <li><strong>Add highlights:</strong> Screen/Add layer, warm color</li>
+                        <li><strong>Blend transitions:</strong> Soften where needed</li>
+                        <li><strong>Add ambient occlusion:</strong> Darken where surfaces meet</li>
+                        <li><strong>Reflected light:</strong> Subtle light in shadows</li>
+                        <li><strong>Refine edges:</strong> Sharp vs soft for focus</li>
+                    </ol>
+                </div>
+
+                <blockquote>
+                    <strong>🎨 Rendering Secret:</strong> Don't render everything equally! Focus detail where you want the viewer to look. Leave other areas suggested. This creates visual hierarchy and saves time!
+                </blockquote>
+            </section>
+
+            <!-- Section 7: Details & Polish -->
+            <section id="details-polish" class="lesson-section">
+                <h2>Details & Polish ✨</h2>
+                
+                <p>The final 10% of work makes 90% of the impact! Polish separates amateur work from professional. But beware - it's easy to overwork!</p>
+                
+                <h3>Strategic Detailing</h3>
+                
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h4>🎯 The Detail Hierarchy</h4>
+                    <ul>
+                        <li><strong>Maximum detail:</strong> Focal point (usually face/eyes)</li>
+                        <li><strong>High detail:</strong> Secondary focus areas</li>
+                        <li><strong>Medium detail:</strong> Supporting elements</li>
+                        <li><strong>Low detail:</strong> Background, periphery</li>
+                        <li><strong>Suggested detail:</strong> Far distance, unimportant areas</li>
+                    </ul>
+                    <p style="text-align: center; margin-top: 1rem;">Detail = Time. Spend it wisely!</p>
+                </div>
+
+                <h3>Polish Checklist</h3>
+                
+                <div class="card">
+                    <h4>✅ Final Polish Steps</h4>
+                    <ul>
+                        <li>☐ <strong>Edge control:</strong> Vary hard/soft edges for depth</li>
+                        <li>☐ <strong>Color variation:</strong> Add subtle hue shifts</li>
+                        <li>☐ <strong>Texture pass:</strong> Add surface qualities where needed</li>
+                        <li>☐ <strong>Atmospheric perspective:</strong> Fade distant elements</li>
+                        <li>☐ <strong>Rim lights:</strong> Separate forms from background</li>
+                        <li>☐ <strong>Cast shadows:</strong> Ground objects in space</li>
+                        <li>☐ <strong>Specular highlights:</strong> Show material properties</li>
+                        <li>☐ <strong>Color harmony check:</strong> Adjustment layer if needed</li>
+                        <li>☐ <strong>Flip check:</strong> Flip horizontally to spot issues</li>
+                        <li>☐ <strong>Value check:</strong> Convert to grayscale temporarily</li>
+                    </ul>
+                </div>
+
+                <h3>Special Effects</h3>
+                
+                <div class="card">
+                    <h4>✨ Common Finishing Effects</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Effect</th>
+                                <th>How To</th>
+                                <th>Use For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Glow</strong></td>
+                                <td>Soft brush, Screen mode</td>
+                                <td>Magic, lights, energy</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Particles</strong></td>
+                                <td>Small brush, scatter settings</td>
+                                <td>Dust, sparkles, snow</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Motion blur</strong></td>
+                                <td>Directional blur filter</td>
+                                <td>Speed, movement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Depth of field</strong></td>
+                                <td>Gaussian blur on background</td>
+                                <td>Focus, depth</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Chromatic aberration</strong></td>
+                                <td>Offset RGB channels slightly</td>
+                                <td>Stylized, energetic</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vignette</strong></td>
+                                <td>Darken edges subtly</td>
+                                <td>Focus to center</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 8: Painting Styles -->
+            <section id="painting-styles" class="lesson-section">
+                <h2>Different Painting Styles 🎭</h2>
+                
+                <p>Digital painting isn't one thing - it's a thousand different approaches! Find your style by trying many.</p>
+                
+                <h3>Style Breakdowns</h3>
+                
+                <div class="card">
+                    <h4>🎨 Anime/Manga Style</h4>
+                    <ul>
+                        <li><strong>Line art:</strong> Clean, varying weights, colored lines</li>
+                        <li><strong>Colors:</strong> Vibrant, clear separations</li>
+                        <li><strong>Shading:</strong> Cell-shaded, 2-3 distinct tones</li>
+                        <li><strong>Eyes:</strong> Large, detailed, multiple highlights</li>
+                        <li><strong>Hair:</strong> Simplified forms, sharp highlights</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🖼️ Realistic Style</h4>
+                    <ul>
+                        <li><strong>Line art:</strong> Minimal or none</li>
+                        <li><strong>Colors:</strong> Natural, observed from reference</li>
+                        <li><strong>Shading:</strong> Smooth gradients, subtle transitions</li>
+                        <li><strong>Details:</strong> Texture, pores, individual hairs</li>
+                        <li><strong>Lighting:</strong> Complex, multiple sources</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🎪 Concept Art Style</h4>
+                    <ul>
+                        <li><strong>Speed:</strong> Efficiency over perfection</li>
+                        <li><strong>Focus:</strong> Clear communication of ideas</li>
+                        <li><strong>Technique:</strong> Photo-bashing, 3D integration OK</li>
+                        <li><strong>Mood:</strong> Atmospheric, cinematic</li>
+                        <li><strong>Details:</strong> Only where necessary</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🖌️ Painterly Style</h4>
+                    <ul>
+                        <li><strong>Brushwork:</strong> Visible, expressive strokes</li>
+                        <li><strong>Edges:</strong> Lost and found, no outlines</li>
+                        <li><strong>Colors:</strong> Mixed on canvas, vibrant</li>
+                        <li><strong>Texture:</strong> Canvas texture showing through</li>
+                        <li><strong>Approach:</strong> Alla prima (wet on wet)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 9: Practice -->
+            <section id="practice" class="lesson-section">
+                <h2>Practice Projects 🎯</h2>
+                
+                <div class="exercise-card">
+                    <h3>🍎 Project 1: Still Life Study</h3>
+                    <p><strong>Objective:</strong> Master form, light, and color</p>
+                    
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Set up a simple still life (apple, cup, any simple object)</li>
+                        <li>Create a 30-second gesture sketch</li>
+                        <li>Refine with construction lines (5 minutes)</li>
+                        <li>Block in flat colors (10 minutes)</li>
+                        <li>Add shadows on Multiply layer</li>
+                        <li>Add highlights on Screen layer</li>
+                        <li>Refine and polish (20 minutes max)</li>
+                    </ol>
+                    
+                    <p><strong>Focus on:</strong> Accurate light and shadow, color temperature shifts</p>
+                    <p><strong>Time limit:</strong> 1 hour total</p>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>🖼️ Project 2: Portrait Study</h3>
+                    <p><strong>Objective:</strong> Practice proportions and rendering</p>
+                    
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Find a reference photo with clear lighting</li>
+                        <li>Start with basic head construction (egg shape + guidelines)</li>
+                        <li>Place features using measurements</li>
+                        <li>Block in skin, hair, clothing colors</li>
+                        <li>Focus on value relationships</li>
+                        <li>Add warm/cool temperature variations</li>
+                        <li>Detail only the eyes and focal areas</li>
+                    </ol>
+                    
+                    <p><strong>Challenge:</strong> No color picking from reference! Mix your own.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>🏞️ Project 3: Environment Thumbnail</h3>
+                    <p><strong>Objective:</strong> Quick environment concepting</p>
+                    
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Create 3 quick thumbnails (5 min each)</li>
+                        <li>Choose the best composition</li>
+                        <li>Enlarge and refine (no line art!)</li>
+                        <li>Block with large brushes only</li>
+                        <li>Establish: Foreground, midground, background</li>
+                        <li>Add atmospheric perspective</li>
+                        <li>Suggest details, don't render everything</li>
+                    </ol>
+                    
+                    <p><strong>Rule:</strong> No brush smaller than 20px!</p>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>🎨 Project 4: Style Study</h3>
+                    <p><strong>Objective:</strong> Explore different painting styles</p>
+                    
+                    <h4>The Challenge:</h4>
+                    <p>Paint the same simple subject (like a tree) in 4 different styles:</p>
+                    <ul>
+                        <li>Anime/cell-shaded</li>
+                        <li>Realistic</li>
+                        <li>Painterly/impressionistic</li>
+                        <li>Your own developing style</li>
+                    </ul>
+                    
+                    <p><strong>Time:</strong> 30 minutes each style</p>
+                    <p><strong>Learn:</strong> How technique affects mood and message</p>
+                </div>
+            </section>
+
+            <!-- Section 10: Summary -->
+            <section id="summary" class="lesson-section">
+                <h2>Summary & Next Steps 📝</h2>
+                
+                <div class="card" style="background: #e8f5e9; border-left: 4px solid #4CAF50;">
+                    <h3>🎯 Key Takeaways</h3>
+                    <ul>
+                        <li>Every painting follows a process - sketch → line → color → render → polish</li>
+                        <li>Strong foundations (sketch/values) = strong painting</li>
+                        <li>Light and shadow create form and mood</li>
+                        <li>Not everything needs equal detail - focus strategically</li>
+                        <li>Different styles require different approaches</li>
+                        <li>Practice with time limits builds efficiency</li>
+                        <li>Finishing is a skill - know when to stop!</li>
+                    </ul>
+                </div>
+                
+                <h3>🚀 Your Learning Path</h3>
+                
+                <div class="card">
+                    <h4>📅 30-Day Challenge</h4>
+                    <p>Build your skills systematically:</p>
+                    <ul>
+                        <li><strong>Week 1:</strong> Daily 30-minute still life studies</li>
+                        <li><strong>Week 2:</strong> Portrait studies (focus on different features)</li>
+                        <li><strong>Week 3:</strong> Environment thumbnails and color studies</li>
+                        <li><strong>Week 4:</strong> Complete illustration from start to finish</li>
+                    </ul>
+                </div>
+
+                <h3>🎨 Final Advice</h3>
+                
+                <blockquote>
+                    <strong>💖 Remember:</strong> Every artist you admire started with terrible paintings. The difference between a master and a beginner isn't talent - it's thousands of bad paintings. Each "failure" teaches you something. Embrace the mess, enjoy the process, and keep painting! Your unique voice will emerge through practice, not perfection.
+                </blockquote>
+
+                <h3>📚 Recommended Resources</h3>
+                
+                <div class="card">
+                    <h4>Continue Learning:</h4>
+                    <ul>
+                        <li><strong>Books:</strong> "Color and Light" by James Gurney</li>
+                        <li><strong>Videos:</strong> Marco Bucci, Proko, Sinix Design</li>
+                        <li><strong>Practice:</strong> Quickposes.com for figure drawing</li>
+                        <li><strong>Community:</strong> Join Paintstorm forums and Discord</li>
+                        <li><strong>Challenges:</strong> Inktober, Daily sketches</li>
+                    </ul>
+                </div>
+
+                <h3>🌟 What's Next?</h3>
+                <p>Congratulations! You now have all the fundamental skills for digital painting. Continue exploring with:</p>
+                <ul>
+                    <li><strong>Advanced Techniques:</strong> Custom brushes, advanced rendering</li>
+                    <li><strong>Specialized Topics:</strong> Character design, environment art</li>
+                    <li><strong>Professional Workflows:</strong> Client work, portfolio building</li>
+                    <li><strong>Your artistic journey:</strong> Develop your unique style!</li>
+                </ul>
+            </section>
+
+            <!-- Lesson Navigation -->
+            <nav class="lesson-nav" aria-label="Lesson Navigation">
+                <a href="color_theory.html" class="prev-lesson">← Previous: Color Theory & Mixing</a>
+                <a href="index.html" class="home-link">🏠 Course Home</a>
+                <a href="file_management.html" class="next-lesson">Next: File Management & Export →</a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; margin-top: 4rem; border-top: 1px solid var(--border-color);">
+        <p>&copy; 2024 Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Toggle Table of Contents
+        function toggleTOC() {
+            const tocList = document.getElementById('toc-list');
+            const tocIcon = document.getElementById('toc-toggle-icon');
+            
+            if (tocList.style.maxHeight === '0px' || tocList.style.maxHeight === '') {
+                tocList.style.maxHeight = '500px';
+                tocIcon.style.transform = 'rotate(0deg)';
+                localStorage.setItem('tocState', 'expanded');
+            } else {
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+                localStorage.setItem('tocState', 'collapsed');
+            }
+        }
+        
+        // Initialize TOC state
+        document.addEventListener('DOMContentLoaded', () => {
+            const tocState = localStorage.getItem('tocState');
+            if (tocState === 'collapsed') {
+                const tocList = document.getElementById('toc-list');
+                const tocIcon = document.getElementById('toc-toggle-icon');
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+            }
+        });
+        
+        // Progress indicator
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.querySelector('.progress-bar').style.width = `${Math.min(progress, 100)}%`;
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isOpen = navLinks.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+                navLinks.setAttribute('aria-hidden', !isOpen);
+            });
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            
+            themeToggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const newTheme = current === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+            });
+        }
+
+        // Smooth scrolling for TOC
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

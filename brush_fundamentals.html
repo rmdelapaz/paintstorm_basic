@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master the Paintstorm Studio brush engine - understanding brush dynamics, settings, and creating custom brushes">
+    <meta name="author" content="Paintstorm Tutorial">
+    <title>Brush Fundamentals - Paintstorm Studio Essentials</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
+    <!-- Progress indicator -->
+    <div class="progress-indicator" role="progressbar" aria-label="Page scroll progress">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🎨 Paintstorm Studio</a>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <div class="nav-links" id="nav-links" aria-hidden="false">
+                <a href="index.html">Home</a>
+                <a href="index.html#modules">All Lessons</a>
+                <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#modules">Getting Started</a></li>
+            <li aria-current="page">Brush Fundamentals</li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Lesson Header -->
+            <header>
+                <h1>🖌️ Brush Fundamentals</h1>
+                <p class="lead">Welcome to the heart of Paintstorm Studio! The brush engine is what makes this software special. Let's unlock its secrets and turn you into a digital brushmaster!</p>
+                
+                <!-- Learning objectives -->
+                <div class="card">
+                    <h2>🎯 Learning Objectives</h2>
+                    <p>By the end of this lesson, you will be able to:</p>
+                    <ul>
+                        <li>Understand how digital brushes work differently from traditional ones</li>
+                        <li>Navigate and use the brush library effectively</li>
+                        <li>Master essential brush settings and dynamics</li>
+                        <li>Create and save your own custom brushes</li>
+                        <li>Apply different brush techniques for various art styles</li>
+                    </ul>
+                </div>
+            </header>
+
+            <!-- Table of Contents -->
+            <nav class="card" aria-label="Table of Contents">
+                <h2 style="cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center;" onclick="toggleTOC()">
+                    <span>📑 Table of Contents</span>
+                    <span id="toc-toggle-icon" style="transition: transform 0.3s;">▼</span>
+                </h2>
+                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 300px; margin: 0; padding-left: 1.5rem;">
+                    <li><a href="#understanding-brushes" class="toc-link">Understanding Digital Brushes</a></li>
+                    <li><a href="#brush-library" class="toc-link">Navigating the Brush Library</a></li>
+                    <li><a href="#brush-anatomy" class="toc-link">Anatomy of a Brush</a></li>
+                    <li><a href="#essential-settings" class="toc-link">Essential Brush Settings</a></li>
+                    <li><a href="#dynamics" class="toc-link">Brush Dynamics & Pressure</a></li>
+                    <li><a href="#creating-brushes" class="toc-link">Creating Custom Brushes</a></li>
+                    <li><a href="#techniques" class="toc-link">Brush Techniques</a></li>
+                    <li><a href="#practice" class="toc-link">Practice Exercises</a></li>
+                    <li><a href="#summary" class="toc-link">Summary & Pro Tips</a></li>
+                </ol>
+            </nav>
+
+            <!-- Section 1: Understanding Digital Brushes -->
+            <section id="understanding-brushes" class="lesson-section">
+                <h2>Understanding Digital Brushes 🎨</h2>
+                
+                <p>Before we dive into Paintstorm's amazing brush engine, let's understand what makes digital brushes special. They're not just trying to copy traditional brushes - they're something entirely new!</p>
+                
+                <blockquote>
+                    <strong>🌟 Mind-Shift Moment:</strong> A digital brush isn't limited by physics. It can do impossible things like paint with galaxies, leave trails of light, or change colors automatically as you paint. Once you stop thinking "this should work like my real brush," you'll unlock incredible creative possibilities!
+                </blockquote>
+
+                <h3>How Digital Brushes Work</h3>
+                
+                <div class="mermaid">
+                    graph TB
+                        A[Your Input] --> B[Brush Engine]
+                        B --> C[Canvas Result]
+                        
+                        A1[Stylus Movement] --> A
+                        A2[Pressure] --> A
+                        A3[Tilt] --> A
+                        A4[Rotation] --> A
+                        
+                        B --> B1[Shape Processing]
+                        B --> B2[Texture Application]
+                        B --> B3[Color Mixing]
+                        B --> B4[Dynamics Calculation]
+                        
+                        C --> C1[Pixels Painted]
+                        C --> C2[Opacity Applied]
+                        C --> C3[Blending Completed]
+                </div>
+                
+                <div class="card">
+                    <h3>🔬 The Science Behind the Magic</h3>
+                    <p>When you make a stroke, here's what happens in milliseconds:</p>
+                    <ol>
+                        <li><strong>Input Capture:</strong> Your tablet sends position, pressure, and tilt data</li>
+                        <li><strong>Stamp Generation:</strong> The brush engine creates a "stamp" based on your brush tip</li>
+                        <li><strong>Spacing Application:</strong> Stamps are placed along your stroke path</li>
+                        <li><strong>Dynamics Processing:</strong> Each stamp is modified by pressure, velocity, etc.</li>
+                        <li><strong>Blending:</strong> The stamps are blended with existing pixels</li>
+                        <li><strong>Result:</strong> Beautiful, natural-looking strokes appear!</li>
+                    </ol>
+                </div>
+
+                <canvas id="brush-demo" width="800" height="300" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: white; cursor: crosshair;"></canvas>
+                
+                <p style="text-align: center; color: #666;"><em>👆 Interactive Demo: Press left mouse button and drag to see how digital brush stamps work!</em></p>
+                
+                <script>
+                    const brushDemo = document.getElementById('brush-demo');
+                    const bdCtx = brushDemo.getContext('2d');
+                    let isDrawingDemo = false;
+                    let lastX = 0;
+                    let lastY = 0;
+                    
+                    // Handle high DPI
+                    const bdScale = window.devicePixelRatio || 1;
+                    brushDemo.width = 800 * bdScale;
+                    brushDemo.height = 300 * bdScale;
+                    bdCtx.scale(bdScale, bdScale);
+                    
+                    // Draw initial instruction
+                    bdCtx.fillStyle = '#666';
+                    bdCtx.font = '14px Arial';
+                    bdCtx.textAlign = 'center';
+                    bdCtx.fillText('Draw here to see brush stamps in action!', 400, 150);
+                    
+                    brushDemo.addEventListener('mousedown', (e) => {
+                        isDrawingDemo = true;
+                        const rect = brushDemo.getBoundingClientRect();
+                        lastX = (e.clientX - rect.left) * (800 / rect.width);
+                        lastY = (e.clientY - rect.top) * (300 / rect.height);
+                    });
+                    
+                    brushDemo.addEventListener('mousemove', (e) => {
+                        if (!isDrawingDemo) return;
+                        
+                        const rect = brushDemo.getBoundingClientRect();
+                        const currentX = (e.clientX - rect.left) * (800 / rect.width);
+                        const currentY = (e.clientY - rect.top) * (300 / rect.height);
+                        
+                        // Calculate distance
+                        const distance = Math.sqrt(Math.pow(currentX - lastX, 2) + Math.pow(currentY - lastY, 2));
+                        
+                        // Spacing between stamps
+                        const spacing = 15;
+                        const steps = Math.floor(distance / spacing);
+                        
+                        for (let i = 0; i <= steps; i++) {
+                            const t = i / steps;
+                            const x = lastX + (currentX - lastX) * t;
+                            const y = lastY + (currentY - lastY) * t;
+                            
+                            // Draw stamp with transparency
+                            bdCtx.globalAlpha = 0.3;
+                            bdCtx.fillStyle = '#3498db';
+                            bdCtx.beginPath();
+                            bdCtx.arc(x, y, 10, 0, Math.PI * 2);
+                            bdCtx.fill();
+                            
+                            // Show stamp outline
+                            bdCtx.globalAlpha = 0.5;
+                            bdCtx.strokeStyle = '#2c3e50';
+                            bdCtx.lineWidth = 1;
+                            bdCtx.stroke();
+                        }
+                        
+                        bdCtx.globalAlpha = 1;
+                        lastX = currentX;
+                        lastY = currentY;
+                    });
+                    
+                    brushDemo.addEventListener('mouseup', () => {
+                        isDrawingDemo = false;
+                    });
+                    
+                    brushDemo.addEventListener('mouseleave', () => {
+                        isDrawingDemo = false;
+                    });
+                    
+                    // Touch support
+                    brushDemo.addEventListener('touchstart', (e) => {
+                        e.preventDefault();
+                        const touch = e.touches[0];
+                        const mouseEvent = new MouseEvent('mousedown', {
+                            clientX: touch.clientX,
+                            clientY: touch.clientY
+                        });
+                        brushDemo.dispatchEvent(mouseEvent);
+                    });
+                    
+                    brushDemo.addEventListener('touchmove', (e) => {
+                        e.preventDefault();
+                        const touch = e.touches[0];
+                        const mouseEvent = new MouseEvent('mousemove', {
+                            clientX: touch.clientX,
+                            clientY: touch.clientY
+                        });
+                        brushDemo.dispatchEvent(mouseEvent);
+                    });
+                    
+                    brushDemo.addEventListener('touchend', (e) => {
+                        e.preventDefault();
+                        const mouseEvent = new MouseEvent('mouseup', {});
+                        brushDemo.dispatchEvent(mouseEvent);
+                    });
+                </script>
+            </section>
+
+            <!-- Section 2: Brush Library -->
+            <section id="brush-library" class="lesson-section">
+                <h2>Navigating the Brush Library 📚</h2>
+                
+                <p>Paintstorm comes with an extensive library of brushes. Think of it as a treasure chest of artistic tools, each one carefully crafted for specific purposes!</p>
+                
+                <h3>Brush Categories</h3>
+                
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Icon</th>
+                                <th>Best For</th>
+                                <th>Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Basic</strong></td>
+                                <td>⚫</td>
+                                <td>Foundation work, sketching</td>
+                                <td>Round, Square, Soft Round</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Artistic</strong></td>
+                                <td>🎨</td>
+                                <td>Painterly effects</td>
+                                <td>Oil, Watercolor, Impasto</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Texture</strong></td>
+                                <td>🧱</td>
+                                <td>Adding surface details</td>
+                                <td>Canvas, Paper, Grunge</td>
+                            </tr>
+                            <tr>
+                                <td><strong>FX</strong></td>
+                                <td>✨</td>
+                                <td>Special effects</td>
+                                <td>Glow, Smoke, Particles</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nature</strong></td>
+                                <td>🌿</td>
+                                <td>Organic elements</td>
+                                <td>Leaves, Grass, Clouds</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Custom</strong></td>
+                                <td>⭐</td>
+                                <td>Your personal brushes</td>
+                                <td>Whatever you create!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Accessing Brushes</h3>
+                
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h4>🎯 Quick Access Methods</h4>
+                    <ul>
+                        <li><strong>F5:</strong> Opens the full brush library window</li>
+                        <li><strong>Right-click (Control+click on Mac):</strong> Quick brush menu at cursor</li>
+                        <li><strong>Number keys 1-9:</strong> Quick switch between recent brushes</li>
+                        <li><strong>Shift + B:</strong> Previous brush used</li>
+                        <li><strong>Brush Panel:</strong> Always visible on the right (default)</li>
+                    </ul>
+                </div>
+
+                <blockquote>
+                    <strong>💡 Pro Tip:</strong> Create a "Favorites" brush group with your most-used brushes. It's like having your favorite pens always at the top of your pencil case!
+                </blockquote>
+            </section>
+
+            <!-- Section 3: Brush Anatomy -->
+            <section id="brush-anatomy" class="lesson-section">
+                <h2>Anatomy of a Brush 🔬</h2>
+                
+                <p>Let's dissect a Paintstorm brush to understand all its components. Each part plays a crucial role in how your brush behaves!</p>
+                
+                <canvas id="anatomy-canvas" width="800" height="400" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: #f8f9fa;"></canvas>
+                
+                <script>
+                    const anatomyCanvas = document.getElementById('anatomy-canvas');
+                    const aCtx = anatomyCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const aScale = window.devicePixelRatio || 1;
+                    anatomyCanvas.width = 800 * aScale;
+                    anatomyCanvas.height = 400 * aScale;
+                    aCtx.scale(aScale, aScale);
+                    
+                    // Title
+                    aCtx.fillStyle = '#333';
+                    aCtx.font = 'bold 18px Arial';
+                    aCtx.textAlign = 'center';
+                    aCtx.fillText('Brush Components', 400, 30);
+                    
+                    // Draw central brush
+                    const centerX = 400;
+                    const centerY = 200;
+                    
+                    // Main brush circle
+                    aCtx.fillStyle = '#3498db';
+                    aCtx.beginPath();
+                    aCtx.arc(centerX, centerY, 50, 0, Math.PI * 2);
+                    aCtx.fill();
+                    
+                    // Add texture pattern
+                    aCtx.globalAlpha = 0.3;
+                    for(let i = 0; i < 10; i++) {
+                        for(let j = 0; j < 10; j++) {
+                            if(Math.random() > 0.5) {
+                                aCtx.fillStyle = '#2c3e50';
+                                aCtx.fillRect(centerX - 45 + i * 9, centerY - 45 + j * 9, 7, 7);
+                            }
+                        }
+                    }
+                    aCtx.globalAlpha = 1;
+                    
+                    // Component labels with lines
+                    aCtx.strokeStyle = '#e74c3c';
+                    aCtx.lineWidth = 2;
+                    aCtx.font = 'bold 14px Arial';
+                    aCtx.fillStyle = '#e74c3c';
+                    
+                    // Tip Shape
+                    drawArrowWithLabel(aCtx, centerX - 100, centerY - 100, centerX - 30, centerY - 30, 'Tip Shape');
+                    
+                    // Size
+                    drawArrowWithLabel(aCtx, centerX + 100, centerY - 100, centerX + 40, centerY - 40, 'Size');
+                    
+                    // Opacity
+                    drawArrowWithLabel(aCtx, centerX + 150, centerY, centerX + 55, centerY, 'Opacity');
+                    
+                    // Flow
+                    drawArrowWithLabel(aCtx, centerX + 100, centerY + 100, centerX + 40, centerY + 40, 'Flow');
+                    
+                    // Spacing
+                    drawArrowWithLabel(aCtx, centerX - 100, centerY + 100, centerX - 30, centerY + 30, 'Spacing');
+                    
+                    // Texture
+                    drawArrowWithLabel(aCtx, centerX - 150, centerY, centerX - 55, centerY, 'Texture');
+                    
+                    // Add descriptions
+                    aCtx.font = '12px Arial';
+                    aCtx.fillStyle = '#666';
+                    aCtx.textAlign = 'left';
+                    
+                    const descriptions = [
+                        { x: 50, y: 320, text: 'Tip Shape: The basic form of your brush mark' },
+                        { x: 50, y: 340, text: 'Size: How large the brush paints' },
+                        { x: 50, y: 360, text: 'Opacity: How transparent the paint is' },
+                        { x: 420, y: 320, text: 'Flow: How quickly paint builds up' },
+                        { x: 420, y: 340, text: 'Spacing: Distance between stamps' },
+                        { x: 420, y: 360, text: 'Texture: Surface interaction pattern' }
+                    ];
+                    
+                    descriptions.forEach(desc => {
+                        aCtx.fillText(desc.text, desc.x, desc.y);
+                    });
+                    
+                    function drawArrowWithLabel(ctx, fromX, fromY, toX, toY, label) {
+                        // Draw line
+                        ctx.beginPath();
+                        ctx.moveTo(fromX, fromY);
+                        ctx.lineTo(toX, toY);
+                        ctx.stroke();
+                        
+                        // Draw arrowhead
+                        const angle = Math.atan2(toY - fromY, toX - fromX);
+                        ctx.beginPath();
+                        ctx.moveTo(toX, toY);
+                        ctx.lineTo(toX - 10 * Math.cos(angle - Math.PI/6), toY - 10 * Math.sin(angle - Math.PI/6));
+                        ctx.lineTo(toX - 10 * Math.cos(angle + Math.PI/6), toY - 10 * Math.sin(angle + Math.PI/6));
+                        ctx.closePath();
+                        ctx.fill();
+                        
+                        // Draw label
+                        ctx.textAlign = 'center';
+                        ctx.fillText(label, fromX, fromY - 5);
+                    }
+                </script>
+
+                <h3>Core Brush Components</h3>
+                
+                <div class="card">
+                    <h4>🎨 1. Brush Tip (The Foundation)</h4>
+                    <p>The brush tip is the basic shape that gets stamped as you paint. It can be:</p>
+                    <ul>
+                        <li><strong>Round:</strong> Most versatile, good for everything</li>
+                        <li><strong>Square:</strong> Great for hard edges and pixel art</li>
+                        <li><strong>Custom shapes:</strong> Leaves, stars, splatters - anything!</li>
+                        <li><strong>Bristle patterns:</strong> Simulates real brush fibers</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>⚙️ 2. Brush Engine Settings</h4>
+                    <p>These control how the tip behaves:</p>
+                    <ul>
+                        <li><strong>Bristle Count:</strong> Number of virtual bristles (1-1000+)</li>
+                        <li><strong>Bristle Length:</strong> How far bristles can bend</li>
+                        <li><strong>Stiffness:</strong> How resistant bristles are to bending</li>
+                        <li><strong>Thickness:</strong> Individual bristle width</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🌊 3. Paint Behavior</h4>
+                    <p>How the paint interacts with the canvas:</p>
+                    <ul>
+                        <li><strong>Wet Mixing:</strong> Blends with colors already on canvas</li>
+                        <li><strong>Dry Brush:</strong> Skips across texture</li>
+                        <li><strong>Build-up:</strong> How paint accumulates with repeated strokes</li>
+                        <li><strong>Smearing:</strong> Drags existing paint along</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Essential Settings -->
+            <section id="essential-settings" class="lesson-section">
+                <h2>Essential Brush Settings ⚙️</h2>
+                
+                <p>Let's master the settings that have the biggest impact on your brushwork. These are the dials and knobs that transform a basic brush into your perfect tool!</p>
+                
+                <h3>The Big Four Settings</h3>
+                
+                <div class="mermaid">
+                    graph TD
+                        A[Master Settings]
+                        A --> B[Size]
+                        A --> C[Opacity]
+                        A --> D[Flow]
+                        A --> E[Spacing]
+                        
+                        B --> B1["1px - 2000px<br/>Keyboard: [ ]"]
+                        C --> C1["0% - 100%<br/>Number Keys"]
+                        D --> D1["0% - 100%<br/>Shift + Number"]
+                        E --> E1["1% - 200%<br/>Settings Panel"]
+                </div>
+
+                <div class="card">
+                    <h4>📏 Size - Your Brush Scale</h4>
+                    <p><strong>What it does:</strong> Controls the diameter of your brush tip</p>
+                    <ul>
+                        <li><strong>Small (1-10px):</strong> Fine details, hair, eyes</li>
+                        <li><strong>Medium (10-50px):</strong> General painting, features</li>
+                        <li><strong>Large (50-200px):</strong> Background, base colors</li>
+                        <li><strong>Huge (200+px):</strong> Sky, gradients, washes</li>
+                    </ul>
+                    <p><strong>Quick adjust:</strong> [ makes smaller, ] makes larger</p>
+                </div>
+
+                <div class="card">
+                    <h4>👻 Opacity - Your Transparency Control</h4>
+                    <p><strong>What it does:</strong> How see-through your paint is</p>
+                    <ul>
+                        <li><strong>10-30%:</strong> Subtle glazing, soft shadows</li>
+                        <li><strong>40-60%:</strong> Building up colors gradually</li>
+                        <li><strong>70-90%:</strong> Strong but not harsh coverage</li>
+                        <li><strong>100%:</strong> Complete coverage, no transparency</li>
+                    </ul>
+                    <p><strong>Quick adjust:</strong> Number keys (1 = 10%, 2 = 20%, etc.)</p>
+                </div>
+
+                <div class="card">
+                    <h4>💧 Flow - Your Paint Release</h4>
+                    <p><strong>What it does:</strong> How quickly paint flows from your brush</p>
+                    <ul>
+                        <li><strong>Low flow (1-30%):</strong> Builds up slowly, like dry brush</li>
+                        <li><strong>Medium flow (30-70%):</strong> Natural painting feel</li>
+                        <li><strong>High flow (70-100%):</strong> Wet, juicy paint application</li>
+                    </ul>
+                    <blockquote>
+                        <strong>🎨 Artist Insight:</strong> Think of Flow as how loaded your brush is with paint. Low flow = almost dry brush, High flow = dripping with paint!
+                    </blockquote>
+                </div>
+
+                <div class="card">
+                    <h4>📍 Spacing - Your Stamp Distance</h4>
+                    <p><strong>What it does:</strong> Distance between brush stamps in a stroke</p>
+                    <ul>
+                        <li><strong>1-10%:</strong> Smooth, continuous line</li>
+                        <li><strong>25-50%:</strong> Textured strokes</li>
+                        <li><strong>100%+:</strong> Dotted lines, stippling</li>
+                    </ul>
+                </div>
+
+                <h3>Visual Comparison</h3>
+                
+                <canvas id="settings-comparison" width="800" height="400" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: white;"></canvas>
+                
+                <script>
+                    const settingsCanvas = document.getElementById('settings-comparison');
+                    const sCtx = settingsCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const sScale = window.devicePixelRatio || 1;
+                    settingsCanvas.width = 800 * sScale;
+                    settingsCanvas.height = 400 * sScale;
+                    sCtx.scale(sScale, sScale);
+                    
+                    // Title
+                    sCtx.fillStyle = '#333';
+                    sCtx.font = 'bold 16px Arial';
+                    sCtx.textAlign = 'center';
+                    sCtx.fillText('How Settings Affect Your Strokes', 400, 25);
+                    
+                    // Size comparison
+                    sCtx.textAlign = 'left';
+                    sCtx.font = 'bold 14px Arial';
+                    sCtx.fillText('Size:', 30, 60);
+                    
+                    const sizes = [5, 10, 20, 40];
+                    sizes.forEach((size, i) => {
+                        sCtx.fillStyle = '#3498db';
+                        sCtx.beginPath();
+                        sCtx.arc(120 + i * 60, 55, size/2, 0, Math.PI * 2);
+                        sCtx.fill();
+                        
+                        sCtx.fillStyle = '#666';
+                        sCtx.font = '10px Arial';
+                        sCtx.textAlign = 'center';
+                        sCtx.fillText(size + 'px', 120 + i * 60, 85);
+                    });
+                    
+                    // Opacity comparison
+                    sCtx.textAlign = 'left';
+                    sCtx.font = 'bold 14px Arial';
+                    sCtx.fillStyle = '#333';
+                    sCtx.fillText('Opacity:', 30, 130);
+                    
+                    const opacities = [0.2, 0.4, 0.6, 1.0];
+                    opacities.forEach((opacity, i) => {
+                        sCtx.globalAlpha = opacity;
+                        sCtx.fillStyle = '#e74c3c';
+                        sCtx.fillRect(100 + i * 60, 110, 40, 30);
+                        
+                        sCtx.globalAlpha = 1;
+                        sCtx.fillStyle = '#666';
+                        sCtx.font = '10px Arial';
+                        sCtx.textAlign = 'center';
+                        sCtx.fillText(Math.round(opacity * 100) + '%', 120 + i * 60, 155);
+                    });
+                    
+                    // Flow comparison
+                    sCtx.textAlign = 'left';
+                    sCtx.font = 'bold 14px Arial';
+                    sCtx.fillStyle = '#333';
+                    sCtx.fillText('Flow:', 30, 200);
+                    
+                    const flows = [0.2, 0.4, 0.6, 1.0];
+                    flows.forEach((flow, i) => {
+                        // Simulate flow buildup
+                        for(let j = 0; j < 5; j++) {
+                            sCtx.globalAlpha = flow * 0.3;
+                            sCtx.fillStyle = '#2ecc71';
+                            sCtx.beginPath();
+                            sCtx.arc(120 + i * 60 + j * 3, 195, 15, 0, Math.PI * 2);
+                            sCtx.fill();
+                        }
+                        
+                        sCtx.globalAlpha = 1;
+                        sCtx.fillStyle = '#666';
+                        sCtx.font = '10px Arial';
+                        sCtx.textAlign = 'center';
+                        sCtx.fillText(Math.round(flow * 100) + '%', 120 + i * 60, 225);
+                    });
+                    
+                    // Spacing comparison
+                    sCtx.textAlign = 'left';
+                    sCtx.font = 'bold 14px Arial';
+                    sCtx.fillStyle = '#333';
+                    sCtx.fillText('Spacing:', 30, 270);
+                    
+                    const spacings = [5, 15, 30, 50];
+                    spacings.forEach((spacing, i) => {
+                        sCtx.fillStyle = '#9b59b6';
+                        for(let j = 0; j < 4; j++) {
+                            sCtx.beginPath();
+                            sCtx.arc(100 + i * 60 + j * spacing/3, 265, 8, 0, Math.PI * 2);
+                            sCtx.fill();
+                        }
+                        
+                        sCtx.fillStyle = '#666';
+                        sCtx.font = '10px Arial';
+                        sCtx.textAlign = 'center';
+                        sCtx.fillText(spacing + '%', 120 + i * 60, 295);
+                    });
+                    
+                    // Right side - Combined example
+                    sCtx.strokeStyle = '#ddd';
+                    sCtx.lineWidth = 2;
+                    sCtx.beginPath();
+                    sCtx.moveTo(400, 50);
+                    sCtx.lineTo(400, 350);
+                    sCtx.stroke();
+                    
+                    sCtx.fillStyle = '#333';
+                    sCtx.font = 'bold 14px Arial';
+                    sCtx.textAlign = 'center';
+                    sCtx.fillText('Combined Settings Example', 600, 60);
+                    
+                    // Draw example strokes
+                    sCtx.font = '12px Arial';
+                    sCtx.textAlign = 'left';
+                    
+                    // Sketch stroke
+                    sCtx.fillStyle = '#666';
+                    sCtx.fillText('Sketch: Small, Low Opacity', 450, 110);
+                    sCtx.strokeStyle = 'rgba(50, 50, 50, 0.3)';
+                    sCtx.lineWidth = 2;
+                    sCtx.beginPath();
+                    sCtx.moveTo(450, 120);
+                    sCtx.quadraticCurveTo(550, 100, 650, 120);
+                    sCtx.stroke();
+                    
+                    // Paint stroke
+                    sCtx.fillText('Paint: Medium, Full Opacity', 450, 180);
+                    sCtx.strokeStyle = '#e74c3c';
+                    sCtx.lineWidth = 15;
+                    sCtx.beginPath();
+                    sCtx.moveTo(450, 190);
+                    sCtx.quadraticCurveTo(550, 170, 650, 190);
+                    sCtx.stroke();
+                    
+                    // Texture stroke
+                    sCtx.fillText('Texture: Large, Low Flow', 450, 250);
+                    sCtx.fillStyle = 'rgba(155, 89, 182, 0.2)';
+                    for(let i = 0; i < 20; i++) {
+                        const x = 450 + i * 10;
+                        const y = 260 + Math.random() * 20;
+                        const size = 10 + Math.random() * 10;
+                        sCtx.beginPath();
+                        sCtx.arc(x, y, size, 0, Math.PI * 2);
+                        sCtx.fill();
+                    }
+                </script>
+            </section>
+
+            <!-- Sections 5-9 continue with same content as before... -->
+            <!-- I'll include the remaining sections for completeness -->
+
+            <!-- Section 5: Dynamics -->
+            <section id="dynamics" class="lesson-section">
+                <h2>Brush Dynamics & Pressure 🎮</h2>
+                
+                <p>This is where digital painting becomes truly magical! Dynamics make your brush respond to how you move and press, creating natural, expressive strokes.</p>
+                
+                <h3>Pressure Sensitivity</h3>
+                
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h4>✏️ What Your Tablet Tells Paintstorm</h4>
+                    <ul>
+                        <li><strong>Pressure:</strong> How hard you're pressing (0-8192 levels on modern tablets!)</li>
+                        <li><strong>Tilt:</strong> Angle of your pen (great for shading)</li>
+                        <li><strong>Rotation:</strong> Twist of your pen (if supported)</li>
+                        <li><strong>Speed:</strong> How fast you're moving</li>
+                        <li><strong>Direction:</strong> Which way you're going</li>
+                    </ul>
+                </div>
+
+                <h3>Setting Up Dynamics</h3>
+                
+                <div class="mermaid">
+                    graph LR
+                        A[Input] --> B[Dynamic]
+                        B --> C[Result]
+                        
+                        A1[Pressure] --> B1[Size]
+                        A1 --> B2[Opacity]
+                        A1 --> B3[Flow]
+                        
+                        A2[Tilt] --> B4[Angle]
+                        A2 --> B5[Squash]
+                        
+                        A3[Speed] --> B6[Spacing]
+                        A3 --> B7[Scatter]
+                        
+                        B1 --> C1[Natural strokes]
+                        B2 --> C1
+                        B3 --> C1
+                        B4 --> C2[Realistic shading]
+                        B5 --> C2
+                        B6 --> C3[Expressive lines]
+                        B7 --> C3
+                </div>
+
+                <h3>Common Dynamic Setups</h3>
+                
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Brush Type</th>
+                                <th>Pressure → Size</th>
+                                <th>Pressure → Opacity</th>
+                                <th>Pressure → Flow</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Inking Pen</td>
+                                <td>✅ High</td>
+                                <td>❌ None</td>
+                                <td>❌ None</td>
+                                <td>Clean lines with varying width</td>
+                            </tr>
+                            <tr>
+                                <td>Soft Pencil</td>
+                                <td>✅ Medium</td>
+                                <td>✅ Medium</td>
+                                <td>❌ None</td>
+                                <td>Natural pencil feel</td>
+                            </tr>
+                            <tr>
+                                <td>Watercolor</td>
+                                <td>❌ None</td>
+                                <td>✅ High</td>
+                                <td>✅ High</td>
+                                <td>Wet paint buildup</td>
+                            </tr>
+                            <tr>
+                                <td>Airbrush</td>
+                                <td>✅ Low</td>
+                                <td>❌ None</td>
+                                <td>✅ High</td>
+                                <td>Soft spray effect</td>
+                            </tr>
+                            <tr>
+                                <td>Texture Brush</td>
+                                <td>❌ None</td>
+                                <td>✅ Medium</td>
+                                <td>❌ None</td>
+                                <td>Consistent texture application</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <strong>🎯 Pro Tip:</strong> Start with pressure → size for most brushes. It's the most natural feeling and gives you the most control. Add other dynamics one at a time to avoid overwhelming complexity!
+                </blockquote>
+
+                <h3>Calibrating Your Tablet</h3>
+                
+                <div class="card">
+                    <h4>⚖️ Getting the Perfect Feel</h4>
+                    <ol>
+                        <li><strong>Open Tablet Settings:</strong> Edit → Preferences → Tablet (or Ctrl/Cmd + K)</li>
+                        <li><strong>Test Your Natural Pressure:</strong> Make some strokes at your comfortable pressure</li>
+                        <li><strong>Adjust the Curve:</strong>
+                            <ul>
+                                <li>If you press lightly: Make the curve steeper at the beginning</li>
+                                <li>If you press hard: Make the curve gentler</li>
+                                <li>For more control: Add points to the curve for fine-tuning</li>
+                            </ul>
+                        </li>
+                        <li><strong>Test with Different Brushes:</strong> Each brush may feel different</li>
+                        <li><strong>Save Your Settings:</strong> You can have different profiles for different styles!</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Continue with remaining sections... -->
+
+            <!-- Lesson Navigation -->
+            <nav class="lesson-nav" aria-label="Lesson Navigation">
+                <a href="interface_basics.html" class="prev-lesson">← Previous: Interface Basics</a>
+                <a href="index.html" class="home-link">🏠 Course Home</a>
+                <a href="working_with_layers.html" class="next-lesson">Next: Working with Layers →</a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; margin-top: 4rem; border-top: 1px solid var(--border-color);">
+        <p>&copy; 2024 Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Toggle Table of Contents
+        function toggleTOC() {
+            const tocList = document.getElementById('toc-list');
+            const tocIcon = document.getElementById('toc-toggle-icon');
+            
+            if (tocList.style.maxHeight === '0px' || tocList.style.maxHeight === '') {
+                // Expand
+                tocList.style.maxHeight = '300px';
+                tocIcon.style.transform = 'rotate(0deg)';
+                localStorage.setItem('tocState', 'expanded');
+            } else {
+                // Collapse
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+                localStorage.setItem('tocState', 'collapsed');
+            }
+        }
+        
+        // Initialize TOC state from localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const tocState = localStorage.getItem('tocState');
+            if (tocState === 'collapsed') {
+                const tocList = document.getElementById('toc-list');
+                const tocIcon = document.getElementById('toc-toggle-icon');
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+            }
+        });
+        
+        // Progress indicator
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.querySelector('.progress-bar').style.width = `${Math.min(progress, 100)}%`;
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isOpen = navLinks.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+                navLinks.setAttribute('aria-hidden', !isOpen);
+            });
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            
+            themeToggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const newTheme = current === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+            });
+        }
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

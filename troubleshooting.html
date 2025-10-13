@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Troubleshooting guide for Paintstorm Studio - solve common problems, fix tablet issues, optimize performance, and get help when stuck">
+    <meta name="author" content="Paintstorm Tutorial">
+    <title>Troubleshooting Guide - Paintstorm Studio Essentials</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
+    <!-- Progress indicator -->
+    <div class="progress-indicator" role="progressbar" aria-label="Page scroll progress">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🎨 Paintstorm Studio</a>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <div class="nav-links" id="nav-links" aria-hidden="false">
+                <a href="index.html">Home</a>
+                <a href="index.html#modules">All Lessons</a>
+                <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#modules">Getting Started</a></li>
+            <li aria-current="page">Troubleshooting Guide</li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Lesson Header -->
+            <header>
+                <h1>🔧 Troubleshooting Guide</h1>
+                <p class="lead">Don't panic! Every problem has a solution. This guide covers the most common issues beginners face and how to fix them quickly. Bookmark this page - you'll need it!</p>
+                
+                <!-- Quick Fix Box -->
+                <div class="card" style="background: #fff3e0; border-left: 4px solid #ff9800;">
+                    <h2>⚡ Quick Fixes First!</h2>
+                    <p>Before diving deep, try these universal solutions that fix 80% of problems:</p>
+                    <ol>
+                        <li><strong>Restart Paintstorm</strong> (seriously, this fixes so much)</li>
+                        <li><strong>Check if correct layer is selected</strong></li>
+                        <li><strong>Reset the tool</strong> (hold tool icon for reset option)</li>
+                        <li><strong>Update graphics tablet drivers</strong></li>
+                        <li><strong>Restart computer</strong> (the classic IT solution)</li>
+                    </ol>
+                </div>
+            </header>
+
+            <!-- Table of Contents -->
+            <nav class="card" aria-label="Table of Contents">
+                <h2 style="cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center;" onclick="toggleTOC()">
+                    <span>📑 Table of Contents</span>
+                    <span id="toc-toggle-icon" style="transition: transform 0.3s;">▼</span>
+                </h2>
+                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 500px; margin: 0; padding-left: 1.5rem;">
+                    <li><a href="#drawing-problems" class="toc-link">Can't Draw / Brush Not Working</a></li>
+                    <li><a href="#tablet-issues" class="toc-link">Tablet & Pressure Issues</a></li>
+                    <li><a href="#performance" class="toc-link">Performance Problems</a></li>
+                    <li><a href="#color-issues" class="toc-link">Color Problems</a></li>
+                    <li><a href="#layer-issues" class="toc-link">Layer Confusion</a></li>
+                    <li><a href="#file-problems" class="toc-link">File & Export Issues</a></li>
+                    <li><a href="#interface-problems" class="toc-link">Interface Problems</a></li>
+                    <li><a href="#common-mistakes" class="toc-link">Common Beginner Mistakes</a></li>
+                    <li><a href="#optimization" class="toc-link">Optimization Tips</a></li>
+                    <li><a href="#getting-help" class="toc-link">Getting Help</a></li>
+                </ol>
+            </nav>
+
+            <!-- Section 1: Drawing Problems -->
+            <section id="drawing-problems" class="lesson-section">
+                <h2>Can't Draw / Brush Not Working 🚫</h2>
+                
+                <p>The most panic-inducing problem! Let's diagnose systematically.</p>
+                
+                <div class="mermaid">
+                    graph TD
+                        A[Can't Draw] --> B{Is cursor moving?}
+                        B -->|No| C[Check tablet/mouse connection]
+                        B -->|Yes| D{Does brush preview show?}
+                        D -->|No| E[Check brush size - might be 0]
+                        D -->|Yes| F{Is there a selection active?}
+                        F -->|Yes| G[Deselect: Ctrl/Cmd+D]
+                        F -->|No| H{Right layer selected?}
+                        H -->|No| I[Select correct layer]
+                        H -->|Yes| J{Layer locked?}
+                        J -->|Yes| K[Unlock layer]
+                        J -->|No| L{Opacity at 0%?}
+                        L -->|Yes| M[Increase opacity]
+                        L -->|No| N[Reset brush tool]
+                </div>
+
+                <div class="card">
+                    <h3>🎨 Checklist: Why Can't I Draw?</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Problem</th>
+                                <th>Symptom</th>
+                                <th>Solution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Wrong layer</strong></td>
+                                <td>Cursor moves but nothing appears</td>
+                                <td>Check Layers panel, select correct layer</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Layer is locked</strong></td>
+                                <td>🔒 icon on layer</td>
+                                <td>Click lock icon to unlock</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Active selection</strong></td>
+                                <td>Marching ants visible</td>
+                                <td>Ctrl/Cmd + D to deselect</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Brush at 0% opacity</strong></td>
+                                <td>Brush cursor visible but no marks</td>
+                                <td>Press number keys 1-9 for opacity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Brush size too small</strong></td>
+                                <td>Tiny or invisible cursor</td>
+                                <td>Press ] to increase size</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Drawing outside canvas</strong></td>
+                                <td>Canvas has gray area around it</td>
+                                <td>Zoom to fit: Ctrl/Cmd + 0</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quick Mask mode on</strong></td>
+                                <td>Red overlay on canvas</td>
+                                <td>Press Q to exit Quick Mask</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Clipping mask active</strong></td>
+                                <td>Layer has arrow pointing down</td>
+                                <td>Alt/Option + click between layers</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <strong>💡 #1 Beginner Mistake:</strong> 90% of "can't draw" problems are because you're on the wrong layer or have a selection active. Always check these first!
+                </blockquote>
+            </section>
+
+            <!-- Section 2: Tablet Issues -->
+            <section id="tablet-issues" class="lesson-section">
+                <h2>Tablet & Pressure Issues 🖊️</h2>
+                
+                <p>Tablet problems are frustrating but usually easy to fix. Let's get your pressure sensitivity working!</p>
+                
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h3>🔌 Basic Tablet Checks</h3>
+                    <ol>
+                        <li><strong>Is tablet plugged in?</strong> Check USB connection, try different port</li>
+                        <li><strong>Driver installed?</strong> Download latest from manufacturer</li>
+                        <li><strong>Tablet recognized?</strong> Check system devices/preferences</li>
+                        <li><strong>Correct tablet selected?</strong> Edit → Preferences → Tablet</li>
+                        <li><strong>Windows Ink issues?</strong> Try toggling Windows Ink on/off</li>
+                    </ol>
+                </div>
+
+                <h3>Pressure Sensitivity Problems</h3>
+                
+                <div class="card">
+                    <h4>🎯 No Pressure Sensitivity</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Issue</th>
+                                <th>Platform</th>
+                                <th>Solution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>No pressure at all</strong></td>
+                                <td>All</td>
+                                <td>Check if brush has pressure dynamics enabled</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Windows Ink conflict</strong></td>
+                                <td>Windows</td>
+                                <td>Tablet settings → Disable Windows Ink</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Driver conflict</strong></td>
+                                <td>All</td>
+                                <td>Uninstall all tablet drivers, reinstall latest</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Wrong API</strong></td>
+                                <td>Windows</td>
+                                <td>Try WinTab vs Windows Ink in Paintstorm</td>
+                            </tr>
+                            <tr>
+                                <td><strong>macOS permissions</strong></td>
+                                <td>Mac</td>
+                                <td>System Preferences → Security → Allow Paintstorm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Tablet Brand-Specific Fixes</h3>
+                
+                <div class="card">
+                    <h4>🖊️ Wacom</h4>
+                    <ul>
+                        <li>Update Wacom drivers monthly (they release often)</li>
+                        <li>Wacom Desktop Center → Check for updates</li>
+                        <li>Reset preferences: Hold Shift while starting Wacom settings</li>
+                        <li>Disable "Use Windows Ink" in Wacom settings for some apps</li>
+                    </ul>
+                    
+                    <h4>🖊️ Huion</h4>
+                    <ul>
+                        <li>Always run tablet driver before Paintstorm</li>
+                        <li>Disable Windows Ink in driver settings</li>
+                        <li>Try "Compatibility Mode" if issues persist</li>
+                        <li>Check USB power settings aren't sleeping tablet</li>
+                    </ul>
+                    
+                    <h4>🖊️ XP-Pen</h4>
+                    <ul>
+                        <li>Uninstall old drivers completely before updating</li>
+                        <li>Try both driver versions if one doesn't work</li>
+                        <li>Calibrate display tablets regularly</li>
+                    </ul>
+                </div>
+
+                <blockquote>
+                    <strong>🔧 Pro Tip:</strong> Create a "Tablet Test" document with pressure test strokes. Open it whenever something feels off to quickly diagnose if it's a tablet or brush issue.
+                </blockquote>
+            </section>
+
+            <!-- Section 3: Performance -->
+            <section id="performance" class="lesson-section">
+                <h2>Performance Problems 🐌</h2>
+                
+                <p>Lag kills creativity. Let's speed things up!</p>
+                
+                <h3>Diagnosis Flowchart</h3>
+                
+                <canvas id="performance-chart" width="800" height="300" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: #f9f9f9;"></canvas>
+                
+                <script>
+                    const perfCanvas = document.getElementById('performance-chart');
+                    const pCtx = perfCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const pScale = window.devicePixelRatio || 1;
+                    perfCanvas.width = 800 * pScale;
+                    perfCanvas.height = 300 * pScale;
+                    pCtx.scale(pScale, pScale);
+                    
+                    // Title
+                    pCtx.fillStyle = '#333';
+                    pCtx.font = 'bold 16px Arial';
+                    pCtx.textAlign = 'center';
+                    pCtx.fillText('Performance Impact Factors', 400, 25);
+                    
+                    // Draw bars showing impact
+                    const factors = [
+                        { name: 'Canvas Size', impact: 90, color: '#e74c3c' },
+                        { name: 'Brush Size', impact: 80, color: '#e67e22' },
+                        { name: 'Layer Count', impact: 70, color: '#f39c12' },
+                        { name: 'Undo History', impact: 60, color: '#3498db' },
+                        { name: 'Effects', impact: 85, color: '#9b59b6' }
+                    ];
+                    
+                    factors.forEach((factor, i) => {
+                        const x = 100;
+                        const y = 60 + i * 45;
+                        const width = factor.impact * 5;
+                        
+                        // Bar
+                        pCtx.fillStyle = factor.color;
+                        pCtx.fillRect(x, y, width, 30);
+                        
+                        // Label
+                        pCtx.fillStyle = '#333';
+                        pCtx.font = '12px Arial';
+                        pCtx.textAlign = 'right';
+                        pCtx.fillText(factor.name, x - 10, y + 20);
+                        
+                        // Impact percentage
+                        pCtx.textAlign = 'left';
+                        pCtx.fillText(`${factor.impact}% impact`, x + width + 10, y + 20);
+                    });
+                </script>
+
+                <div class="card">
+                    <h3>⚡ Quick Performance Fixes</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Problem</th>
+                                <th>Cause</th>
+                                <th>Solution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Brush lag</strong></td>
+                                <td>Brush too large</td>
+                                <td>Use smaller brush or reduce canvas size</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Slow saving</strong></td>
+                                <td>Too many layers</td>
+                                <td>Merge finished layers</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Interface lag</strong></td>
+                                <td>GPU acceleration off</td>
+                                <td>Edit → Preferences → Performance → Enable GPU</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Memory warnings</strong></td>
+                                <td>Large canvas + many layers</td>
+                                <td>Close other programs, increase RAM allocation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zoom/pan lag</strong></td>
+                                <td>Canvas too large</td>
+                                <td>Work at lower resolution, upscale later</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Performance Settings</h3>
+                
+                <div class="card" style="background: #e8f5e9; border-left: 4px solid #4CAF50;">
+                    <h4>⚙️ Optimal Performance Settings</h4>
+                    <p><strong>Edit → Preferences → Performance</strong></p>
+                    <ul>
+                        <li><strong>Memory Usage:</strong> 70-80% of available RAM</li>
+                        <li><strong>History States:</strong> 20-50 (more = more RAM used)</li>
+                        <li><strong>Cache Levels:</strong> 4-6</li>
+                        <li><strong>Cache Tile Size:</strong> 1024K for large files, 128K for small</li>
+                        <li><strong>GPU Acceleration:</strong> ON (if supported)</li>
+                        <li><strong>Scratch Disk:</strong> SSD with 10GB+ free space</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Color Issues -->
+            <section id="color-issues" class="lesson-section">
+                <h2>Color Problems 🎨</h2>
+                
+                <p>Colors looking wrong? Not matching? Let's fix that!</p>
+                
+                <div class="card">
+                    <h3>🌈 Common Color Issues</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Problem</th>
+                                <th>Likely Cause</th>
+                                <th>Solution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Colors look different on export</strong></td>
+                                <td>Color profile mismatch</td>
+                                <td>Convert to sRGB before export</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Can't pick colors</strong></td>
+                                <td>Eyedropper settings</td>
+                                <td>Check "Sample All Layers" option</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Colors look dull</strong></td>
+                                <td>Monitor calibration</td>
+                                <td>Calibrate monitor or work in sRGB</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Grays have color tint</strong></td>
+                                <td>Monitor color temperature</td>
+                                <td>Adjust monitor settings to 6500K</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CMYK looks different</strong></td>
+                                <td>RGB to CMYK conversion</td>
+                                <td>Expected - CMYK has smaller gamut</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Transparency shows as white</strong></td>
+                                <td>Wrong file format</td>
+                                <td>Use PNG, not JPG</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <strong>🎨 Color Truth:</strong> Your art will look different on every screen. Don't obsess over perfect color matching - focus on good relative values and pleasing harmony.
+                </blockquote>
+            </section>
+
+            <!-- Section 5: Layer Issues -->
+            <section id="layer-issues" class="lesson-section">
+                <h2>Layer Confusion 📚</h2>
+                
+                <p>Layers acting weird? Can't find your art? Let's sort it out!</p>
+                
+                <div class="card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                    <h3>🔍 Lost Layer Checklist</h3>
+                    <ol>
+                        <li>Check layer visibility (eye icon)</li>
+                        <li>Check layer opacity (not at 0%?)</li>
+                        <li>Check if layer is inside a collapsed group</li>
+                        <li>Check if layer is behind others</li>
+                        <li>Check if layer has a mask hiding content</li>
+                        <li>Check if blend mode is making it invisible</li>
+                        <li>Check if layer is clipped to transparent layer</li>
+                    </ol>
+                </div>
+
+                <h3>Common Layer Problems</h3>
+                
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Issue</th>
+                                <th>Symptom</th>
+                                <th>Fix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Can't move layer</strong></td>
+                                <td>Layer won't budge</td>
+                                <td>Check if position is locked</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Layer looks weird</strong></td>
+                                <td>Strange colors/effects</td>
+                                <td>Check blend mode (set to Normal)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Can't see layer</strong></td>
+                                <td>Invisible but exists</td>
+                                <td>Check opacity and visibility</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Merge not working</strong></td>
+                                <td>Grayed out option</td>
+                                <td>Can't merge adjustment layers directly</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Transform distorted</strong></td>
+                                <td>Weird stretching</td>
+                                <td>Reset transform (right-click → Reset)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 6: File Problems -->
+            <section id="file-problems" class="lesson-section">
+                <h2>File & Export Issues 💾</h2>
+                
+                <p>Can't save? File corrupted? Export looks wrong? Deep breaths, we'll fix it!</p>
+                
+                <div class="card" style="background: #ffebee; border-left: 4px solid #f44336;">
+                    <h3>🚨 Emergency: Can't Save File!</h3>
+                    <ol>
+                        <li><strong>DON'T PANIC or close Paintstorm!</strong></li>
+                        <li>Try "Save As" with new name</li>
+                        <li>Try different location (desktop)</li>
+                        <li>Try different format (PSD → PSB)</li>
+                        <li>If all fails: Screenshot your layers panel</li>
+                        <li>Export as PNG to preserve current view</li>
+                        <li>Select All → Copy → New Document → Paste</li>
+                    </ol>
+                </div>
+
+                <h3>Export Problems</h3>
+                
+                <div class="card">
+                    <h4>📤 Export Troubleshooting</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Problem</th>
+                                <th>Reason</th>
+                                <th>Solution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>File too large</strong></td>
+                                <td>High resolution/quality</td>
+                                <td>Reduce size or quality settings</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Colors wrong</strong></td>
+                                <td>Color space issue</td>
+                                <td>Convert to sRGB before export</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Transparency lost</strong></td>
+                                <td>Wrong format</td>
+                                <td>Use PNG, not JPG</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Blurry export</strong></td>
+                                <td>Resampling issue</td>
+                                <td>Export at exact size needed</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Can't open file</strong></td>
+                                <td>Corrupted or wrong version</td>
+                                <td>Try opening in different software</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 7: Interface Problems -->
+            <section id="interface-problems" class="lesson-section">
+                <h2>Interface Problems 🖥️</h2>
+                
+                <p>Panels missing? Tools disappeared? Let's restore order!</p>
+                
+                <div class="card">
+                    <h3>🔧 Quick Interface Fixes</h3>
+                    <ul>
+                        <li><strong>Reset workspace:</strong> Window → Workspace → Reset</li>
+                        <li><strong>Missing panels:</strong> Window → [Panel Name]</li>
+                        <li><strong>Tiny interface:</strong> Edit → Preferences → Interface → UI Scaling</li>
+                        <li><strong>Wrong language:</strong> Edit → Preferences → Interface → Language</li>
+                        <li><strong>Fullscreen stuck:</strong> Press F or Escape</li>
+                        <li><strong>Panels won't dock:</strong> Hold Shift while dragging</li>
+                    </ul>
+                </div>
+
+                <h3>Display Issues</h3>
+                
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Issue</th>
+                                <th>Platform</th>
+                                <th>Fix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Blurry on 4K</strong></td>
+                                <td>Windows</td>
+                                <td>Right-click app → Properties → Disable DPI scaling</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Too small on Retina</strong></td>
+                                <td>Mac</td>
+                                <td>Preferences → Interface → 200% scaling</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cursor offset</strong></td>
+                                <td>All</td>
+                                <td>Calibrate tablet to display</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Screen tearing</strong></td>
+                                <td>All</td>
+                                <td>Enable V-Sync in GPU settings</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 8: Common Mistakes -->
+            <section id="common-mistakes" class="lesson-section">
+                <h2>Common Beginner Mistakes 🎯</h2>
+                
+                <p>We all make these! Learn from others' "oops" moments.</p>
+                
+                <div class="card" style="background: #fff8e1; border-left: 4px solid #ffc107;">
+                    <h3>🤦 Top 10 Beginner Mistakes</h3>
+                    <ol>
+                        <li><strong>Drawing on wrong layer</strong> → Always check active layer</li>
+                        <li><strong>Working too small</strong> → Start big, scale down later</li>
+                        <li><strong>Not saving frequently</strong> → Ctrl/Cmd+S every 5 minutes</li>
+                        <li><strong>Using pure black/white</strong> → Use dark gray/off-white instead</li>
+                        <li><strong>Forgetting to flip canvas</strong> → Flip to check proportions</li>
+                        <li><strong>One giant layer</strong> → Separate elements for flexibility</li>
+                        <li><strong>Destructive editing</strong> → Use masks, not eraser</li>
+                        <li><strong>No backups</strong> → Save versions and backup</li>
+                        <li><strong>Fighting the tools</strong> → Learn shortcuts, they're worth it</li>
+                        <li><strong>Zooming in too much</strong> → Work zoomed out, detail zoomed in</li>
+                    </ol>
+                </div>
+
+                <h3>Digital Art Misconceptions</h3>
+                
+                <div class="card">
+                    <h4>❌ Myths vs ✅ Reality</h4>
+                    <ul>
+                        <li>❌ "Digital art is cheating" → ✅ It's a different medium with its own skills</li>
+                        <li>❌ "Undo makes it easy" → ✅ Undo helps you learn faster</li>
+                        <li>❌ "You need expensive equipment" → ✅ Skill matters more than tools</li>
+                        <li>❌ "Filters do the work" → ✅ Filters are tools, not magic</li>
+                        <li>❌ "Copy-paste is bad" → ✅ Work smart, not hard</li>
+                        <li>❌ "Real artists don't use references" → ✅ EVERYONE uses references</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 9: Optimization -->
+            <section id="optimization" class="lesson-section">
+                <h2>Optimization Tips 🚀</h2>
+                
+                <p>Make Paintstorm run like butter on your system!</p>
+                
+                <h3>System Optimization</h3>
+                
+                <div class="card">
+                    <h4>💻 Computer Settings</h4>
+                    <ul>
+                        <li><strong>Close unnecessary programs</strong> - Each one uses RAM</li>
+                        <li><strong>Disable cloud sync while working</strong> - Dropbox, Google Drive, etc.</li>
+                        <li><strong>Set power mode to Performance</strong> - Not battery saver</li>
+                        <li><strong>Keep 10-20% disk space free</strong> - For scratch disk</li>
+                        <li><strong>Update graphics drivers</strong> - Monthly check</li>
+                        <li><strong>Disable Windows animations</strong> - Small but helps</li>
+                        <li><strong>Add Paintstorm to antivirus exceptions</strong> - Stops scanning interference</li>
+                    </ul>
+                </div>
+
+                <h3>Workflow Optimization</h3>
+                
+                <div class="card">
+                    <h4>🎨 Smart Working Habits</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Instead of...</th>
+                                <th>Try this...</th>
+                                <th>Why</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>8000x8000px canvas</td>
+                                <td>3000x3000px, upscale later</td>
+                                <td>4x faster performance</td>
+                            </tr>
+                            <tr>
+                                <td>100 layers</td>
+                                <td>Merge completed sections</td>
+                                <td>Less RAM usage</td>
+                            </tr>
+                            <tr>
+                                <td>500px brush</td>
+                                <td>Large canvas, smaller brush</td>
+                                <td>Reduces lag</td>
+                            </tr>
+                            <tr>
+                                <td>All effects live</td>
+                                <td>Apply effects last</td>
+                                <td>Smoother painting</td>
+                            </tr>
+                            <tr>
+                                <td>One huge session</td>
+                                <td>Regular breaks and saves</td>
+                                <td>Prevents crashes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 10: Getting Help -->
+            <section id="getting-help" class="lesson-section">
+                <h2>Getting Help 🆘</h2>
+                
+                <p>Still stuck? Here's where to find answers!</p>
+                
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h3>📚 Help Resources</h3>
+                    <ul>
+                        <li><strong>Official Manual:</strong> Help → User Manual (F1)</li>
+                        <li><strong>Paintstorm Forums:</strong> Community help and tips</li>
+                        <li><strong>YouTube Tutorials:</strong> Search "Paintstorm Studio [your problem]"</li>
+                        <li><strong>Discord Communities:</strong> Real-time help from users</li>
+                        <li><strong>Reddit r/paintstorm:</strong> Questions and answers</li>
+                        <li><strong>Email Support:</strong> For license/technical issues</li>
+                    </ul>
+                </div>
+
+                <h3>How to Ask for Help</h3>
+                
+                <div class="card">
+                    <h4>✅ Good Help Request</h4>
+                    <p>"I'm using Paintstorm 2.5 on Windows 10 with a Wacom Intuos. When I try to use the blur tool, the program crashes. This happens every time, even after restarting. I've updated my drivers. Here's a screenshot of the error."</p>
+                    
+                    <h4>❌ Bad Help Request</h4>
+                    <p>"It doesn't work! Help!"</p>
+                    
+                    <h5>Include:</h5>
+                    <ul>
+                        <li>Paintstorm version</li>
+                        <li>Operating system</li>
+                        <li>Tablet model (if relevant)</li>
+                        <li>Exact steps that cause the problem</li>
+                        <li>What you've already tried</li>
+                        <li>Screenshots if possible</li>
+                    </ul>
+                </div>
+
+                <blockquote>
+                    <strong>💡 Remember:</strong> Every expert was once a beginner who got stuck on the same problems you're facing. Don't be embarrassed to ask for help - the community is friendly and wants to help!
+                </blockquote>
+            </section>
+
+            <!-- Troubleshooting Flowchart -->
+            <div class="card" style="margin-top: 2rem; background: #e8f5e9; border-left: 4px solid #4CAF50;">
+                <h3>🎯 Master Troubleshooting Process</h3>
+                <ol>
+                    <li><strong>Identify:</strong> What exactly isn't working?</li>
+                    <li><strong>Reproduce:</strong> Can you make it happen again?</li>
+                    <li><strong>Isolate:</strong> Does it happen with other tools/files?</li>
+                    <li><strong>Research:</strong> Google the exact error message</li>
+                    <li><strong>Test:</strong> Try one solution at a time</li>
+                    <li><strong>Document:</strong> Write down what fixed it for next time</li>
+                </ol>
+                
+                <p><strong>Golden Rule:</strong> Changed something and now it's broken? Undo that change first!</p>
+            </div>
+
+            <!-- Lesson Navigation -->
+            <nav class="lesson-nav" aria-label="Lesson Navigation">
+                <a href="file_management.html" class="prev-lesson">← Previous: File Management</a>
+                <a href="index.html" class="home-link">🏠 Course Home</a>
+                <a href="index.html#next-steps" class="next-lesson">Your Art Journey Begins! →</a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; margin-top: 4rem; border-top: 1px solid var(--border-color);">
+        <p>&copy; 2024 Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Toggle Table of Contents
+        function toggleTOC() {
+            const tocList = document.getElementById('toc-list');
+            const tocIcon = document.getElementById('toc-toggle-icon');
+            
+            if (tocList.style.maxHeight === '0px' || tocList.style.maxHeight === '') {
+                tocList.style.maxHeight = '500px';
+                tocIcon.style.transform = 'rotate(0deg)';
+                localStorage.setItem('tocState', 'expanded');
+            } else {
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+                localStorage.setItem('tocState', 'collapsed');
+            }
+        }
+        
+        // Initialize TOC state
+        document.addEventListener('DOMContentLoaded', () => {
+            const tocState = localStorage.getItem('tocState');
+            if (tocState === 'collapsed') {
+                const tocList = document.getElementById('toc-list');
+                const tocIcon = document.getElementById('toc-toggle-icon');
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+            }
+        });
+        
+        // Progress indicator
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.querySelector('.progress-bar').style.width = `${Math.min(progress, 100)}%`;
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isOpen = navLinks.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+                navLinks.setAttribute('aria-hidden', !isOpen);
+            });
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            
+            themeToggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const newTheme = current === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+            });
+        }
+
+        // Smooth scrolling for TOC
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

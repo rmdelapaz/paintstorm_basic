@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete beginner's guide to Paintstorm Studio - Learn digital painting from zero with comprehensive, easy-to-follow tutorials">
+    <meta name="keywords" content="Paintstorm Studio, digital art, tutorial, beginner, painting, drawing">
+    <meta name="author" content="Paintstorm Tutorial">
+    <title>Paintstorm Studio Complete Beginner's Guide</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <style>
+        /* Hero section styles */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-radius: 0 0 2rem 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .cta-button {
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 2rem;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        /* Module cards */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .module-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .module-card.essential::before {
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+        }
+        
+        .module-card.core::before {
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+        }
+        
+        .module-card.advanced::before {
+            background: linear-gradient(90deg, #43e97b, #38f9d7);
+        }
+        
+        .module-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .lesson-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+        
+        .lesson-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .lesson-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .lesson-list a {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .lesson-list a:hover {
+            color: #667eea;
+        }
+        
+        .lesson-list .lesson-icon {
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+        
+        .lesson-list .duration {
+            margin-left: auto;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Features section */
+        .features {
+            background: #f8f9fa;
+            padding: 3rem 0;
+            margin: 3rem 0;
+            border-radius: 1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+        
+        .feature-card {
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Stats section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Progress tracker */
+        .progress-tracker {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .progress-bar-container {
+            background: #f0f0f0;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin: 3rem 0;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            color: #666;
+            line-height: 1.6;
+            display: none;
+            padding-top: 0.5rem;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .faq-toggle {
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🎨 Paintstorm Studio Tutorials</a>
+            <div class="nav-links">
+                <a href="#modules">Lessons</a>
+                <a href="#about">About</a>
+                <a href="#faq">FAQ</a>
+                <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>🎨 Master Paintstorm Studio</h1>
+        <p>The Complete Beginner's Guide to Digital Painting</p>
+        <p style="font-size: 1rem; opacity: 0.9;">From absolute zero to creating stunning digital artwork - no experience required!</p>
+        <div class="cta-buttons">
+            <a href="welcome_to_paintstorm.html" class="cta-button">Start Learning Now</a>
+            <a href="#modules" class="cta-button secondary">Browse All Lessons</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Stats Section -->
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="stat-number">9</span>
+                    <span class="stat-label">Comprehensive Lessons</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Practice Exercises</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">0→Pro</span>
+                    <span class="stat-label">Complete Journey</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Beginner Friendly</span>
+                </div>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="progress-tracker" id="progress-tracker">
+                <h2>📊 Your Learning Progress</h2>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="progress-bar"></div>
+                </div>
+                <p id="progress-text">Ready to begin your journey! Start with Lesson 1.</p>
+            </div>
+
+            <!-- Learning Path Section -->
+            <section id="modules">
+                <h2 style="text-align: center; font-size: 2.5rem; margin: 3rem 0;">🎯 Your Learning Path</h2>
+                
+                <!-- Module 1: Getting Started -->
+                <div class="module-section">
+                    <h3 style="color: #f5576c; margin-bottom: 1.5rem;">🚀 Module 1: Getting Started</h3>
+                    <p style="margin-bottom: 2rem;">Essential foundations every digital artist needs. Start here!</p>
+                    
+                    <div class="modules-grid">
+                        <div class="module-card essential">
+                            <span class="module-number">1</span>
+                            <h3>Welcome & Motivation</h3>
+                            <p>Get inspired and understand what's possible with digital art.</p>
+                            <ul class="lesson-list">
+                                <li>
+                                    <a href="welcome_to_paintstorm.html">
+                                        <span class="lesson-icon">🎨</span>
+                                        Welcome to Paintstorm Studio
+                                        <span class="duration">15 min</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card essential">
+                            <span class="module-number">2</span>
+                            <h3>Software Basics</h3>
+                            <p>Learn to navigate and use Paintstorm's interface effectively.</p>
+                            <ul class="lesson-list">
+                                <li>
+                                    <a href="interface_basics.html">
+                                        <span class="lesson-icon">🖥️</span>
+                                        Interface & Navigation
+                                        <span class="duration">30 min</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card essential">
+                            <span class="module-number">3</span>
+                            <h3>Essential Tools</h3>
+                            <p>Master the fundamental tools beyond brushes.</p>
+                            <ul class="lesson-list">
+                                <li>
+                                    <a href="essential_tools.html">
+                                        <span class="lesson-icon">🛠️</span>
+                                        Essential Tools & Operations
+                                        <span class="duration">45 min</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2: Core Skills -->
+                <div class="module-section" style="margin-top: 4rem;">
+                    <h3 style="color: #4facfe; margin-bottom: 1.5rem;">🎨 Module 2: Core Skills</h3>
+                    <p style="margin-bottom: 2rem;">Build your digital painting foundation with these essential skills.</p>
+                    
+                    <div class="modules-grid">
+                        <div class="module-card core">
+                            <span class="module-number">4</span>
+                            <h3>Brush Mastery</h3>
+                            <p>Understand and control Paintstorm's powerful brush engine.</p>
+                            <ul class="lesson-list">
+                                <li>
+                                    <a href="brush_fundamentals.html">
+                                        <span class="lesson-icon">🖌️</span>
+                                        Brush Fundamentals
+                                        <span class="duration">45 min</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card core">
+                            <span class="module-number">5</span>
+                            <h3>Layer System</h3>
+                            <p>Work non-destructively with layers and blend modes.</p>
+                            <ul class="lesson-list">
+                                <li>
+                                    <a href="working_with_layers.html">
+                                        <span class="lesson-icon">📚</span>
+                                        Working with Layers
+                                        <span class="duration">40 min</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card core">
+                            <span class="module-number">6</span>
+                            <h3>Color Theory</h3>
+                            <p>Master color selection, mixing, and harmony.</p>
+                            <ul class="lesson-list">
+                                <li>
+                                    <a href="color_theory.html">
+                                        <span class="lesson-icon">🎨</span>
+                                        Color Theory & Mixing
+                                        <span class="duration">50 min</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3: Painting Techniques -->
+                <div class="module-section" style="margin-top: 4rem;">
+                    <h3 style="color: #43e97b; margin-bottom: 1.5rem;">🖼️ Module 3: Complete Workflow</h3>
+                    <p style="margin-bottom: 2rem;">Put it all together and create your first complete digital paintings!</p>
+                    
+                    <div class="modules-grid">
+                        <div class="module-card advanced">
+                            <span class="module-number">7</span>
+                            <h3>Painting Process</h3>
+                            <p>Complete workflow from sketch to finished artwork.</p>
+                            <ul class="lesson-list">
+                                <li>
+                                    <a href="basic_painting_techniques.html">
+                                        <span class="lesson-icon">🎯</span>
+                                        Basic Painting Techniques
+                                        <span class="duration">60 min</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card advanced">
+                            <span class="module-number">8</span>
+                            <h3>File Management</h3>
+                            <p>Save, organize, and export your artwork properly.</p>
+                            <ul class="lesson-list">
+                                <li>
+                                    <a href="file_management.html">
+                                        <span class="lesson-icon">📁</span>
+                                        File Management & Export
+                                        <span class="duration">35 min</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card advanced">
+                            <span class="module-number">9</span>
+                            <h3>Troubleshooting</h3>
+                            <p>Solve common problems and optimize performance.</p>
+                            <ul class="lesson-list">
+                                <li>
+                                    <a href="troubleshooting.html">
+                                        <span class="lesson-icon">🔧</span>
+                                        Troubleshooting Guide
+                                        <span class="duration">Reference</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features">
+                <h2 style="text-align: center; margin-bottom: 2rem;">✨ What Makes This Course Special</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">👶</div>
+                        <h4>True Beginner Friendly</h4>
+                        <p>No experience needed. We start from absolute zero.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h4>Practical Focus</h4>
+                        <p>Learn by doing with hands-on exercises in every lesson.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h4>Mobile Friendly</h4>
+                        <p>Learn anywhere with responsive design and offline support.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h4>Progressive Learning</h4>
+                        <p>Each lesson builds on the previous one systematically.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" style="margin: 4rem 0;">
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem;">
+                    <h2 style="text-align: center; margin-bottom: 2rem;">📖 About This Tutorial Series</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; max-width: 800px; margin: 0 auto;">
+                        This comprehensive tutorial series was created specifically for complete beginners who want to learn digital art with Paintstorm Studio. Unlike scattered YouTube videos or dense manuals, this course provides a structured, step-by-step journey from your very first brushstroke to creating complete digital paintings.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; max-width: 800px; margin: 2rem auto 0;">
+                        Every lesson includes visual examples, interactive exercises, and real-world projects. You'll not only learn HOW to use the tools, but also WHEN and WHY to use them. By the end of this course, you'll have the confidence and skills to create your own digital artwork!
+                    </p>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="faq-section">
+                <h2 style="text-align: center; margin-bottom: 2rem;">❓ Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do I need any prior art experience?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        No! This course is designed for complete beginners. We start with the absolute basics and build up gradually. If you can hold a mouse or stylus, you can follow along!
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do I need a graphics tablet?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        While a graphics tablet is highly recommended for digital painting, you can start learning with just a mouse. Many concepts and tools can be practiced without pressure sensitivity. However, for best results, consider getting even a basic tablet.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long will it take to complete the course?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        The core lessons can be completed in about 6-8 hours of focused learning. However, mastery comes from practice! We recommend spending at least 30 minutes daily practicing what you learn. Most students feel comfortable with the basics after 2-4 weeks of regular practice.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is this course free?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! This entire tutorial series is completely free. It was created to help beginners get started with digital art without any barriers. Share it with others who might benefit!
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What version of Paintstorm Studio do I need?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        These tutorials work with Paintstorm Studio version 2.0 and above. Most features are consistent across versions, though some interface elements might look slightly different in newer versions.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section style="text-align: center; margin: 4rem 0;">
+                <div class="card" style="background: #e8f5e9; padding: 3rem;">
+                    <h2 style="margin-bottom: 1rem;">🎨 Ready to Start Your Art Journey?</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">Join thousands of artists who started their digital art journey here!</p>
+                    <a href="welcome_to_paintstorm.html" class="cta-button" style="font-size: 1.2rem; padding: 1.2rem 3rem;">
+                        Begin Lesson 1 →
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: #2c3e50; color: white; padding: 3rem 0; margin-top: 4rem;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0;"><a href="welcome_to_paintstorm.html" style="color: #ecf0f1;">Start Learning</a></li>
+                        <li style="padding: 0.5rem 0;"><a href="#modules" style="color: #ecf0f1;">All Lessons</a></li>
+                        <li style="padding: 0.5rem 0;"><a href="troubleshooting.html" style="color: #ecf0f1;">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Resources</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0;"><a href="https://paintstormstudio.com" target="_blank" style="color: #ecf0f1;">Official Website</a></li>
+                        <li style="padding: 0.5rem 0;"><a href="#" style="color: #ecf0f1;">Community Forum</a></li>
+                        <li style="padding: 0.5rem 0;"><a href="#" style="color: #ecf0f1;">Discord Server</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>About</h4>
+                    <p style="line-height: 1.6; color: #bdc3c7;">
+                        This tutorial series was created with love for the digital art community. Free to use, share, and learn from!
+                    </p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #34495e;">
+                <p>&copy; 2024 Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            
+            themeToggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const newTheme = current === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+            });
+        }
+
+        // Progress tracking
+        function updateProgress() {
+            const lessons = [
+                'welcome_to_paintstorm',
+                'interface_basics',
+                'essential_tools',
+                'brush_fundamentals',
+                'working_with_layers',
+                'color_theory',
+                'basic_painting_techniques',
+                'file_management',
+                'troubleshooting'
+            ];
+            
+            let completed = 0;
+            lessons.forEach(lesson => {
+                if (localStorage.getItem(`lesson_${lesson}_completed`) === 'true') {
+                    completed++;
+                }
+            });
+            
+            const percentage = (completed / lessons.length) * 100;
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            
+            if (progressBar) {
+                progressBar.style.width = `${percentage}%`;
+            }
+            
+            if (progressText) {
+                if (completed === 0) {
+                    progressText.textContent = 'Ready to begin your journey! Start with Lesson 1.';
+                } else if (completed === lessons.length) {
+                    progressText.textContent = '🎉 Congratulations! You\'ve completed all lessons!';
+                } else {
+                    progressText.textContent = `${completed} of ${lessons.length} lessons completed (${Math.round(percentage)}%)`;
+                }
+            }
+        }
+        
+        // Update progress on page load
+        updateProgress();
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out both';
+                }
+            });
+        }, observerOptions);
+
+        // Observe module cards
+        document.querySelectorAll('.module-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

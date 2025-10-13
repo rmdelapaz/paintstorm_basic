@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master layer management in Paintstorm Studio - understanding layers, blending modes, masks, and professional workflows">
+    <meta name="author" content="Paintstorm Tutorial">
+    <title>Working with Layers - Paintstorm Studio Essentials</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
+    <!-- Progress indicator -->
+    <div class="progress-indicator" role="progressbar" aria-label="Page scroll progress">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🎨 Paintstorm Studio</a>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <div class="nav-links" id="nav-links" aria-hidden="false">
+                <a href="index.html">Home</a>
+                <a href="index.html#modules">All Lessons</a>
+                <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#modules">Getting Started</a></li>
+            <li aria-current="page">Working with Layers</li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Lesson Header -->
+            <header>
+                <h1>🎭 Working with Layers</h1>
+                <p class="lead">Layers are the secret to professional digital art! Think of them as transparent sheets stacked on top of each other. Master layers, and you'll paint with confidence, experiment fearlessly, and work non-destructively!</p>
+                
+                <!-- Learning objectives -->
+                <div class="card">
+                    <h2>🎯 Learning Objectives</h2>
+                    <p>By the end of this lesson, you will be able to:</p>
+                    <ul>
+                        <li>Understand the layer stack and how layers interact</li>
+                        <li>Create, organize, and manage layers efficiently</li>
+                        <li>Master blending modes for creative effects</li>
+                        <li>Use layer masks for non-destructive editing</li>
+                        <li>Work with adjustment layers and layer effects</li>
+                        <li>Apply professional layer workflows to your art</li>
+                    </ul>
+                </div>
+            </header>
+
+            <!-- Table of Contents -->
+            <nav class="card" aria-label="Table of Contents">
+                <h2 style="cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center;" onclick="toggleTOC()">
+                    <span>📑 Table of Contents</span>
+                    <span id="toc-toggle-icon" style="transition: transform 0.3s;">▼</span>
+                </h2>
+                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 500px; margin: 0; padding-left: 1.5rem;">
+                    <li><a href="#understanding-layers" class="toc-link">Understanding Layers</a></li>
+                    <li><a href="#layer-basics" class="toc-link">Layer Basics & Controls</a></li>
+                    <li><a href="#layer-types" class="toc-link">Types of Layers</a></li>
+                    <li><a href="#blending-modes" class="toc-link">Blending Modes Mastery</a></li>
+                    <li><a href="#layer-masks" class="toc-link">Layer Masks & Transparency</a></li>
+                    <li><a href="#groups-organization" class="toc-link">Groups & Organization</a></li>
+                    <li><a href="#adjustment-layers" class="toc-link">Adjustment Layers</a></li>
+                    <li><a href="#professional-workflows" class="toc-link">Professional Workflows</a></li>
+                    <li><a href="#practice" class="toc-link">Practice Exercises</a></li>
+                    <li><a href="#summary" class="toc-link">Summary & Pro Tips</a></li>
+                </ol>
+            </nav>
+
+            <!-- Section 1: Understanding Layers -->
+            <section id="understanding-layers" class="lesson-section">
+                <h2>Understanding Layers 📚</h2>
+                
+                <p>Imagine you're creating a collage with transparent sheets. You can draw on each sheet independently, move them around, make them semi-transparent, or even apply special effects. That's exactly what layers do in digital art!</p>
+                
+                <blockquote>
+                    <strong>🌟 Why Layers Changed Everything:</strong> Before layers, if you made a mistake, you'd have to undo everything or paint over it. With layers, you can experiment fearlessly - just delete the layer if you don't like it!
+                </blockquote>
+
+                <h3>The Layer Stack Concept</h3>
+                
+                <canvas id="layer-stack-demo" width="800" height="400" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: white;"></canvas>
+                
+                <script>
+                    const layerCanvas = document.getElementById('layer-stack-demo');
+                    const lCtx = layerCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const lScale = window.devicePixelRatio || 1;
+                    layerCanvas.width = 800 * lScale;
+                    layerCanvas.height = 400 * lScale;
+                    lCtx.scale(lScale, lScale);
+                    
+                    // Draw background
+                    lCtx.fillStyle = '#f0f0f0';
+                    lCtx.fillRect(0, 0, 800, 400);
+                    
+                    // Title
+                    lCtx.fillStyle = '#333';
+                    lCtx.font = 'bold 18px Arial';
+                    lCtx.textAlign = 'center';
+                    lCtx.fillText('How Layers Stack Up', 400, 30);
+                    
+                    // Draw 3D layer representation
+                    const layers = [
+                        { name: 'Background', color: '#3498db', y: 280 },
+                        { name: 'Character', color: '#e74c3c', y: 220 },
+                        { name: 'Details', color: '#f39c12', y: 160 },
+                        { name: 'Effects', color: '#9b59b6', y: 100 }
+                    ];
+                    
+                    // Left side - Separated layers
+                    lCtx.font = '14px Arial';
+                    lCtx.fillStyle = '#666';
+                    lCtx.textAlign = 'left';
+                    lCtx.fillText('Separated View', 80, 60);
+                    
+                    layers.forEach((layer, i) => {
+                        // Draw layer sheet
+                        lCtx.save();
+                        lCtx.globalAlpha = 0.7;
+                        lCtx.fillStyle = layer.color;
+                        lCtx.fillRect(80 + i * 10, layer.y + i * 10, 180, 60);
+                        
+                        // Draw border
+                        lCtx.globalAlpha = 1;
+                        lCtx.strokeStyle = '#333';
+                        lCtx.lineWidth = 2;
+                        lCtx.strokeRect(80 + i * 10, layer.y + i * 10, 180, 60);
+                        
+                        // Label
+                        lCtx.fillStyle = 'white';
+                        lCtx.font = 'bold 12px Arial';
+                        lCtx.fillText(layer.name, 90 + i * 10, layer.y + i * 10 + 35);
+                        lCtx.restore();
+                    });
+                    
+                    // Arrow
+                    lCtx.strokeStyle = '#333';
+                    lCtx.lineWidth = 3;
+                    lCtx.beginPath();
+                    lCtx.moveTo(350, 200);
+                    lCtx.lineTo(420, 200);
+                    lCtx.stroke();
+                    
+                    // Arrowhead
+                    lCtx.beginPath();
+                    lCtx.moveTo(420, 200);
+                    lCtx.lineTo(410, 195);
+                    lCtx.lineTo(410, 205);
+                    lCtx.closePath();
+                    lCtx.fillStyle = '#333';
+                    lCtx.fill();
+                    
+                    // Right side - Combined result
+                    lCtx.font = '14px Arial';
+                    lCtx.fillStyle = '#666';
+                    lCtx.textAlign = 'left';
+                    lCtx.fillText('Combined Result', 480, 60);
+                    
+                    // Draw combined layers
+                    const combinedX = 480;
+                    const combinedY = 150;
+                    
+                    // Background
+                    lCtx.fillStyle = '#3498db';
+                    lCtx.fillRect(combinedX, combinedY, 200, 120);
+                    
+                    // Character (with transparency)
+                    lCtx.globalAlpha = 0.9;
+                    lCtx.fillStyle = '#e74c3c';
+                    lCtx.beginPath();
+                    lCtx.arc(combinedX + 100, combinedY + 60, 40, 0, Math.PI * 2);
+                    lCtx.fill();
+                    
+                    // Details
+                    lCtx.globalAlpha = 0.8;
+                    lCtx.fillStyle = '#f39c12';
+                    lCtx.fillRect(combinedX + 70, combinedY + 40, 60, 10);
+                    lCtx.fillRect(combinedX + 85, combinedY + 55, 30, 30);
+                    
+                    // Effects
+                    lCtx.globalAlpha = 0.5;
+                    lCtx.fillStyle = '#9b59b6';
+                    for(let i = 0; i < 5; i++) {
+                        lCtx.beginPath();
+                        lCtx.arc(
+                            combinedX + 50 + Math.random() * 100,
+                            combinedY + 20 + Math.random() * 80,
+                            5 + Math.random() * 10,
+                            0, Math.PI * 2
+                        );
+                        lCtx.fill();
+                    }
+                    
+                    lCtx.globalAlpha = 1;
+                    
+                    // Border
+                    lCtx.strokeStyle = '#333';
+                    lCtx.lineWidth = 2;
+                    lCtx.strokeRect(combinedX, combinedY, 200, 120);
+                    
+                    // Labels at bottom
+                    lCtx.font = '12px Arial';
+                    lCtx.fillStyle = '#666';
+                    lCtx.textAlign = 'center';
+                    lCtx.fillText('Each layer can be edited independently!', 400, 370);
+                </script>
+
+                <div class="card">
+                    <h3>🎨 Key Concepts</h3>
+                    <ul>
+                        <li><strong>Stacking Order:</strong> Layers on top cover layers below (like a deck of cards)</li>
+                        <li><strong>Transparency:</strong> Transparent areas let lower layers show through</li>
+                        <li><strong>Independence:</strong> Each layer can be edited without affecting others</li>
+                        <li><strong>Visibility:</strong> Layers can be shown/hidden instantly</li>
+                        <li><strong>Opacity:</strong> Control how see-through each layer is (0-100%)</li>
+                        <li><strong>Blending:</strong> Layers can interact in special ways using blend modes</li>
+                    </ul>
+                </div>
+
+                <h3>Why Use Layers?</h3>
+                
+                <div class="mermaid">
+                    graph LR
+                        A[Layers Enable] --> B[Non-Destructive Editing]
+                        A --> C[Easy Experimentation]
+                        A --> D[Complex Compositions]
+                        A --> E[Professional Workflow]
+                        
+                        B --> B1[Change without damage]
+                        C --> C1[Try ideas risk-free]
+                        D --> D1[Combine elements]
+                        E --> E1[Organized projects]
+                </div>
+            </section>
+
+            <!-- Section 2: Layer Basics -->
+            <section id="layer-basics" class="lesson-section">
+                <h2>Layer Basics & Controls 🎮</h2>
+                
+                <p>Let's master the essential layer operations. These are your bread and butter - you'll use them constantly!</p>
+                
+                <h3>The Layers Panel</h3>
+                
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h4>📋 Layers Panel Anatomy</h4>
+                    <ul>
+                        <li><strong>Layer Thumbnail:</strong> Visual preview of layer content</li>
+                        <li><strong>Layer Name:</strong> Double-click to rename (always name your layers!)</li>
+                        <li><strong>Visibility Eye:</strong> Click to show/hide layer</li>
+                        <li><strong>Lock Icons:</strong> Lock transparency, pixels, position, or all</li>
+                        <li><strong>Opacity Slider:</strong> Make layer more/less transparent</li>
+                        <li><strong>Blend Mode Dropdown:</strong> Change how layer interacts</li>
+                        <li><strong>Layer Mask:</strong> Shows mask thumbnail when present</li>
+                    </ul>
+                </div>
+
+                <h3>Essential Layer Operations</h3>
+                
+                <div class="card">
+                    <h4>🛠️ Creating Layers</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Windows</th>
+                                <th>Mac</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>New Layer</td>
+                                <td>Ctrl + Shift + N</td>
+                                <td>Cmd + Shift + N</td>
+                                <td>Creates empty layer above current</td>
+                            </tr>
+                            <tr>
+                                <td>Duplicate Layer</td>
+                                <td>Ctrl + J</td>
+                                <td>Cmd + J</td>
+                                <td>Copies current layer</td>
+                            </tr>
+                            <tr>
+                                <td>New from Visible</td>
+                                <td>Ctrl + Shift + Alt + E</td>
+                                <td>Cmd + Shift + Option + E</td>
+                                <td>Merges all visible to new layer</td>
+                            </tr>
+                            <tr>
+                                <td>Delete Layer</td>
+                                <td>Delete key</td>
+                                <td>Delete key</td>
+                                <td>Removes selected layer</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h4>🎯 Selecting & Moving Layers</h4>
+                    <ul>
+                        <li><strong>Select layer:</strong> Click on it in the Layers panel</li>
+                        <li><strong>Select multiple:</strong> Ctrl/Cmd + click each layer</li>
+                        <li><strong>Select range:</strong> Click first, Shift + click last</li>
+                        <li><strong>Auto-select:</strong> V (Move tool) + Ctrl/Cmd + click on canvas</li>
+                        <li><strong>Move up/down stack:</strong> Ctrl/Cmd + [ or ]</li>
+                        <li><strong>Move to top/bottom:</strong> Ctrl/Cmd + Shift + [ or ]</li>
+                    </ul>
+                </div>
+
+                <blockquote>
+                    <strong>💡 Pro Tip:</strong> Name your layers as you create them! "Layer 47" tells you nothing, but "Character_Hair_Highlights" tells you everything. Future you will thank present you!
+                </blockquote>
+
+                <h3>Layer Properties</h3>
+                
+                <canvas id="layer-properties" width="800" height="300" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: white;"></canvas>
+                
+                <script>
+                    const propCanvas = document.getElementById('layer-properties');
+                    const pCtx = propCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const pScale = window.devicePixelRatio || 1;
+                    propCanvas.width = 800 * pScale;
+                    propCanvas.height = 300 * pScale;
+                    pCtx.scale(pScale, pScale);
+                    
+                    // Title
+                    pCtx.fillStyle = '#333';
+                    pCtx.font = 'bold 16px Arial';
+                    pCtx.textAlign = 'center';
+                    pCtx.fillText('Layer Opacity Demonstration', 400, 25);
+                    
+                    // Draw opacity examples
+                    const opacities = [100, 75, 50, 25];
+                    const startX = 120;
+                    
+                    opacities.forEach((opacity, i) => {
+                        const x = startX + i * 150;
+                        const y = 80;
+                        
+                        // Background pattern
+                        pCtx.fillStyle = '#e0e0e0';
+                        for(let row = 0; row < 8; row++) {
+                            for(let col = 0; col < 8; col++) {
+                                if((row + col) % 2 === 0) {
+                                    pCtx.fillRect(x + col * 10, y + row * 10, 10, 10);
+                                }
+                            }
+                        }
+                        
+                        // Draw circle with opacity
+                        pCtx.save();
+                        pCtx.globalAlpha = opacity / 100;
+                        pCtx.fillStyle = '#e74c3c';
+                        pCtx.beginPath();
+                        pCtx.arc(x + 40, y + 40, 35, 0, Math.PI * 2);
+                        pCtx.fill();
+                        pCtx.restore();
+                        
+                        // Label
+                        pCtx.fillStyle = '#333';
+                        pCtx.font = 'bold 14px Arial';
+                        pCtx.textAlign = 'center';
+                        pCtx.fillText(opacity + '%', x + 40, y + 110);
+                        
+                        pCtx.font = '12px Arial';
+                        pCtx.fillStyle = '#666';
+                        pCtx.fillText('Opacity', x + 40, y + 125);
+                    });
+                    
+                    // Fill Mode examples
+                    pCtx.font = 'bold 16px Arial';
+                    pCtx.fillStyle = '#333';
+                    pCtx.textAlign = 'center';
+                    pCtx.fillText('Fill vs Opacity', 400, 200);
+                    
+                    // Fill affects content only
+                    pCtx.font = '12px Arial';
+                    pCtx.textAlign = 'left';
+                    pCtx.fillStyle = '#666';
+                    pCtx.fillText('Fill: Affects layer content only', 200, 230);
+                    pCtx.fillText('Opacity: Affects content + effects', 200, 250);
+                    
+                    // Visual comparison
+                    // With stroke (simulating layer effect)
+                    pCtx.save();
+                    pCtx.globalAlpha = 0.5;
+                    pCtx.fillStyle = '#3498db';
+                    pCtx.fillRect(450, 220, 60, 40);
+                    pCtx.globalAlpha = 1;
+                    pCtx.strokeStyle = '#2c3e50';
+                    pCtx.lineWidth = 3;
+                    pCtx.strokeRect(450, 220, 60, 40);
+                    pCtx.restore();
+                    
+                    pCtx.fillStyle = '#666';
+                    pCtx.font = '10px Arial';
+                    pCtx.textAlign = 'center';
+                    pCtx.fillText('50% Fill', 480, 275);
+                    pCtx.fillText('(stroke stays 100%)', 480, 287);
+                    
+                    // Both affected
+                    pCtx.save();
+                    pCtx.globalAlpha = 0.5;
+                    pCtx.fillStyle = '#3498db';
+                    pCtx.fillRect(550, 220, 60, 40);
+                    pCtx.strokeStyle = '#2c3e50';
+                    pCtx.lineWidth = 3;
+                    pCtx.strokeRect(550, 220, 60, 40);
+                    pCtx.restore();
+                    
+                    pCtx.fillStyle = '#666';
+                    pCtx.font = '10px Arial';
+                    pCtx.fillText('50% Opacity', 580, 275);
+                    pCtx.fillText('(everything 50%)', 580, 287);
+                </script>
+            </section>
+
+            <!-- Section 3: Layer Types -->
+            <section id="layer-types" class="lesson-section">
+                <h2>Types of Layers 📁</h2>
+                
+                <p>Paintstorm offers several specialized layer types, each with unique properties and uses. Understanding when to use each type is key to efficient workflows!</p>
+                
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Layer Type</th>
+                                <th>Icon</th>
+                                <th>Purpose</th>
+                                <th>Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Raster Layer</strong></td>
+                                <td>🎨</td>
+                                <td>Standard painting layer</td>
+                                <td>All painting, drawing, photo editing</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vector Layer</strong></td>
+                                <td>✏️</td>
+                                <td>Resolution-independent lines</td>
+                                <td>Line art, technical drawings</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Text Layer</strong></td>
+                                <td>T</td>
+                                <td>Editable text</td>
+                                <td>Typography, labels, titles</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Adjustment Layer</strong></td>
+                                <td>⚙️</td>
+                                <td>Non-destructive color/tone changes</td>
+                                <td>Color correction, effects</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fill Layer</strong></td>
+                                <td>◼</td>
+                                <td>Solid color, gradient, or pattern</td>
+                                <td>Backgrounds, overlays</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Group/Folder</strong></td>
+                                <td>📂</td>
+                                <td>Container for multiple layers</td>
+                                <td>Organization, applying effects to multiple layers</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Special Layer Features</h3>
+                
+                <div class="card">
+                    <h4>🔐 Layer Locks</h4>
+                    <ul>
+                        <li><strong>Lock Transparent Pixels:</strong> Paint only where pixels already exist</li>
+                        <li><strong>Lock Image Pixels:</strong> Prevent painting but allow moving</li>
+                        <li><strong>Lock Position:</strong> Prevent moving but allow painting</li>
+                        <li><strong>Lock All:</strong> Complete protection from changes</li>
+                    </ul>
+                    
+                    <p><strong>When to use:</strong> Lock transparent pixels when coloring line art, lock position when you have perfect placement, lock all for approved/finished elements.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🎯 Clipping Masks</h4>
+                    <p>A clipping mask makes a layer only visible within the boundaries of the layer below it. Think of it as "coloring inside the lines"!</p>
+                    
+                    <p><strong>To create:</strong> Alt/Option + click between two layers, or right-click → "Create Clipping Mask"</p>
+                    
+                    <p><strong>Perfect for:</strong></p>
+                    <ul>
+                        <li>Adding shadows/highlights to a character</li>
+                        <li>Texturing specific objects</li>
+                        <li>Non-destructive color changes</li>
+                        <li>Pattern overlays on shapes</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Blending Modes -->
+            <section id="blending-modes" class="lesson-section">
+                <h2>Blending Modes Mastery 🎨</h2>
+                
+                <p>Blending modes are like magic filters that change how layers interact. They're the secret sauce that makes digital art glow, shadow, and come alive!</p>
+                
+                <h3>Understanding Blend Mode Categories</h3>
+                
+                <div class="mermaid">
+                    graph TD
+                        A[Blend Modes] --> B[Normal Group]
+                        A --> C[Darken Group]
+                        A --> D[Lighten Group]
+                        A --> E[Contrast Group]
+                        A --> F[Inversion Group]
+                        A --> G[Component Group]
+                        
+                        B --> B1[Normal/Dissolve]
+                        C --> C1[Darken/Multiply/Color Burn]
+                        D --> D1[Lighten/Screen/Color Dodge]
+                        E --> E1[Overlay/Soft Light/Hard Light]
+                        F --> F1[Difference/Exclusion]
+                        G --> G1[Hue/Saturation/Color/Luminosity]
+                </div>
+
+                <h3>Essential Blend Modes</h3>
+                
+                <div class="card">
+                    <h4>🌟 The Big Five - Most Used Modes</h4>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mode</th>
+                                <th>Effect</th>
+                                <th>Use Case</th>
+                                <th>Pro Tip</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Multiply</strong></td>
+                                <td>Darkens by multiplying colors</td>
+                                <td>Shadows, darkening</td>
+                                <td>White becomes invisible</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Screen</strong></td>
+                                <td>Lightens by inverting, multiplying, inverting</td>
+                                <td>Light effects, glow</td>
+                                <td>Black becomes invisible</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Overlay</strong></td>
+                                <td>Combines Multiply and Screen</td>
+                                <td>Contrast, texture</td>
+                                <td>50% gray becomes invisible</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Soft Light</strong></td>
+                                <td>Gentler version of Overlay</td>
+                                <td>Subtle lighting</td>
+                                <td>Great for dodge/burn</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Color</strong></td>
+                                <td>Applies hue/saturation, keeps luminosity</td>
+                                <td>Colorizing</td>
+                                <td>Perfect for changing colors</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <canvas id="blend-modes-demo" width="800" height="400" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px; background: white;"></canvas>
+                
+                <script>
+                    const blendCanvas = document.getElementById('blend-modes-demo');
+                    const bCtx = blendCanvas.getContext('2d');
+                    
+                    // Handle high DPI
+                    const bScale = window.devicePixelRatio || 1;
+                    blendCanvas.width = 800 * bScale;
+                    blendCanvas.height = 400 * bScale;
+                    bCtx.scale(bScale, bScale);
+                    
+                    // Title
+                    bCtx.fillStyle = '#333';
+                    bCtx.font = 'bold 16px Arial';
+                    bCtx.textAlign = 'center';
+                    bCtx.fillText('Blend Mode Effects Visualization', 400, 25);
+                    
+                    // Draw base circles
+                    function drawExample(x, y, mode, color1, color2) {
+                        // Background circle
+                        bCtx.globalCompositeOperation = 'source-over';
+                        bCtx.fillStyle = color1;
+                        bCtx.beginPath();
+                        bCtx.arc(x, y, 30, 0, Math.PI * 2);
+                        bCtx.fill();
+                        
+                        // Overlapping circle with blend mode
+                        bCtx.globalCompositeOperation = mode;
+                        bCtx.fillStyle = color2;
+                        bCtx.beginPath();
+                        bCtx.arc(x + 20, y, 30, 0, Math.PI * 2);
+                        bCtx.fill();
+                        
+                        // Reset and label
+                        bCtx.globalCompositeOperation = 'source-over';
+                        bCtx.fillStyle = '#666';
+                        bCtx.font = '12px Arial';
+                        bCtx.textAlign = 'center';
+                        bCtx.fillText(mode.charAt(0).toUpperCase() + mode.slice(1), x + 10, y + 50);
+                    }
+                    
+                    // Examples row 1
+                    drawExample(100, 80, 'source-over', '#3498db', '#e74c3c');
+                    drawExample(250, 80, 'multiply', '#3498db', '#e74c3c');
+                    drawExample(400, 80, 'screen', '#3498db', '#e74c3c');
+                    drawExample(550, 80, 'overlay', '#3498db', '#e74c3c');
+                    drawExample(700, 80, 'difference', '#3498db', '#e74c3c');
+                    
+                    // Practical example
+                    bCtx.font = 'bold 14px Arial';
+                    bCtx.fillStyle = '#333';
+                    bCtx.textAlign = 'left';
+                    bCtx.fillText('Practical Application:', 50, 200);
+                    
+                    // Base image (simplified)
+                    bCtx.fillStyle = '#8e44ad';
+                    bCtx.fillRect(100, 220, 100, 100);
+                    bCtx.fillStyle = '#3498db';
+                    bCtx.beginPath();
+                    bCtx.arc(150, 270, 30, 0, Math.PI * 2);
+                    bCtx.fill();
+                    
+                    bCtx.fillStyle = '#666';
+                    bCtx.font = '11px Arial';
+                    bCtx.textAlign = 'center';
+                    bCtx.fillText('Base Art', 150, 340);
+                    
+                    // Plus sign
+                    bCtx.fillStyle = '#333';
+                    bCtx.font = '24px Arial';
+                    bCtx.fillText('+', 250, 275);
+                    
+                    // Shadow layer
+                    bCtx.globalCompositeOperation = 'source-over';
+                    bCtx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+                    bCtx.fillRect(300, 220, 100, 100);
+                    bCtx.globalCompositeOperation = 'multiply';
+                    bCtx.fillStyle = '#2c3e50';
+                    bCtx.beginPath();
+                    bCtx.moveTo(300, 320);
+                    bCtx.lineTo(400, 320);
+                    bCtx.lineTo(350, 250);
+                    bCtx.closePath();
+                    bCtx.fill();
+                    
+                    bCtx.globalCompositeOperation = 'source-over';
+                    bCtx.fillStyle = '#666';
+                    bCtx.textAlign = 'center';
+                    bCtx.fillText('Shadow Layer', 350, 340);
+                    bCtx.fillText('(Multiply)', 350, 355);
+                    
+                    // Equals sign
+                    bCtx.fillStyle = '#333';
+                    bCtx.font = '24px Arial';
+                    bCtx.fillText('=', 450, 275);
+                    
+                    // Result
+                    bCtx.fillStyle = '#8e44ad';
+                    bCtx.fillRect(500, 220, 100, 100);
+                    bCtx.fillStyle = '#3498db';
+                    bCtx.beginPath();
+                    bCtx.arc(550, 270, 30, 0, Math.PI * 2);
+                    bCtx.fill();
+                    
+                    // Shadow on result
+                    bCtx.globalCompositeOperation = 'multiply';
+                    bCtx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+                    bCtx.beginPath();
+                    bCtx.moveTo(500, 320);
+                    bCtx.lineTo(600, 320);
+                    bCtx.lineTo(550, 250);
+                    bCtx.closePath();
+                    bCtx.fill();
+                    
+                    bCtx.globalCompositeOperation = 'source-over';
+                    bCtx.fillStyle = '#666';
+                    bCtx.textAlign = 'center';
+                    bCtx.fillText('Final Result', 550, 340);
+                </script>
+
+                <blockquote>
+                    <strong>🎯 Quick Reference:</strong> Think of blend modes like this - Multiply makes things darker (shadows), Screen makes things lighter (glows), Overlay adds contrast (textures), and Color changes hues without affecting light/dark values!
+                </blockquote>
+            </section>
+
+            <!-- Section 5: Layer Masks -->
+            <section id="layer-masks" class="lesson-section">
+                <h2>Layer Masks & Transparency 🎭</h2>
+                
+                <p>Layer masks are your non-destructive editing superpower! Instead of erasing pixels forever, masks hide them temporarily. It's like using invisible ink that you can reveal again anytime!</p>
+                
+                <div class="card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                    <h3>🎭 The Mask Principle</h3>
+                    <ul>
+                        <li><strong>White reveals:</strong> White areas of the mask show the layer</li>
+                        <li><strong>Black conceals:</strong> Black areas hide the layer</li>
+                        <li><strong>Gray partially reveals:</strong> 50% gray = 50% transparent</li>
+                        <li><strong>Non-destructive:</strong> Original pixels remain intact</li>
+                    </ul>
+                    <p style="text-align: center; font-weight: bold; margin-top: 1rem;">
+                        Remember: "White reveals, Black conceals"
+                    </p>
+                </div>
+
+                <h3>Creating and Using Masks</h3>
+                
+                <div class="card">
+                    <h4>🛠️ Mask Operations</h4>
+                    <ol>
+                        <li><strong>Add mask to layer:</strong> Click mask icon in Layers panel</li>
+                        <li><strong>Paint on mask:</strong> Select mask thumbnail, use black/white brush</li>
+                        <li><strong>View mask:</strong> Alt/Option + click mask thumbnail</li>
+                        <li><strong>Disable temporarily:</strong> Shift + click mask thumbnail</li>
+                        <li><strong>Delete mask:</strong> Right-click mask → Delete Layer Mask</li>
+                        <li><strong>Apply mask:</strong> Right-click mask → Apply Layer Mask</li>
+                    </ol>
+                </div>
+
+                <h3>Mask Techniques</h3>
+                
+                <div class="card">
+                    <h4>🎨 Common Mask Uses</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Technique</th>
+                                <th>How To</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Soft Edges</strong></td>
+                                <td>Use soft brush on mask edges</td>
+                                <td>Blend objects naturally</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gradient Fade</strong></td>
+                                <td>Apply gradient to mask</td>
+                                <td>Smooth transitions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Selection to Mask</strong></td>
+                                <td>Make selection, add mask</td>
+                                <td>Complex shapes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Refine Edges</strong></td>
+                                <td>Paint mask with varied opacity</td>
+                                <td>Hair, fur, soft objects</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quick Cutout</strong></td>
+                                <td>Rough mask, then refine</td>
+                                <td>Remove backgrounds</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <strong>💡 Pro Workflow:</strong> Always use masks instead of erasing! You never know when a client will say "actually, can we add that back?" With masks, it's instant. With erasing, it's starting over!
+                </blockquote>
+            </section>
+
+            <!-- Section 6: Groups & Organization -->
+            <section id="groups-organization" class="lesson-section">
+                <h2>Groups & Organization 📂</h2>
+                
+                <p>As your artwork gets complex, organization becomes crucial. Layer groups are like folders on your computer - they keep related layers together and your sanity intact!</p>
+                
+                <h3>Creating and Managing Groups</h3>
+                
+                <div class="card">
+                    <h4>📁 Group Essentials</h4>
+                    <ul>
+                        <li><strong>Create group:</strong> Ctrl/Cmd + G (with layers selected)</li>
+                        <li><strong>Create empty group:</strong> Click folder icon in Layers panel</li>
+                        <li><strong>Add to group:</strong> Drag layers into group folder</li>
+                        <li><strong>Collapse/expand:</strong> Click arrow next to group name</li>
+                        <li><strong>Group properties:</strong> Groups can have their own opacity, blend modes, and masks!</li>
+                    </ul>
+                </div>
+
+                <h3>Professional Organization Structure</h3>
+                
+                <div class="mermaid">
+                    graph TD
+                        A[Project Root] --> B[Effects/Adjustments]
+                        A --> C[Foreground]
+                        A --> D[Character]
+                        A --> E[Background]
+                        
+                        B --> B1[Color Correction]
+                        B --> B2[Lighting Effects]
+                        
+                        C --> C1[UI Elements]
+                        C --> C2[Text/Labels]
+                        
+                        D --> D1[Line Art]
+                        D --> D2[Base Colors]
+                        D --> D3[Shadows]
+                        D --> D4[Highlights]
+                        D --> D5[Details]
+                        
+                        E --> E1[Sky]
+                        E --> E2[Mountains]
+                        E --> E3[Ground]
+                </div>
+
+                <div class="card">
+                    <h4>🏆 Best Practices for Layer Organization</h4>
+                    <ol>
+                        <li><strong>Name everything:</strong> "Layer 1" helps nobody, "Character_Hair_Highlights" helps everyone</li>
+                        <li><strong>Use color labels:</strong> Assign colors to layer types (red for sketches, green for finals)</li>
+                        <li><strong>Group by element:</strong> Keep all parts of an object together</li>
+                        <li><strong>Order logically:</strong> Front to back, or workflow order</li>
+                        <li><strong>Create templates:</strong> Save common structures for reuse</li>
+                        <li><strong>Use separators:</strong> Empty groups named "---" to divide sections</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 7: Adjustment Layers -->
+            <section id="adjustment-layers" class="lesson-section">
+                <h2>Adjustment Layers ⚙️</h2>
+                
+                <p>Adjustment layers are like Instagram filters for professionals - they change colors and tones without touching your original art. Stack them, mask them, and tweak them endlessly!</p>
+                
+                <h3>Types of Adjustments</h3>
+                
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Adjustment Type</th>
+                                <th>Purpose</th>
+                                <th>Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Brightness/Contrast</strong></td>
+                                <td>Basic light/dark adjustments</td>
+                                <td>Quick fixes, overall mood</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Levels</strong></td>
+                                <td>Adjust shadows, midtones, highlights</td>
+                                <td>Precise tonal control</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Curves</strong></td>
+                                <td>Fine-tune entire tonal range</td>
+                                <td>Professional color grading</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hue/Saturation</strong></td>
+                                <td>Change colors and intensity</td>
+                                <td>Color shifts, desaturation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Color Balance</strong></td>
+                                <td>Adjust color in shadows/mids/highlights</td>
+                                <td>Color grading, mood</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gradient Map</strong></td>
+                                <td>Map grayscale to colors</td>
+                                <td>Stylized looks, duo-tones</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <strong>🎨 Creative Tip:</strong> Stack multiple adjustment layers with low opacity for subtle, complex color grading. It's better than one heavy adjustment!
+                </blockquote>
+            </section>
+
+            <!-- Section 8: Professional Workflows -->
+            <section id="professional-workflows" class="lesson-section">
+                <h2>Professional Workflows 🚀</h2>
+                
+                <p>Let's put it all together! Here are battle-tested workflows used by professional digital artists.</p>
+                
+                <h3>The Non-Destructive Workflow</h3>
+                
+                <div class="card" style="background: #e8f5e9; border-left: 4px solid #4CAF50;">
+                    <h4>✅ Golden Rules</h4>
+                    <ol>
+                        <li><strong>Never work on the background layer</strong> - Duplicate it first</li>
+                        <li><strong>Keep your line art separate</strong> - Makes coloring easier</li>
+                        <li><strong>Use adjustment layers</strong> - Don't adjust pixels directly</li>
+                        <li><strong>Mask, don't erase</strong> - You can always change your mind</li>
+                        <li><strong>Save iterations</strong> - Keep versions as you progress</li>
+                        <li><strong>Work big, export small</strong> - You can always scale down</li>
+                    </ol>
+                </div>
+
+                <h3>Common Workflows</h3>
+                
+                <div class="card">
+                    <h4>🎨 Digital Painting Workflow</h4>
+                    <ol>
+                        <li><strong>Sketch layer</strong> - Rough idea, low opacity</li>
+                        <li><strong>Clean line art</strong> - New layer, refined lines</li>
+                        <li><strong>Base colors</strong> - Flat colors under line art</li>
+                        <li><strong>Shadows layer</strong> - Multiply mode, cool colors</li>
+                        <li><strong>Highlights layer</strong> - Screen/Add mode, warm colors</li>
+                        <li><strong>Details layer</strong> - Small touches, textures</li>
+                        <li><strong>Effects group</strong> - Glow, particles, atmosphere</li>
+                        <li><strong>Adjustment layers</strong> - Final color grading</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h4>📸 Photo Manipulation Workflow</h4>
+                    <ol>
+                        <li><strong>Background copy</strong> - Preserve original</li>
+                        <li><strong>Cleanup layer</strong> - Remove unwanted elements</li>
+                        <li><strong>Subject extraction</strong> - Masked cutouts</li>
+                        <li><strong>Composite elements</strong> - Each on separate layer</li>
+                        <li><strong>Blend adjustments</strong> - Match lighting/color</li>
+                        <li><strong>Shadow/highlight layers</strong> - Paint realistic shadows</li>
+                        <li><strong>Color grading group</strong> - Unified look</li>
+                        <li><strong>Final touches</strong> - Sharpening, vignette</li>
+                    </ol>
+                </div>
+
+                <h3>Time-Saving Tips</h3>
+                
+                <div class="card">
+                    <h4>⚡ Speed Techniques</h4>
+                    <ul>
+                        <li><strong>Action recording:</strong> Record repetitive tasks</li>
+                        <li><strong>Layer comps:</strong> Save different versions</li>
+                        <li><strong>Smart objects:</strong> Edit once, update everywhere</li>
+                        <li><strong>Keyboard shortcuts:</strong> Learn them all!</li>
+                        <li><strong>Custom workspaces:</strong> Arrange panels for your workflow</li>
+                        <li><strong>Template files:</strong> Start with pre-made structures</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 9: Practice -->
+            <section id="practice" class="lesson-section">
+                <h2>Practice Exercises 🏋️</h2>
+                
+                <div class="exercise-card">
+                    <h3>🎯 Exercise 1: Layer Stack Challenge</h3>
+                    <p><strong>Objective:</strong> Master layer ordering and opacity</p>
+                    
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Create a new document (1920x1080)</li>
+                        <li>Create 5 layers with different colored shapes:
+                            <ul>
+                                <li>Layer 1: Blue circle</li>
+                                <li>Layer 2: Red square</li>
+                                <li>Layer 3: Green triangle</li>
+                                <li>Layer 4: Yellow star</li>
+                                <li>Layer 5: Purple hexagon</li>
+                            </ul>
+                        </li>
+                        <li>Arrange them to create an interesting composition</li>
+                        <li>Adjust opacity of each to create depth</li>
+                        <li>Try different stacking orders</li>
+                    </ol>
+                    
+                    <p><strong>Success Criteria:</strong> You should understand how layer order affects visibility and how opacity creates depth.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>🎨 Exercise 2: Blend Mode Explorer</h3>
+                    <p><strong>Objective:</strong> Understand blend mode effects</p>
+                    
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Download or create a simple photo/artwork</li>
+                        <li>Duplicate it 5 times</li>
+                        <li>Add a different colored layer above each copy</li>
+                        <li>Apply these blend modes:
+                            <ul>
+                                <li>Copy 1: Multiply (dark color)</li>
+                                <li>Copy 2: Screen (light color)</li>
+                                <li>Copy 3: Overlay (any color)</li>
+                                <li>Copy 4: Color (vibrant color)</li>
+                                <li>Copy 5: Your choice!</li>
+                            </ul>
+                        </li>
+                        <li>Adjust opacity to taste</li>
+                    </ol>
+                    
+                    <p><strong>What you'll learn:</strong> How different blend modes affect the image and when to use each one.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>🎭 Exercise 3: Mask Mastery</h3>
+                    <p><strong>Objective:</strong> Create seamless composites with masks</p>
+                    
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Find two photos: a person and a background</li>
+                        <li>Place person on layer above background</li>
+                        <li>Add a layer mask to person layer</li>
+                        <li>Use black brush to hide unwanted areas</li>
+                        <li>Refine edges with soft brush at low opacity</li>
+                        <li>Add shadow on new layer (multiply mode)</li>
+                        <li>Color correct with adjustment layers</li>
+                    </ol>
+                    
+                    <p><strong>Pro Challenge:</strong> Make it impossible to tell it's a composite!</p>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>🏗️ Exercise 4: Build a Layer Structure</h3>
+                    <p><strong>Objective:</strong> Create professional organization</p>
+                    
+                    <h4>Your Mission:</h4>
+                    <p>Create a complete layer structure for a character illustration:</p>
+                    <ul>
+                        <li>Sketch group (rough, refined)</li>
+                        <li>Line Art group (main lines, detail lines)</li>
+                        <li>Colors group (skin, hair, clothes, accessories)</li>
+                        <li>Shading group (shadows, highlights, rim light)</li>
+                        <li>Effects group (glow, particles)</li>
+                        <li>Adjustments group (color correction, filters)</li>
+                    </ul>
+                    
+                    <p>Name every layer clearly and use color labels!</p>
+                </div>
+            </section>
+
+            <!-- Section 10: Summary -->
+            <section id="summary" class="lesson-section">
+                <h2>Summary & Pro Tips 📝</h2>
+                
+                <div class="card" style="background: #e8f5e9; border-left: 4px solid #4CAF50;">
+                    <h3>🎯 Key Takeaways</h3>
+                    <ul>
+                        <li>Layers let you work non-destructively - embrace them!</li>
+                        <li>Organization is crucial - name and group everything</li>
+                        <li>Blend modes multiply your creative options</li>
+                        <li>Masks are better than erasers - always!</li>
+                        <li>Adjustment layers keep your options open</li>
+                        <li>Professional workflows save time and headaches</li>
+                    </ul>
+                </div>
+                
+                <h3>🚀 Level Up Tips</h3>
+                
+                <div class="card">
+                    <h4>💎 Advanced Techniques to Explore</h4>
+                    <ol>
+                        <li><strong>Pass Through mode:</strong> In groups, lets blend modes affect layers below</li>
+                        <li><strong>Layer effects:</strong> Strokes, glows, shadows - non-destructive styles</li>
+                        <li><strong>Smart objects:</strong> Embed files that update automatically</li>
+                        <li><strong>Layer comps:</strong> Save multiple versions in one file</li>
+                        <li><strong>Advanced masking:</strong> Vector masks, channel masks</li>
+                        <li><strong>Blend If sliders:</strong> Conditional transparency based on brightness</li>
+                    </ol>
+                </div>
+
+                <h3>🔧 Common Problems & Solutions</h3>
+                
+                <div class="card">
+                    <details>
+                        <summary><strong>Can't see my layer changes</strong></summary>
+                        <p>Check: Is the layer visible? Is opacity at 0%? Is it under an opaque layer? Is it clipped to a transparent layer?</p>
+                    </details>
+                    
+                    <details>
+                        <summary><strong>Blend mode isn't working</strong></summary>
+                        <p>Remember: Blend modes need something below to blend with. They don't work on the bottom layer or on transparent areas.</p>
+                    </details>
+                    
+                    <details>
+                        <summary><strong>File size is huge</strong></summary>
+                        <p>Too many layers? Merge completed sections (keep a backup!). Use layer groups. Delete hidden layers you don't need.</p>
+                    </details>
+                    
+                    <details>
+                        <summary><strong>Lost in my layers</strong></summary>
+                        <p>Use the move tool with auto-select. Color code your layers. Collapse groups you're not using. Search layers by name!</p>
+                    </details>
+                </div>
+
+                <blockquote>
+                    <strong>🎨 Final Wisdom:</strong> Layers are not just a technical feature - they're a creative philosophy. They represent the freedom to experiment, the safety to make mistakes, and the flexibility to evolve your art. Master layers, and you master the ability to bring any vision to life, one transparent sheet at a time!
+                </blockquote>
+
+                <h3>🌟 Next Steps</h3>
+                <p>Congratulations! You now understand the power of layers. Next, we'll dive into:</p>
+                <ul>
+                    <li><strong>Color Theory & Mixing:</strong> Understanding color relationships</li>
+                    <li><strong>Digital color tools:</strong> Color wheels, harmony rules</li>
+                    <li><strong>Creating palettes:</strong> For consistent, beautiful artwork</li>
+                    <li><strong>Color correction:</strong> Making your art pop!</li>
+                </ul>
+            </section>
+
+            <!-- Lesson Navigation -->
+            <nav class="lesson-nav" aria-label="Lesson Navigation">
+                <a href="brush_fundamentals.html" class="prev-lesson">← Previous: Brush Fundamentals</a>
+                <a href="index.html" class="home-link">🏠 Course Home</a>
+                <a href="color_theory.html" class="next-lesson">Next: Color Theory & Mixing →</a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; margin-top: 4rem; border-top: 1px solid var(--border-color);">
+        <p>&copy; 2024 Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Toggle Table of Contents
+        function toggleTOC() {
+            const tocList = document.getElementById('toc-list');
+            const tocIcon = document.getElementById('toc-toggle-icon');
+            
+            if (tocList.style.maxHeight === '0px' || tocList.style.maxHeight === '') {
+                tocList.style.maxHeight = '500px';
+                tocIcon.style.transform = 'rotate(0deg)';
+                localStorage.setItem('tocState', 'expanded');
+            } else {
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+                localStorage.setItem('tocState', 'collapsed');
+            }
+        }
+        
+        // Initialize TOC state
+        document.addEventListener('DOMContentLoaded', () => {
+            const tocState = localStorage.getItem('tocState');
+            if (tocState === 'collapsed') {
+                const tocList = document.getElementById('toc-list');
+                const tocIcon = document.getElementById('toc-toggle-icon');
+                tocList.style.maxHeight = '0px';
+                tocIcon.style.transform = 'rotate(-90deg)';
+            }
+        });
+        
+        // Progress indicator
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.querySelector('.progress-bar').style.width = `${Math.min(progress, 100)}%`;
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isOpen = navLinks.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+                navLinks.setAttribute('aria-hidden', !isOpen);
+            });
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            
+            themeToggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const newTheme = current === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+            });
+        }
+
+        // Smooth scrolling for TOC
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -74,7 +74,7 @@
                     <span>📑 Table of Contents</span>
                     <span id="toc-toggle-icon" style="transition: transform 0.3s;">▼</span>
                 </h2>
-                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 500px;">
+                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 300px; margin: 0; padding-left: 1.5rem;">
                     <li><a href="#first-look" class="toc-link">First Look at the Interface</a></li>
                     <li><a href="#essential-areas" class="toc-link">The Five Essential Areas</a></li>
                     <li><a href="#toolbar" class="toc-link">The Toolbar Explained</a></li>
@@ -948,7 +948,7 @@ Tab - Hide Panels                 Tab - Hide Panels</code></pre>
             
             if (tocList.style.maxHeight === '0px' || tocList.style.maxHeight === '') {
                 // Expand
-                tocList.style.maxHeight = '500px';
+                tocList.style.maxHeight = '300px';
                 tocIcon.style.transform = 'rotate(0deg)';
                 localStorage.setItem('tocState', 'expanded');
             } else {
