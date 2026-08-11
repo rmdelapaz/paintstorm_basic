@@ -239,30 +239,6 @@
             }
         }
         
-        /* Progress tracker */
-        .progress-tracker {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin: 2rem 0;
-        }
-        
-        .progress-bar-container {
-            background: #f0f0f0;
-            height: 20px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 1rem 0;
-        }
-        
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-        
         /* FAQ Section */
         .faq-section {
             margin: 3rem 0;
@@ -311,14 +287,20 @@
     <a href="#main-content" class="skip-to-main">Skip to main content</a>
     
     <!-- Navigation -->
-    <nav>
+    <nav class="main-nav">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">🎨 Paintstorm Studio Tutorials</a>
-            <div class="nav-links">
+            <a href="index.html" class="nav-logo">🎨 Paintstorm Studio</a>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="nav-links">
+                ☰
+            </button>
+            <div class="nav-links" id="nav-links">
                 <a href="#modules">Lessons</a>
                 <a href="#about">About</a>
                 <a href="#faq">FAQ</a>
-                <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+                <span class="nav-divider"></span>
+                <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+                <a href="https://rays-home.netlify.app/contact">Contact</a>
+                <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
             </div>
         </div>
     </nav>
@@ -355,15 +337,6 @@
                     <span class="stat-number">100%</span>
                     <span class="stat-label">Beginner Friendly</span>
                 </div>
-            </div>
-
-            <!-- Progress Tracker -->
-            <div class="progress-tracker" id="progress-tracker">
-                <h2>📊 Your Learning Progress</h2>
-                <div class="progress-bar-container">
-                    <div class="progress-bar-fill" id="progress-bar"></div>
-                </div>
-                <p id="progress-text">Ready to begin your journey! Start with Lesson 1.</p>
             </div>
 
             <!-- Learning Path Section -->
@@ -639,119 +612,23 @@
     </main>
 
     <!-- Footer -->
-    <footer style="background: #2c3e50; color: white; padding: 3rem 0; margin-top: 4rem;">
-        <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-                <div>
-                    <h4>Quick Links</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0;"><a href="welcome_to_paintstorm.html" style="color: #ecf0f1;">Start Learning</a></li>
-                        <li style="padding: 0.5rem 0;"><a href="#modules" style="color: #ecf0f1;">All Lessons</a></li>
-                        <li style="padding: 0.5rem 0;"><a href="troubleshooting.html" style="color: #ecf0f1;">Troubleshooting</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Resources</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0;"><a href="https://paintstormstudio.com" target="_blank" style="color: #ecf0f1;">Official Website</a></li>
-                        <li style="padding: 0.5rem 0;"><a href="#" style="color: #ecf0f1;">Community Forum</a></li>
-                        <li style="padding: 0.5rem 0;"><a href="#" style="color: #ecf0f1;">Discord Server</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>About</h4>
-                    <p style="line-height: 1.6; color: #bdc3c7;">
-                        This tutorial series was created with love for the digital art community. Free to use, share, and learn from!
-                    </p>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #34495e;">
-                <p>&copy; 2024 Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
-                 <p style="margin-top: 15px; text-align: center;"><a href="https://rays-home.netlify.app/contact" style="color: #667eea;">📬 Contact</a> &middot; <a href="https://rays-home.netlify.app/" style="color: #667eea;">← Back to Ray's House of Fun</a></p>
-            </div>
+    <footer class="site-footer">
+        <p>&copy; 2024 Ray de la Paz. Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
+        <div class="footer-links">
+            <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+            <a href="https://rays-home.netlify.app/contact">Contact</a>
+            <a href="#" id="print-button">Print Page</a>
         </div>
+        <p><small>Press <kbd>?</kbd> for keyboard shortcuts</small></p>
     </footer>
 
     <!-- Scripts -->
     <script>
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        if (themeToggle) {
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
-            
-            themeToggle.addEventListener('click', () => {
-                const current = document.documentElement.getAttribute('data-theme');
-                const newTheme = current === 'light' ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
-            });
-        }
-
-        // Progress tracking
-        function updateProgress() {
-            const lessons = [
-                'welcome_to_paintstorm',
-                'interface_basics',
-                'essential_tools',
-                'brush_fundamentals',
-                'working_with_layers',
-                'color_theory',
-                'basic_painting_techniques',
-                'file_management',
-                'troubleshooting'
-            ];
-            
-            let completed = 0;
-            lessons.forEach(lesson => {
-                if (localStorage.getItem(`lesson_${lesson}_completed`) === 'true') {
-                    completed++;
-                }
-            });
-            
-            const percentage = (completed / lessons.length) * 100;
-            const progressBar = document.getElementById('progress-bar');
-            const progressText = document.getElementById('progress-text');
-            
-            if (progressBar) {
-                progressBar.style.width = `${percentage}%`;
-            }
-            
-            if (progressText) {
-                if (completed === 0) {
-                    progressText.textContent = 'Ready to begin your journey! Start with Lesson 1.';
-                } else if (completed === lessons.length) {
-                    progressText.textContent = '🎉 Congratulations! You\'ve completed all lessons!';
-                } else {
-                    progressText.textContent = `${completed} of ${lessons.length} lessons completed (${Math.round(percentage)}%)`;
-                }
-            }
-        }
-        
-        // Update progress on page load
-        updateProgress();
-
         // FAQ toggle
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const faqItem = question.parentElement;
                 faqItem.classList.toggle('active');
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
             });
         });
 
@@ -774,5 +651,7 @@
             observer.observe(card);
         });
     </script>
+    <script src="js/clipboard.js"></script>
+    <script src="js/course-enhancements.js"></script>
 </body>
 </html>

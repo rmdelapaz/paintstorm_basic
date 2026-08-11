@@ -8,31 +8,39 @@
     <title>Brush Fundamentals - Paintstorm Studio Essentials</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="icon" type="image/png" href="/favicon.png">
+    <!-- Mermaid — initialized by course-enhancements.js for theme awareness -->
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        mermaid.initialize({ startOnLoad: true });
+        window.__mermaid = mermaid;
+        const isDark = localStorage.getItem('theme') === 'dark' ||
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: isDark ? 'dark' : 'default',
+            themeVariables: isDark
+                ? { primaryColor: '#334155', primaryTextColor: '#e2e8f0', primaryBorderColor: '#6366f1', lineColor: '#94a3b8', secondaryColor: '#1e293b', tertiaryColor: '#0f172a' }
+                : { primaryColor: '#eff6ff', primaryTextColor: '#1e293b', primaryBorderColor: '#3b82f6', lineColor: '#64748b', secondaryColor: '#f8fafc', tertiaryColor: '#f1f5f9' }
+        });
     </script>
 </head>
 <body>
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-to-main">Skip to main content</a>
     
-    <!-- Progress indicator -->
-    <div class="progress-indicator" role="progressbar" aria-label="Page scroll progress">
-        <div class="progress-bar"></div>
-    </div>
-
     <!-- Navigation -->
-    <nav>
+    <nav class="main-nav">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">🎨 Paintstorm Studio</a>
             <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="nav-links">
                 ☰
             </button>
-            <div class="nav-links" id="nav-links" aria-hidden="false">
+            <div class="nav-links" id="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#modules">All Lessons</a>
-                <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+                <span class="nav-divider"></span>
+                <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+                <a href="https://rays-home.netlify.app/contact">Contact</a>
+                <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
             </div>
         </div>
     </nav>
@@ -69,23 +77,26 @@
             </header>
 
             <!-- Table of Contents -->
-            <nav class="card" aria-label="Table of Contents">
-                <h2 style="cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center;" onclick="toggleTOC()">
-                    <span>📑 Table of Contents</span>
-                    <span id="toc-toggle-icon" style="transition: transform 0.3s;">▼</span>
-                </h2>
-                <ol id="toc-list" style="overflow: hidden; transition: max-height 0.3s ease-out; max-height: 300px; margin: 0; padding-left: 1.5rem;">
-                    <li><a href="#understanding-brushes" class="toc-link">Understanding Digital Brushes</a></li>
-                    <li><a href="#brush-library" class="toc-link">Navigating the Brush Library</a></li>
-                    <li><a href="#brush-anatomy" class="toc-link">Anatomy of a Brush</a></li>
-                    <li><a href="#essential-settings" class="toc-link">Essential Brush Settings</a></li>
-                    <li><a href="#dynamics" class="toc-link">Brush Dynamics & Pressure</a></li>
-                    <li><a href="#creating-brushes" class="toc-link">Creating Custom Brushes</a></li>
-                    <li><a href="#techniques" class="toc-link">Brush Techniques</a></li>
-                    <li><a href="#practice" class="toc-link">Practice Exercises</a></li>
-                    <li><a href="#summary" class="toc-link">Summary & Pro Tips</a></li>
-                </ol>
-            </nav>
+            <details class="card toc-card" open>
+                <summary aria-label="Toggle table of contents">
+                    <span class="toc-icon" aria-hidden="true">📑</span>
+                    <span class="toc-label">In This Lesson</span>
+                    <span class="toc-chevron" aria-hidden="true">▾</span>
+                </summary>
+                <nav aria-label="Table of Contents">
+                    <ol>
+                        <li><a href="#understanding-brushes" class="toc-link">Understanding Digital Brushes</a></li>
+                        <li><a href="#brush-library" class="toc-link">Navigating the Brush Library</a></li>
+                        <li><a href="#brush-anatomy" class="toc-link">Anatomy of a Brush</a></li>
+                        <li><a href="#essential-settings" class="toc-link">Essential Brush Settings</a></li>
+                        <li><a href="#dynamics" class="toc-link">Brush Dynamics & Pressure</a></li>
+                        <li><a href="#creating-brushes" class="toc-link">Creating Custom Brushes</a></li>
+                        <li><a href="#techniques" class="toc-link">Brush Techniques</a></li>
+                        <li><a href="#practice" class="toc-link">Practice Exercises</a></li>
+                        <li><a href="#summary" class="toc-link">Summary & Pro Tips</a></li>
+                    </ol>
+                </nav>
+            </details>
 
             <!-- Section 1: Understanding Digital Brushes -->
             <section id="understanding-brushes" class="lesson-section">
@@ -818,89 +829,18 @@
     </main>
 
     <!-- Footer -->
-    <footer style="text-align: center; padding: 2rem; margin-top: 4rem; border-top: 1px solid var(--border-color);">
-        <p>&copy; 2024 Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
+    <footer class="site-footer">
+        <p>&copy; 2024 Ray de la Paz. Paintstorm Studio Tutorial Series. Created with 💖 for aspiring digital artists.</p>
+        <div class="footer-links">
+            <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+            <a href="https://rays-home.netlify.app/contact">Contact</a>
+            <a href="#" id="print-button">Print Page</a>
+        </div>
+        <p><small>Press <kbd>?</kbd> for keyboard shortcuts</small></p>
     </footer>
 
     <!-- Scripts -->
-    <script>
-        // Toggle Table of Contents
-        function toggleTOC() {
-            const tocList = document.getElementById('toc-list');
-            const tocIcon = document.getElementById('toc-toggle-icon');
-            
-            if (tocList.style.maxHeight === '0px' || tocList.style.maxHeight === '') {
-                // Expand
-                tocList.style.maxHeight = '300px';
-                tocIcon.style.transform = 'rotate(0deg)';
-                localStorage.setItem('tocState', 'expanded');
-            } else {
-                // Collapse
-                tocList.style.maxHeight = '0px';
-                tocIcon.style.transform = 'rotate(-90deg)';
-                localStorage.setItem('tocState', 'collapsed');
-            }
-        }
-        
-        // Initialize TOC state from localStorage
-        document.addEventListener('DOMContentLoaded', () => {
-            const tocState = localStorage.getItem('tocState');
-            if (tocState === 'collapsed') {
-                const tocList = document.getElementById('toc-list');
-                const tocIcon = document.getElementById('toc-toggle-icon');
-                tocList.style.maxHeight = '0px';
-                tocIcon.style.transform = 'rotate(-90deg)';
-            }
-        });
-        
-        // Progress indicator
-        window.addEventListener('scroll', () => {
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight - windowHeight;
-            const scrolled = window.scrollY;
-            const progress = (scrolled / documentHeight) * 100;
-            document.querySelector('.progress-bar').style.width = `${Math.min(progress, 100)}%`;
-        });
-
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                const isOpen = navLinks.classList.contains('active');
-                menuToggle.setAttribute('aria-expanded', isOpen);
-                navLinks.setAttribute('aria-hidden', !isOpen);
-            });
-        }
-
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        if (themeToggle) {
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
-            
-            themeToggle.addEventListener('click', () => {
-                const current = document.documentElement.getAttribute('data-theme');
-                const newTheme = current === 'light' ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
-            });
-        }
-
-        // Smooth scrolling for TOC links
-        document.querySelectorAll('.toc-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
+    <script src="js/clipboard.js"></script>
+    <script src="js/course-enhancements.js"></script>
 </body>
 </html>
